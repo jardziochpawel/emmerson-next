@@ -1,6 +1,6 @@
-import {useEffect, useRef} from 'react';
+import { useEffect, useRef } from 'react';
 import { Feature } from "../components";
-import {Header, SectionCommercial, SectionOffers} from "../containers";
+import { Header, SectionCommercial, SectionOffers } from "../containers";
 import Head from 'next/head';
 import dynamic from "next/dynamic";
 

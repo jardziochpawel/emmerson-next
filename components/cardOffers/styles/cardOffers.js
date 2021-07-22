@@ -42,6 +42,41 @@ export const CardImage = styled(BackgroundImage)`
   width: 100%;
 `;
 
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: auto;
+`;
+
+export const Mask = styled.div`
+  position: absolute;
+  z-index: 99999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: transparent;
+  
+  &:hover {
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(224, 0, 9, 0.55);
+    span{
+      border: 1px solid white;
+      padding: 15px 20px;
+      &:hover{
+        cursor: pointer;
+        color: lightgray;
+        border-color: lightgray;
+      }
+    }
+  }
+
+`;
+
 export const CardBody = styled.div`
   display: flex;
   flex-direction: column;

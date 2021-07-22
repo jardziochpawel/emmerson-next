@@ -10,7 +10,7 @@ import {
     Img,
     Param,
     Value,
-    CardContainer
+    CardContainer, ImageContainer, Mask
 } from "./style/cardCommercial";
 
 export default function CardCommercial({children, ...restProps}){
@@ -70,7 +70,12 @@ CardCommercial.Price = function CardCommercialPrice({children, ...restProps}){
 
 CardCommercial.Img = function CardCommercialImg({img, ...restProps }){
 
-    return(<Img src={img} lazyLoad {...restProps} />);
+    return(
+        <ImageContainer>
+            <Mask><span {...restProps}>Zobacz</span></Mask>
+            <Img src={img} lazyLoad isResponsive wrapperClassName='card-image' />
+        </ImageContainer>
+    );
 }
 
 CardCommercial.LocalisationIco = function CardCommercialLocalisationIco(){

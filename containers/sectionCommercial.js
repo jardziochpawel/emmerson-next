@@ -1,9 +1,19 @@
 import React from "react";
 import {CardCommercial, Carousel, Section, Spinner} from "../components";
 import {useWebPSupportCheck} from "react-use-webp-support-check";
+import {getPropertyAndTransaction} from "../helpers/getPropertyAndTransaction";
+import {useRouter} from "next/router";
+import slugify from "react-slugify";
 
 export default function SectionCommercial({ data }){
+    const router = useRouter();
     const webp = useWebPSupportCheck()
+
+
+    const onClick = (id, slug) => {
+        const obj = getPropertyAndTransaction(id)
+        router.push(`/${obj.property}/${obj.transaction}/${slug}/${id}`)
+    }
 
     return(
             <Section diagonal={true} color={{first: 'white', second: 'white'}}>
@@ -24,7 +34,7 @@ export default function SectionCommercial({ data }){
                                      return(
                                          <Carousel.Item key={item.id+key}>
                                              <CardCommercial.CardContainer>
-                                                 {image && <CardCommercial.Img img={image}/>}
+                                                 {image && <CardCommercial.Img img={image} onClick={()=>onClick(item.id, slugify(item.title))} />}
                                                  <CardCommercial.Box>
                                                      <CardCommercial.DescriptionTitle>{item.title}</CardCommercial.DescriptionTitle>
                                                      <CardCommercial.Localisation>{item.city ?? item.city} {item.quarter ?? item.quarter} {item.street ?? item.street}</CardCommercial.Localisation>

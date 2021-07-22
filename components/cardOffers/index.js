@@ -11,7 +11,7 @@ import {
     ListParam,
     ListValue,
     CardPrice,
-    CardText
+    CardText, Mask, ImageContainer
 } from "./styles/cardOffers";
 
 export default function CardOffers({children, ...restProps}){
@@ -31,7 +31,10 @@ CardOffers.Container = function CardOffersContainer({children, ...restProps}){
 CardOffers.Image = function CardOffersImage({image, ...restProps}){
 
     return(
-        <CardImage image={image} src={image} {...restProps} lazyLoad/>
+        <ImageContainer>
+            <Mask><span {...restProps}>Zobacz</span></Mask>
+            <CardImage src={image} wrapperClassName='card-image' lazyLoad isResponsive />
+        </ImageContainer>
     );
 }
 

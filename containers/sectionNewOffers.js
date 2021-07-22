@@ -2,9 +2,18 @@ import React from "react";
 import {CardOffers, Section, Spinner} from "../components";
 import {numberWithSpaces} from "../helpers/numberWithSpaces";
 import {useWebPSupportCheck} from "react-use-webp-support-check";
+import {useRouter} from "next/router";
+import {getPropertyAndTransaction} from "../helpers/getPropertyAndTransaction";
+import slugify from "react-slugify";
 
 export default function SectionOffers({data}){
-    const webp = useWebPSupportCheck()
+    const router = useRouter();
+    const webp = useWebPSupportCheck();
+
+    const onClick = (id, slug) => {
+        const obj = getPropertyAndTransaction(id)
+        router.push(`/${obj.property}/${obj.transaction}/${slug}/${id}`)
+    }
 
     return(
         <Section diagonal={false} first={true} color={{first:'whitesmoke', second: 'whitesmoke'}}>
@@ -24,7 +33,7 @@ export default function SectionOffers({data}){
                         {data.map(i => {
                             return(
                                 <CardOffers.Container key={i.id}>
-                                    <CardOffers.Image image={webp ? i.photoWebp : i.photoJpeg}/>
+                                    <CardOffers.Image image={webp ? i.photoWebp : i.photoJpeg} onClick={()=>onClick(i.id, slugify(i.title))}/>
                                     <CardOffers.Body>
                                         <CardOffers.Title>{i.title}</CardOffers.Title>
                                         <CardOffers.Localisation><CardOffers.LocalisationIcon />{i.city?? i.city} {i.quarter ?? i.quarter } {i.street?? i.street }</CardOffers.Localisation>
