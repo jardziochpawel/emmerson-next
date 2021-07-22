@@ -34,7 +34,7 @@ export default function SelectInputContainer({ label, value, onChange, options, 
     }
 
     let optionsFilter = options.filter(e => e.label.toLowerCase().includes(toSearch.toLowerCase()));
-    console.log(value.label);
+
     return (
         <>
             <SelectInput {...restProps}>
