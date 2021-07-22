@@ -122,7 +122,8 @@ export default function ListaOfert({ isModalOpen, setModalOpen, prevSearchLocati
                                     <Offers.CardHeader>
                                         <Offers.Title onClick={()=>handleClick(item.objectName, item.offerType,item.title, item.id)}>{item.title}</Offers.Title>
                                         <Offers.Localisation onClick={()=>openMap([item.geoMarker.latitude, item.geoMarker.longitude])}>
-                                            { switchPropertyType(item.objectName) } na {item.offerType}: { item.street && item.street + ', '}{ item.quarter && item.quarter + ', '}{item.city}, {item.province} <Offers.LocationIcon />
+                                            <Offers.LocationIcon />
+                                            { switchPropertyType(item.objectName) } na {item.offerType}: { item.street && item.street + ', '}{ item.quarter && item.quarter + ', '}{item.city}, {item.province}
                                         </Offers.Localisation>
                                     </Offers.CardHeader>
                                     <Offers.CardText>

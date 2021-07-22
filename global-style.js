@@ -16,4 +16,9 @@ export const GlobalStyles = createGlobalStyle`
     background-color: whitesmoke;
     color: #000000;
     font-size: 16px;
-}`;
+}
+  
+.test{
+overflow: initial!important;
+}
+`;

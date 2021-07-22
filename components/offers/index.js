@@ -44,11 +44,11 @@ Offers.LocationIcon = function OffersLocationIcon({ restProps }){
     return <LocationIcon {...restProps} />
 }
 
-Offers.CardImage = function OffersCardImage({imageJpeg, imageWebp, webp,  onClick, restProps }){
+Offers.CardImage = function OffersCardImage({imageJpeg, imageWebp, webp,  onClick, ...restProps }){
 
     return (
-        <CardBoxImage onClick={onClick}>
-            <CardImage image={webp? imageWebp : imageJpeg} {...restProps} />
+        <CardBoxImage onClick={onClick} {...restProps}>
+            <CardImage src={webp? imageWebp : imageJpeg} lasyLoad isResponsive />
         </CardBoxImage>
     )
 }

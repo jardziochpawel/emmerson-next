@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import {LocationOn} from "@styled-icons/material";
+import {BackgroundImage} from "react-image-and-background-image-fade";
 
 export const Container = styled.div`
   display: flex;
@@ -22,9 +23,13 @@ export const CardContainer = styled.div`
   flex-flow: row;
   justify-content: flex-start;
   align-items: flex-start;
-  min-height: 300px;
   max-height: 600px;
   width: 65%;
+
+  @media(max-width: 1200px){
+    width: 95%;
+    
+  }
 
   @media(max-width: 850px){
     flex-wrap: wrap;
@@ -97,16 +102,15 @@ export const CardBoxImage = styled.div`
   }
 `;
 
-export const CardImage = styled.div`
+export const CardImage = styled(BackgroundImage)`
   width: 100%;
   overflow: hidden;
   height: 0;
   padding-top: 75%;
   padding-left: 0;
   padding-right: 0;
+  background:  center / 100% 100% no-repeat;
   
-  ${({image}) => image && css`background: url("${image}") center / 100% 100% no-repeat;`}
-
   &:hover{
     cursor: pointer;
   }

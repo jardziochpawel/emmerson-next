@@ -13,7 +13,7 @@ import {
 export default function Header({ bg = true, src = false, children, color = false, ...restProps }) {
 
     return bg ? (
-        <Background src={src ? `/images/misc/${src}.jpeg`: `/images/misc/bg-homepage.jpeg`} {...restProps}>
+        <Background src={src ? `/images/misc/${src}.jpeg`: `/images/misc/bg-homepage.jpeg`} lazyLoad isResponsive wrapperClassName='test' {...restProps}>
             {children}
         </Background>
     ) : (

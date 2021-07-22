@@ -1,15 +1,14 @@
 import styled, {css} from 'styled-components';
+import {BackgroundImage} from "react-image-and-background-image-fade";
 
-export const Background = styled.div`    
+export const Background = styled(BackgroundImage)`    
   display: flex;
   flex-direction: column;
-  
-  ${({height}) => height ? css`min-height: ${height};` : css`min-height: 100vh;`}
-  background: url(${({ src }) => (src)}) center / cover no-repeat;
-  
-  @media (max-width: 1100px) {
-    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && `background: none;`}
-  }        
+  position: relative;
+  width: 100vw;
+  height: 100%!important;
+  background: center / cover no-repeat;
+  ${({height}) => height ? css`min-height: ${height};` : css`min-height: 100vh;`};
   
   @media (max-width: 1000px){
     height: 100vh;
