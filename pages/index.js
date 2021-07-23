@@ -36,8 +36,8 @@ export default function Index({ commercial, random }){
                 <SearchForm node={ref}/>
             </Header>
             <>
-                <SectionOffers data={random} webp={webp}/>
-                <SectionCommercial data={commercial} webp={webp}/>
+                {/*<SectionOffers data={random} webp={webp}/>*/}
+                {/*<SectionCommercial data={commercial} webp={webp}/>*/}
             </>
         </div>
     )
