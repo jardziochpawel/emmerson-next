@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components';
-import {BackgroundImage} from "react-image-and-background-image-fade";
+import { BackgroundImage } from "react-image-and-background-image-fade";
 import Link from "next/link";
 
 export const Background = styled(BackgroundImage)`    
