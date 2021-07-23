@@ -1,14 +1,12 @@
 import React from "react";
 import {CardOffers, Section, Spinner} from "../components";
 import {numberWithSpaces} from "../helpers/numberWithSpaces";
-import {useWebPSupportCheck} from "react-use-webp-support-check";
 import {useRouter} from "next/router";
 import {getPropertyAndTransaction} from "../helpers/getPropertyAndTransaction";
 import slugify from "react-slugify";
 
-export default function SectionOffers({data}){
+export default function SectionOffers({data, webp}){
     const router = useRouter();
-    const webp = useWebPSupportCheck();
 
     const onClick = (id, slug) => {
         const obj = getPropertyAndTransaction(id)

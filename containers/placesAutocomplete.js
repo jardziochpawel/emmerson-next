@@ -11,24 +11,29 @@ export default function PlacesAutocompleteContainer({address, setAddress, prevSe
     const [searchOptions, setSearchOptions] = useState({types:['geocode']});
 
     useEffect(() => {
-        const loader = new Loader({
-            apiKey: "AIzaSyDK8yuIeWDleZOdRCgY0rDyZH8TUTp8C6c",
-            version: "weekly",
-            libraries: ["places"]
-        });
 
-        loader
-            .load()
-            .then((google) => {
-                setSearchOptions({
-                    location: new google.maps.LatLng(52.237049, 21.017532),
-                    radius: 20000,
-                    types:['geocode']
-                })
-            })
-            .catch(e => {
-                   console.log(e);
+        async function firstFunc(){
+            const loader = await new Loader({
+                apiKey: "AIzaSyDK8yuIeWDleZOdRCgY0rDyZH8TUTp8C6c",
+                version: "weekly",
+                libraries: ["places"]
             });
+
+            loader
+                .load()
+                .then((google) => {
+                    setSearchOptions({
+                        location: new google.maps.LatLng(52.237049, 21.017532),
+                        radius: 20000,
+                        types:['geocode']
+                    })
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
+
+        firstFunc();
     },[]);
 
     const [focused, setFocused] = useState(false);

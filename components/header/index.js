@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import {
     Background,
     Container,
@@ -10,9 +9,13 @@ import {
     ShadowBox, BackgroundColor, ButtonLogo
 } from './styles/header';
 
-export default function Header({ bg = true, src = false, children, color = false, ...restProps }) {
+export default function Header({webp, bg = true, src = false, children, color = false, ...restProps }) {
 
-    return bg ? (
+    return bg ? webp ? (
+        <Background src={src ? `/images/misc/${src}.webp`: `/images/misc/bg-homepage.webp`} lazyLoad isResponsive wrapperClassName='test' {...restProps}>
+            {children}
+        </Background>
+    ) : (
         <Background src={src ? `/images/misc/${src}.jpeg`: `/images/misc/bg-homepage.jpeg`} lazyLoad isResponsive wrapperClassName='test' {...restProps}>
             {children}
         </Background>

@@ -35,7 +35,7 @@ export default function Offer({data}) {
             <Head>
                 <title>{ title }Emmerson Zarządzanie Sp z o.o.</title>
             </Head>
-            <Header bg={false} color={'white'}/>
+            <Header webp={webp} bg={false} color={'white'}/>
             {
                 ( !item) &&
                 <Spinner>

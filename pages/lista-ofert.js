@@ -12,16 +12,16 @@ import { useRouter } from 'next/router'
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-export default function ListaOfert({ isModalOpen, setModalOpen, prevSearchLocation, ...restProps }){
+export default function ListaOfert(){
     const router = useRouter();
     const query = useQuery();
+    const webp = useWebPSupportCheck();
 
     const [isLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
     const [isMapOpen, setIsMapOpen] = useState(false);
     const [coordinate, setCoordinate] = useState([52,21]);
-    const webp = useWebPSupportCheck();
     const {estate, typeOfTransaction, address, market, priceFrom, priceTo, surfaceFrom, surfaceTo, roomsFrom, roomsTo, textFromDescription, offerNumber} = query;
     const ref = useRef();
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
@@ -96,8 +96,8 @@ export default function ListaOfert({ isModalOpen, setModalOpen, prevSearchLocati
                 </Map>
             }
 
-            <Header src={'bg-ofer-list'} height={'50vh'} {...restProps}>
-                <SearchForm node={ref} height={'50vh'} prevSearchLocation={prevSearchLocation} plusToMinus={isModalOpen} setPlusToMinus={setModalOpen} loadingFunction={loadingFunction}/>
+            <Header src={'bg-ofer-list'} height={'50vh'} webp={webp} >
+                <SearchForm node={ref} height={'50vh'} />
             </Header>
 
             {(!response.data || isLoading) &&

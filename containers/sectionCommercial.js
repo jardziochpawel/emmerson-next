@@ -1,14 +1,11 @@
 import React from "react";
 import {CardCommercial, Carousel, Section, Spinner} from "../components";
-import {useWebPSupportCheck} from "react-use-webp-support-check";
 import {getPropertyAndTransaction} from "../helpers/getPropertyAndTransaction";
 import {useRouter} from "next/router";
 import slugify from "react-slugify";
 
-export default function SectionCommercial({ data }){
+export default function SectionCommercial({ data, webp }){
     const router = useRouter();
-    const webp = useWebPSupportCheck()
-
 
     const onClick = (id, slug) => {
         const obj = getPropertyAndTransaction(id)

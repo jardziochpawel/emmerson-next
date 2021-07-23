@@ -3,13 +3,13 @@ import { Header } from '../components';
 
 import {ROUTES} from "../constants/routes";
 
-export default function HeaderContainer({children, ...restProps }){
+export default function HeaderContainer({children, webp, ...restProps }){
 
     const [open, setOpen] = useState(false);
 
     return(
         <>
-            <Header {...restProps}>
+            <Header webp={webp} {...restProps}>
                 <Header.Frame>
                     <Header.Logo src={'/images/misc/logo.png'} to={'/'} />
                     <Header.Nav>

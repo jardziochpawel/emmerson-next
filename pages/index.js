@@ -1,23 +1,39 @@
-import { useEffect, useRef } from 'react';
-import { Feature } from "../components";
+import React, {useEffect, useRef, useState} from 'react';
+import {Feature, Spinner} from "../components";
 import { Header, SectionCommercial, SectionOffers } from "../containers";
 import Head from 'next/head';
 import dynamic from "next/dynamic";
+import {useWebPSupportCheck} from "react-use-webp-support-check";
 
 export default function Index({ commercial, random }){
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
     const ref = useRef();
+    const [loading, setLoading] = useState(true);
+    const webp = useWebPSupportCheck();
 
     useEffect(() => {
         window.scrollTo(0,0);
     },[]);
+
+    const preLoadFunc = () =>{
+        setTimeout(()=>setLoading(false), 500);
+    }
+
+    if(loading){
+        preLoadFunc();
+        return (
+            <Spinner>
+                <Spinner.IconSpinner />
+            </Spinner>
+        )
+    }
 
     return(
         <div ref={ref}>
             <Head>
                 <title>Emmerson Zarządzanie Sp z o.o. | Biuro Nieruchomości | Zarządzanie Nieruchomościami</title>
             </Head>
-            <Header>
+            <Header webp={webp}>
                 <Feature>
                     <Feature.Title>
                         Sprzedamy lub wynajmiemy<br/>
@@ -34,8 +50,8 @@ export default function Index({ commercial, random }){
                 <SearchForm node={ref}/>
             </Header>
             <>
-                <SectionOffers data={random}/>
-                <SectionCommercial data={commercial}/>
+                <SectionOffers data={random} webp={webp}/>
+                <SectionCommercial data={commercial} webp={webp}/>
             </>
         </div>
     )
