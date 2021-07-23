@@ -20,7 +20,6 @@ export default function Index({ commercial, random }){
             </Head>
             <Header webp={webp} dontShowOnSmallViewPort={true}>
                 <Feature />
-
                 <SearchForm node={ref} />
             </Header>
             <>
