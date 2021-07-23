@@ -140,3 +140,17 @@ export const LocalisationIcon = styled(LocationOn)`
   width: 20px;
   height: 20px;
 `;
+
+export const ContainerWithMap = styled.div`
+  width: 100%;
+  max-width: 1400px;  
+  margin: 50px auto 0 auto;
+  padding: 50px;
+  height: calc(50vw * 0.7);
+  
+  @media(max-width: 1000px){
+    padding: 50px;
+    width: 90vw;
+    height: calc(100vw * 0.56);
+  }
+`;

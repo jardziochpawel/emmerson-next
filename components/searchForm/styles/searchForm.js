@@ -19,7 +19,7 @@ export const Container = styled.div`
   }
   
   @media (max-width: 1000px){
-    top: calc(100vh + 188px);
+    ${({height}) => height ? css`top: calc(${height} + 200px)` : css`top: calc(100vh + 188px)`};
     padding:0;
   } 
 `;

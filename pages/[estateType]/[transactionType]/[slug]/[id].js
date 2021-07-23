@@ -8,8 +8,14 @@ export default function Offer({data}) {
     const webp = useWebPSupportCheck();
     let images = [];
     const [isOpen, setIsOpen] = useState(false);
-
+    const [position, setPosition] = useState([0,0])
     const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(()=>{
+        const lat = data.geoMarker?.coordinates.latitude;
+        const lng = data.geoMarker?.coordinates.longitude;
+        setPosition([lat, lng]);
+    },[]);
 
     const scrollToMap = () => {
         const el = document.getElementById('map');
@@ -73,7 +79,7 @@ export default function Offer({data}) {
                         </OfferComponent.Header>
                         {item &&
                         <OfferComponent.Description>{item.description}</OfferComponent.Description>}
-
+                        <OfferComponent.Map marker={'/images/misc/marker.svg'} position={position} id='map' />
                     </OfferComponent.OfferContainer>
 
                     <OfferComponent.Contact>

@@ -5,9 +5,14 @@ import {
     OfferHeader, OfferLocalisation,
     OfferTitle,
     OfferTitleAndLocation,
-    Localisation, OfferContainer, MainContainer, Contact
+    Localisation, OfferContainer, MainContainer, Contact, ContainerWithMap
 } from "./styles/offer";
 import ReactHtmlParser from 'react-html-parser';
+import dynamic from "next/dynamic";
+
+const MapWithNoSSR = dynamic(() => import("../mapComponent"), {
+    ssr: false
+});
 
 export default function OfferComponent({children, restProps}){
 
@@ -47,6 +52,15 @@ OfferComponent.Localisation = function OfferComponentLocalisation({children, onC
 OfferComponent.Contact = function OfferContact({children, restProps}){
 
     return(<Contact {...restProps}>{children}</Contact>);
+}
+
+OfferComponent.Map = function OfferContact({position, marker, ...restProps}){
+
+    return(
+        <ContainerWithMap {...restProps}>
+            <MapWithNoSSR position={position} marker={marker}/>
+        </ContainerWithMap>
+    );
 }
 
 OfferComponent.Description = function OfferComponentDescription({children, restProps}){

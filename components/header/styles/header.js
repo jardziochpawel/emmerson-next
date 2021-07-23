@@ -1,5 +1,6 @@
 import styled, {css} from 'styled-components';
 import {BackgroundImage} from "react-image-and-background-image-fade";
+import Link from "next/link";
 
 export const Background = styled(BackgroundImage)`    
   display: flex;
@@ -9,10 +10,6 @@ export const Background = styled(BackgroundImage)`
   height: 100%!important;
   background: center / cover no-repeat;
   ${({height}) => height ? css`min-height: ${height};` : css`min-height: 100vh;`};
-  
-  @media (max-width: 1000px){
-    height: 100vh;
-  }
 `;
 
 export const BackgroundColor = styled.div`
@@ -63,7 +60,7 @@ export const Hamburger = styled.button`
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
+  z-index: 999999;
   
   &:focus {
     outline: none;
@@ -99,6 +96,9 @@ export const Hamburger = styled.button`
 
 export const Logo = styled.img`
   height: auto;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 export const Nav = styled.nav`
@@ -134,5 +134,11 @@ export const ButtonLink = styled.li`
   }
   &:last-of-type {
     margin-right: 10px;
+  }
+`;
+
+export const ButtonLogo = styled(Link)`
+  &:hover{
+    cursor: pointer;
   }
 `;

@@ -7,7 +7,7 @@ import {
     Logo,
     Nav,
     ButtonLink,
-    ShadowBox, BackgroundColor
+    ShadowBox, BackgroundColor, ButtonLogo
 } from './styles/header';
 
 export default function Header({ bg = true, src = false, children, color = false, ...restProps }) {
@@ -44,9 +44,9 @@ Header.Hamburger = function HeaderHamburger({ open, setOpen }) {
 Header.Logo = function HeaderLogo({ to, ...restProps }) {
 
     return (
-        <Link href={to} passHref>
-            <Logo {...restProps} />
-        </Link>
+        <ButtonLogo href={to} passHref>
+            <Logo {...restProps} width={200} height={87} alt='Emmerson Zarządzanie Sp z o.o.'/>
+        </ButtonLogo>
     );
 };
 
