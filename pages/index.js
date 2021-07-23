@@ -8,25 +8,11 @@ import {useWebPSupportCheck} from "react-use-webp-support-check";
 export default function Index({ commercial, random }){
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
     const ref = useRef();
-    const [loading, setLoading] = useState(true);
     const webp = useWebPSupportCheck();
 
     useEffect(() => {
         window.scrollTo(0,0);
     },[]);
-
-    const preLoadFunc = () =>{
-        setTimeout(()=>setLoading(false), 500);
-    }
-
-    if(loading){
-        preLoadFunc();
-        return (
-            <Spinner>
-                <Spinner.IconSpinner />
-            </Spinner>
-        )
-    }
 
     return(
         <div ref={ref}>
