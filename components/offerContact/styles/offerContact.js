@@ -4,10 +4,10 @@ import {Person} from '@styled-icons/material';
 export const Container = styled.div`
   width: 100%;
   max-width: 350px;
-  min-height: 600px;
+  max-height: 576px;
   padding: 20px;
   background-color: whitesmoke;
-  height: 100%;
+  height: calc(-119px + 75vw * 0.7);
   display: flex;
   flex-flow: column;
   justify-content: space-between;

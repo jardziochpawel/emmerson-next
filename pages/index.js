@@ -8,7 +8,7 @@ export default function Index({ commercial, random }){
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
     const ref = useRef();
 
-    useEffect(()=>{
+    useEffect(() => {
         window.scrollTo(0,0);
     },[]);
 

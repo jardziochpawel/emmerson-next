@@ -40,7 +40,7 @@ export const OfferHeader = styled.div`
   flex-flow: row nowrap;
   justify-content: flex-start;
   align-items: flex-start;
-  height: calc(50vw * 0.7);
+  height: calc(75vw * 0.7);
   width: 100%;
   margin: 0 auto 0 auto;
   max-width: 1400px;
