@@ -1,18 +1,23 @@
 import React, {useEffect, useRef, useState} from "react";
-import { Header } from "../containers";
-import { Offers, Pagination, Spinner, Map } from "../components";
 import { useFetch } from "../hooks/useFetch";
 import { numberWithSpaces } from "../helpers/numberWithSpaces";
-import {useOnClickOutside} from "../hooks";
-import {switchPropertyType} from "../helpers/switchPropertyType";
-import slugify from 'react-slugify';
+import { useOnClickOutside } from "../hooks";
+import { switchPropertyType } from "../helpers/switchPropertyType";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 import { useQuery } from "../hooks/useQuery";
 import { useRouter } from 'next/router'
+import slugify from 'react-slugify';
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
 export default function ListaOfert(){
+    const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
+    const Header = dynamic(()=>import('../containers/header'));
+    const Offers = dynamic(()=>import('../components/offers'));
+    const Pagination = dynamic(()=>import('../components/pagination'));
+    const Spinner = dynamic(()=>import('../components/spinner'));
+    const Map = dynamic(()=>import('../components/map'));
+
     const router = useRouter();
     const query = useQuery();
     const webp = useWebPSupportCheck();
@@ -24,7 +29,6 @@ export default function ListaOfert(){
     const [coordinate, setCoordinate] = useState([52,21]);
     const {estate, typeOfTransaction, address, market, priceFrom, priceTo, surfaceFrom, surfaceTo, roomsFrom, roomsTo, textFromDescription, offerNumber} = query;
     const ref = useRef();
-    const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
 
     useOnClickOutside(ref, () => setIsMapOpen(false));
 

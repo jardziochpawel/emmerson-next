@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Link from "next/link";
+import Feature from "../index";
 
 export const Container = styled.div`
   margin: auto;
@@ -14,14 +16,14 @@ export const Container = styled.div`
   }
 `;
 
-export const Title = styled.h1`
+export const FeatureTitle = styled.h1`
   font-family: 'Anton', sans-serif;
   font-size: 25px;
   line-height: 1.4;
   font-weight: 300;
 `;
 
-export const Text = styled.p`
+export const FeatureText = styled.p`
   color: #232323;
   font-weight: 300;
   padding: 2rem;
@@ -29,7 +31,7 @@ export const Text = styled.p`
   max-width: 450px;
 `;
 
-export const Link = styled.a`
+export const FeatureLink = styled(Link)`
   text-decoration: none;
   color: #e0001a;
   cursor: pointer;
@@ -39,7 +41,7 @@ export const Link = styled.a`
   }
 `;
 
-export const Button = styled.button`
+export const FeatureButton = styled.button`
   border: 1px solid #e0001a;
   background-color: inherit;
   cursor: pointer;

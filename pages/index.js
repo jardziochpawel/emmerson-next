@@ -1,50 +1,25 @@
-import React, { useEffect, useRef } from 'react';
-import { Feature, Spinner } from "../components";
-import { Header } from "../containers";
+import React, { useRef } from 'react';
+import { useWebPSupportCheck } from "react-use-webp-support-check";
 import Head from 'next/head';
 import dynamic from "next/dynamic";
-import { useWebPSupportCheck } from "react-use-webp-support-check";
 
 export default function Index({ commercial, random }){
+    const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
+    const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'));
+    const Header = dynamic(()=>import('../containers/header'));
+    const Feature = dynamic(()=>import('../components/headerFeature'));
+    const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'));
 
     const ref = useRef();
     const webp = useWebPSupportCheck();
 
-    const loading = () => {
-
-        return(
-            <Spinner>
-                <Spinner.IconSpinner />
-            </Spinner>
-        )
-    }
-
-    const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false, loading: ()=>loading()});
-    const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'));
-    const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'));
-
-    useEffect(() => {
-        window.scrollTo(0,0);
-    },[]);
-
     return(
         <div ref={ref}>
             <Head>
-                <title>Emmerson Zarządzanie Sp z o.o. | Biuro Nieruchomości | Zarządzanie Nieruchomościami</title>
+                <title>Emmerson | Emmerson Zarządzanie Sp z o.o. | Biuro Nieruchomości Warszawa | Zarządzanie Nieruchomościami</title>
             </Head>
             <Header webp={webp} dontShowOnSmallViewPort={true}>
-                <Feature>
-                    <Feature.Title>
-                        Sprzedamy lub wynajmiemy<br/>
-                        Twoją nieruchomość
-                    </Feature.Title>
-                    <Feature.Text>
-                        Dla naszego wspólnego bezpieczeństwa
-                        zmodyfikowaliśmy nasze procedury i
-                        dostosowaliśmy je do nowej sytuacji. <Feature.Link>Jak działamy?</Feature.Link>
-                    </Feature.Text>
-                    <Feature.Button>Więcej</Feature.Button>
-                </Feature>
+                <Feature />
 
                 <SearchForm node={ref} />
             </Header>

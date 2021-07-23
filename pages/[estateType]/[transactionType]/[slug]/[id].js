@@ -1,10 +1,16 @@
 import {useEffect, useState} from "react";
-import { Header } from "../../../../containers";
-import { OfferContact, Slider, Spinner, OfferComponent, ThumbnailGallery } from "../../../../components";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
 export default function Offer({data}) {
+    const Header = dynamic(()=>import('../../../../containers/header'));
+    const OfferContact = dynamic(()=>import('../../../../components/offerContact'));
+    const Slider = dynamic(()=>import('../../../../components/slider'));
+    const Spinner = dynamic(()=>import('../../../../components/spinner'));
+    const OfferComponent = dynamic(()=>import('../../../../components/offer'));
+    const ThumbnailGallery = dynamic(()=>import('../../../../components/thumbnailGallery'));
+
     const webp = useWebPSupportCheck();
     let images = [];
     const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +21,7 @@ export default function Offer({data}) {
         const lat = data.geoMarker?.coordinates.latitude;
         const lng = data.geoMarker?.coordinates.longitude;
         setPosition([lat, lng]);
-    },[]);
+    },[data]);
 
     const scrollToMap = () => {
         const el = document.getElementById('map');

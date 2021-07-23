@@ -1,5 +1,5 @@
 export { default as Header } from './header';
-export { default as Feature } from './feature';
+export { default as Feature } from './headerFeature';
 export { default as SearchForm } from './searchForm';
 export { default as SelectInput } from './selectInput';
 export { default as PlaceAutocomplete } from './placesAutocomplete';
