@@ -2,7 +2,11 @@ import styled, {css} from 'styled-components';
 import { BackgroundImage } from "react-image-and-background-image-fade";
 import Link from "next/link";
 
-export const Background = styled(BackgroundImage)`    
+export const Background = styled(BackgroundImage)`
+  @media (max-width: 800px) {
+    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && css`background: none;`}
+  }
+  
   display: flex;
   flex-direction: column;
   position: relative;
@@ -10,10 +14,6 @@ export const Background = styled(BackgroundImage)`
   height: 100%!important;
   background: center / cover no-repeat;
   ${({height}) => height ? css`min-height: ${height};` : css`min-height: 100vh;`};
-
-  @media (max-width: 800px) {
-    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && css`background: none;`}
-  }
 `;
 
 export const BackgroundColor = styled.div`
