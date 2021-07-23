@@ -48,9 +48,14 @@ export const OfferHeader = styled.div`
 
   @media(max-width: 1000px){
     height: calc(100vw * 0.7);
-    padding: 0 50px;
+    padding: 0 25px;
     flex-flow: row wrap;
     margin: 0;
+  }
+
+  @media(max-width: 600px){
+    height: calc(100vw);
+    padding: 0 10px;
   }
 `;
 
@@ -66,6 +71,10 @@ export const Contact = styled.div`
     width: 100%;
     max-width: 100%;
     margin-bottom: 50px;
+  }
+
+  @media(max-width: 600px){
+    padding: 0 10px;
   }
 `;
 
@@ -100,6 +109,10 @@ export const OfferDescription = styled.div`
   @media(max-width: 1000px){
     flex-basis: 100%;
     padding: 0 50px;
+  }
+
+  @media(max-width: 600px){
+    padding: 0 10px;
   }
 `;
 
@@ -149,8 +162,14 @@ export const ContainerWithMap = styled.div`
   height: calc(50vw * 0.7);
   
   @media(max-width: 1000px){
-    padding: 50px;
+    padding: 10px;
     width: 90vw;
     height: calc(100vw * 0.56);
+  }
+
+  @media(max-width: 600px){
+    padding: 0 10px;
+    width: 100%;
+    margin: 50px 0 0 0;
   }
 `;

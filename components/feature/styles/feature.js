@@ -4,6 +4,14 @@ export const Container = styled.div`
   margin: auto;
   width: 100%;
   padding: 0 8rem;
+  
+  @media(max-width: 1000px){
+    padding: 0 4rem;
+  }
+  
+  @media(max-width: 600px){
+    padding: 0 10px;
+  }
 `;
 
 export const Title = styled.h1`

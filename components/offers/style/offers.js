@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
-import {LocationOn} from "@styled-icons/material";
-import {BackgroundImage} from "react-image-and-background-image-fade";
+import styled from "styled-components";
+import { LocationOn } from "@styled-icons/material";
+import { BackgroundImage } from "react-image-and-background-image-fade";
 
 export const Container = styled.div`
   display: flex;
@@ -53,6 +53,7 @@ export const CardBody = styled.div`
 
   @media(max-width: 850px){
     margin: auto;
+    padding: 0 10px 10px 10px;
   }
 `;
 
@@ -63,6 +64,10 @@ export const Title = styled.h1`
   
   &:hover{
     cursor: pointer;
+  }
+
+  @media(max-width: 850px){
+    font-size: 24px;
   }
 `;
 
@@ -96,7 +101,7 @@ export const CardBoxImage = styled.div`
 
 
   @media(max-width: 850px){
-    width: 50%;
+    min-width: 100%;
     margin: auto;
     height: 300px;
   }

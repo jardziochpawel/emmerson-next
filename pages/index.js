@@ -1,9 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Feature, Spinner} from "../components";
+import React, { useEffect, useRef } from 'react';
+import { Feature } from "../components";
 import { Header, SectionCommercial, SectionOffers } from "../containers";
 import Head from 'next/head';
 import dynamic from "next/dynamic";
-import {useWebPSupportCheck} from "react-use-webp-support-check";
+import { useWebPSupportCheck } from "react-use-webp-support-check";
 
 export default function Index({ commercial, random }){
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Container, Text, Title, Link} from "./styles/feature";
+import { Button, Container, Text, Title, Link } from "./styles/feature";
 
 export default function Feature({children, ...restProps}){
     return(

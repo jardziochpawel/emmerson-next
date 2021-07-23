@@ -109,7 +109,6 @@ export default function ListaOfert(){
             {(response.data && !isLoading) &&
             <>
                 <Offers>
-
                     <Offers.OfferCount>Liczba ofert: {response.data?.count}</Offers.OfferCount>
                     {Object(response.data).length !== 0 && response.data.data.map((item, key) => {
                         if(item.priceCurrency === 'PLN')
@@ -137,8 +136,7 @@ export default function ListaOfert(){
                             </Offers.CardContainer>
                         );
                     })}
-
-                    {response.data.data === 0 && <div>Brak ofert</div>}
+                    { response.data.data === 0 && <div>Brak ofert</div> }
                 </Offers>
                 <Pagination onChange={onChangePage} count={Object(response.data).length !== 0 ? response.data.lastPage : 1} currentPage={Object(response.data).length !== 0 ? response.data.currentPage : 1}>
                     <Pagination.ChoiceButton onChange={(e) =>  onChangePerPage(e.target.value)}>
