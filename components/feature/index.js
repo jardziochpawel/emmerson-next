@@ -30,7 +30,7 @@ Feature.Text = function FeText({children, ...restProps}){
 
 Feature.Link = function FeLink({children, link,  ...restProps}){
     return(
-        <Link href={link} passhref prefetch={false}>
+        <Link href={link} passHref prefetch={false}>
             <FeatureLink {...restProps}>{ children }</FeatureLink>
         </Link>
     );

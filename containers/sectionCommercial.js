@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import {CardCommercial, Carousel, Section, Spinner} from "../components";
-import {getPropertyAndTransaction} from "../helpers/getPropertyAndTransaction";
-import {useRouter} from "next/router";
+import React, { useState } from "react";
+import { Carousel, CardCommercial, Section } from "../components";
+import { getPropertyAndTransaction } from "../helpers/getPropertyAndTransaction";
+import { useRouter } from "next/router";
 import slugify from "react-slugify";
 
 export default function SectionCommercial({ data = [], webp }){
@@ -16,30 +16,29 @@ export default function SectionCommercial({ data = [], webp }){
     const cardCommercialRender = () => {
         const array = [];
         data.map((item, key) => {
-                const image = webp ? item.photoWebp : item.photoJpeg;
-                array.push(
-                    <Carousel.Item key={item.id+key}>
-                        <CardCommercial.CardContainer>
-                            {image && <CardCommercial.Img img={image} onClick={()=>onClick(item.id, slugify(item.title))} />}
-                            <CardCommercial.Box>
-                                <CardCommercial.DescriptionTitle>{item.title}</CardCommercial.DescriptionTitle>
-                                <CardCommercial.Localisation>{item.city ?? item.city} {item.quarter ?? item.quarter} {item.street ?? item.street}</CardCommercial.Localisation>
+            const image = webp ? item.photoWebp : item.photoJpeg;
+            array.push(
+                <Carousel.Item key={item.id+key}>
+                    <CardCommercial.CardContainer>
+                        {image && <CardCommercial.Img img={image} onClick={()=>onClick(item.id, slugify(item.title))} />}
+                        <CardCommercial.Box>
+                            <CardCommercial.DescriptionTitle>{item.title}</CardCommercial.DescriptionTitle>
+                            <CardCommercial.Localisation>{item.city ?? item.city} {item.quarter ?? item.quarter} {item.street ?? item.street}</CardCommercial.Localisation>
 
-                                <CardCommercial.ListContainer>
-                                    <CardCommercial.List>
-                                        <CardCommercial.Param>Powierzchnia:</CardCommercial.Param>
-                                        <CardCommercial.Value>{item.area}m<sup>2</sup></CardCommercial.Value>
-                                    </CardCommercial.List>
-                                </CardCommercial.ListContainer>
+                            <CardCommercial.ListContainer>
+                                <CardCommercial.List>
+                                    <CardCommercial.Param>Powierzchnia:</CardCommercial.Param>
+                                    <CardCommercial.Value>{item.area}m<sup>2</sup></CardCommercial.Value>
+                                </CardCommercial.List>
+                            </CardCommercial.ListContainer>
 
-                                <CardCommercial.Text>Cena:</CardCommercial.Text>
-                                <CardCommercial.Price>{item.price}</CardCommercial.Price>
-                            </CardCommercial.Box>
-                        </CardCommercial.CardContainer>
-                    </Carousel.Item>
-                )
-            }
-        )
+                            <CardCommercial.Text>Cena:</CardCommercial.Text>
+                            <CardCommercial.Price>{item.price}</CardCommercial.Price>
+                        </CardCommercial.Box>
+                    </CardCommercial.CardContainer>
+                </Carousel.Item>
+            )
+        })
         setCardCommercial(array);
     }
 
@@ -52,13 +51,6 @@ export default function SectionCommercial({ data = [], webp }){
                 <Section.Container>
                     <Section.Title>Powierzchnie komercyjne</Section.Title>
                     <Section.Subtitle>Wybrane lokale handlowo-usługowe, biura, magazyny i hale w naszej aktualnej ofercie.</Section.Subtitle>
-
-                    {
-                        !cardCommercial &&
-                        <Spinner>
-                            <Spinner.IconSpinner />
-                        </Spinner>
-                    }
 
                     <CardCommercial>
                          <Carousel>

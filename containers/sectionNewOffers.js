@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import {CardOffers, Section, Spinner} from "../components";
-import {numberWithSpaces} from "../helpers/numberWithSpaces";
-import {useRouter} from "next/router";
-import {getPropertyAndTransaction} from "../helpers/getPropertyAndTransaction";
+import React, { useState } from "react";
+import { CardOffers, Section } from "../components";
+import { numberWithSpaces } from "../helpers/numberWithSpaces";
+import { useRouter } from "next/router";
+import { getPropertyAndTransaction } from "../helpers/getPropertyAndTransaction";
 import slugify from "react-slugify";
 
 export default function SectionOffers({data = [], webp}){
@@ -55,13 +55,6 @@ export default function SectionOffers({data = [], webp}){
             <Section.Container>
                 <Section.Title>Sprawdź naszą ofertę</Section.Title>
                 <Section.Subtitle>Bogata oferta mieszkań o zróżnicowanych metrażach w atrakcyjnych lokalizacjach.</Section.Subtitle>
-
-                {
-                    !cardOffer &&
-                    <Spinner>
-                        <Spinner.IconSpinner />
-                    </Spinner>
-                }
                 {
                     <CardOffers>
                         { cardOffer }

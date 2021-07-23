@@ -17,6 +17,8 @@ export default function Index({ commercial, random }){
         <div ref={ref}>
             <Head>
                 <title>Emmerson | Emmerson Zarządzanie Sp z o.o. | Biuro Nieruchomości Warszawa | Zarządzanie Nieruchomościami</title>
+                <link rel="preload" as="image" href="/images/misc/bg-homepage.jpeg" />
+                <link rel="preload" as="image" href="/images/misc/bg-homepage.webp" />
             </Head>
             <Header webp={webp} dontShowOnSmallViewPort={true}>
                 <Feature />

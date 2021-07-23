@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { Clear } from '@styled-icons/material';
-import {Map} from "react-leaflet-universal";
 
 export const Container = styled.div`
   width: 60%;
