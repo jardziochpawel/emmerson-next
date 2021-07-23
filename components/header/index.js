@@ -44,7 +44,7 @@ Header.Hamburger = function HeaderHamburger({ open, setOpen }) {
 Header.Logo = function HeaderLogo({ to, ...restProps }) {
 
     return (
-        <ButtonLogo href={to} passHref>
+        <ButtonLogo href={to} passHref prefetch={false}>
             <Logo {...restProps} width={200} height={87} alt='Emmerson Zarządzanie Sp z o.o.'/>
         </ButtonLogo>
     );
@@ -62,7 +62,7 @@ Header.Nav = function HeaderNav({ children, ...restProps }) {
 Header.ButtonLink = function HeaderButtonLink({ children, to, ...restProps }) {
 
     return(
-        <Link href={to} passHref>
+        <Link href={to} passHref prefetch={false}>
             <ButtonLink {...restProps}>
                 {children}
             </ButtonLink>
