@@ -32,7 +32,7 @@ export default function Index({ commercial, random }){
             <Head>
                 <title>Emmerson Zarządzanie Sp z o.o. | Biuro Nieruchomości | Zarządzanie Nieruchomościami</title>
             </Head>
-            <Header webp={webp}>
+            <Header webp={webp} dontShowOnSmallViewPort={true}>
                 <Feature>
                     <Feature.Title>
                         Sprzedamy lub wynajmiemy<br/>

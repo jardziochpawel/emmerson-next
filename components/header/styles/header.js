@@ -10,6 +10,10 @@ export const Background = styled(BackgroundImage)`
   height: 100%!important;
   background: center / cover no-repeat;
   ${({height}) => height ? css`min-height: ${height};` : css`min-height: 100vh;`};
+
+  @media (max-width: 800px) {
+    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && css`background: none;`}
+  }
 `;
 
 export const BackgroundColor = styled.div`
