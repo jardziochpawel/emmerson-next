@@ -1,12 +1,25 @@
 import React, { useEffect, useRef } from 'react';
-import { Feature } from "../components";
-import { Header, SectionCommercial, SectionOffers } from "../containers";
+import {Feature, Spinner} from "../components";
 import Head from 'next/head';
 import dynamic from "next/dynamic";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 
 export default function Index({ commercial, random }){
+
+    const loading = () => {
+
+        return(
+            <Spinner>
+                <Spinner.IconSpinner />
+            </Spinner>
+        )
+    }
+
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
+    const Header = dynamic(()=>import('../containers/header'), {loading: ()=>loading()});
+    const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'), {loading: ()=>loading()});
+    const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'), {loading: ()=>loading()});
+
     const ref = useRef();
     const webp = useWebPSupportCheck();
 
@@ -36,8 +49,8 @@ export default function Index({ commercial, random }){
                 <SearchForm node={ref}/>
             </Header>
             <>
-                {/*<SectionOffers data={random} webp={webp}/>*/}
-                {/*<SectionCommercial data={commercial} webp={webp}/>*/}
+                <SectionOffers data={random} webp={webp}/>
+                <SectionCommercial data={commercial} webp={webp}/>
             </>
         </div>
     )
