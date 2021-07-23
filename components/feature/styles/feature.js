@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import Link from "next/link";
-import Feature from "../index";
 
 export const Container = styled.div`
   margin: auto;
@@ -31,12 +29,13 @@ export const FeatureText = styled.p`
   max-width: 450px;
 `;
 
-export const FeatureLink = styled(Link)`
+export const FeatureLink = styled.span`
+
   text-decoration: none;
   color: #e0001a;
   cursor: pointer;
-
-  &:hover {
+  
+  a:hover {
     text-decoration: underline;
   }
 `;

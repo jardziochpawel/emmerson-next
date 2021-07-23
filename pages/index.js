@@ -7,7 +7,7 @@ export default function Index({ commercial, random }){
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
     const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'));
     const Header = dynamic(()=>import('../containers/header'));
-    const Feature = dynamic(()=>import('../components/headerFeature'));
+    const Feature = dynamic(()=>import('../components/feature'));
     const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'));
 
     const ref = useRef();
