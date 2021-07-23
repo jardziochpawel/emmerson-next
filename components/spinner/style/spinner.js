@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-items: center;
   padding: 150px 150px;
   width: 100%;
+  height: 100vh;
 `;
 
 export const IconSpinner = styled(Loop)`

@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import {Feature, Spinner} from "../components";
+import { Feature, Spinner } from "../components";
 import Head from 'next/head';
 import dynamic from "next/dynamic";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 
 export default function Index({ commercial, random }){
+
+    const ref = useRef();
+    const webp = useWebPSupportCheck();
 
     const loading = () => {
 
@@ -17,11 +20,8 @@ export default function Index({ commercial, random }){
 
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
     const Header = dynamic(()=>import('../containers/header'), {loading: ()=>loading()});
-    const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'), {loading: ()=>loading()});
-    const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'), {loading: ()=>loading()});
-
-    const ref = useRef();
-    const webp = useWebPSupportCheck();
+    const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'));
+    const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'));
 
     useEffect(() => {
         window.scrollTo(0,0);
@@ -46,7 +46,7 @@ export default function Index({ commercial, random }){
                     <Feature.Button>Więcej</Feature.Button>
                 </Feature>
 
-                <SearchForm node={ref}/>
+                <SearchForm node={ref} />
             </Header>
             <>
                 <SectionOffers data={random} webp={webp}/>
