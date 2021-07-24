@@ -110,7 +110,7 @@ export default function ListaOfert(){
             {(response.data && !isLoading) &&
                 <>
                     <OffersContainer data={response.data} webp={webp} handleClick={handleClick} openMap={openMap}/>
-                    <Pagination onChangePerPage={onChangePerPage} onChange={onChangePage} count={Object(response.data).length !== 0 ? response.data.lastPage : 1} currentPage={Object(response.data).length !== 0 ? response.data.currentPage : 1} />
+                    <Pagination onChangePerPage={onChangePerPage} onChange={onChangePage} count={Object(response.data).length !== 0 ? response.data?.lastPage : 1} currentPage={Object(response.data).length !== 0 ? response.data?.currentPage : 1} />
                 </>
             }
         </>
