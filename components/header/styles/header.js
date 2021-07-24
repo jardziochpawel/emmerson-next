@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const Background = styled(BackgroundImage)`
   @media (max-width: 800px) {
-    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && css`background: none;`}
+    ${({ small }) => small && css`background: none;`}
   }
   
   display: flex;
@@ -53,6 +53,10 @@ export const Container = styled.div`
 `;
 
 export const Hamburger = styled.button`
+  @media (min-width: 1000px) {
+    display: none;
+  }
+  
   top: 5%;
   margin: 0 32px;
   display: flex;
@@ -91,10 +95,6 @@ export const Hamburger = styled.button`
     :nth-child(3) {
       transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
     }
-  }
-  
-  @media (min-width: 1000px) {
-    display: none;
   }
 `;
 

@@ -1,7 +1,7 @@
 import { Container, IconSpinner } from "./style/spinner";
 
-export default function Spinner({children, restProps}){
-    return <Container  {...restProps}>{children}</Container>
+export default function Spinner({ restProps }){
+    return <Container  {...restProps}><Spinner.IconSpinner /></Container>
 }
 
 Spinner.IconSpinner =  function SpinnerIconSpinner(restProps){

@@ -9,14 +9,14 @@ import {
     ShadowBox, BackgroundColor, ButtonLogo
 } from './styles/header';
 
-export default function Header({dontShowOnSmallViewPort = false, webp, bg = true, src = false, children, color = false, ...restProps }) {
+export default function Header({smallView = false, webp, bg = true, src = false, children, color = false, ...restProps }) {
 
     return bg ? webp ? (
-        <Background src={src ? `/images/misc/${src}.webp`: `/images/misc/bg-homepage.webp`} dontShowOnSmallViewPort={dontShowOnSmallViewPort} isResponsive wrapperClassName='test'  {...restProps}>
+        <Background src={src ? `/images/misc/${src}.webp`: `/images/misc/bg-homepage.webp`} small={smallView.toString()} isResponsive wrapperClassName='test'  {...restProps}>
             {children}
         </Background>
     ) : (
-        <Background src={src ? `/images/misc/${src}.jpeg`: `/images/misc/bg-homepage.jpeg`} dontShowOnSmallViewPort={dontShowOnSmallViewPort} isResponsive wrapperClassName='test' {...restProps}>
+        <Background src={src ? `/images/misc/${src}.jpeg`: `/images/misc/bg-homepage.jpeg`} small={smallView.toString()} isResponsive wrapperClassName='test' {...restProps}>
             {children}
         </Background>
     ) : (

@@ -3,13 +3,13 @@ import { Header } from '../components';
 
 import {ROUTES} from "../constants/routes";
 
-export default function HeaderContainer({children, webp, dontShowOnSmallViewPort, ...restProps }){
+export default function HeaderContainer({children, webp, smallView, ...restProps }){
 
     const [open, setOpen] = useState(false);
 
     return(
         <>
-            <Header webp={webp} dontShowOnSmallViewPort={dontShowOnSmallViewPort} {...restProps}>
+            <Header webp={webp} smallView={smallView} {...restProps}>
                 <Header.Frame>
                     <Header.Logo src={'/images/misc/logo.png'} to={'/'} />
                     <Header.Nav>

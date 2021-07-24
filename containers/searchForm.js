@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchForm } from "../components";
 import { DropDownFilters, SelectInput, PlaceAutocomplete } from "./index";
 import {FIELDS, SEARCH} from "../constants/fields";
 import useLocalStorage from "../hooks/useLocalStorage";
 import qs from 'query-string';
 import { useQuery } from "../hooks/useQuery";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
-export default function SearchFormContainer({node, ...restProps}){
+export default function SearchFormContainer({ node, ...restProps }){
     let history = useRouter();
     const fromQuery = useQuery();
     const [plusToMinus, setPlusToMinus] = useState(false);
@@ -28,7 +28,6 @@ export default function SearchFormContainer({node, ...restProps}){
 
     useEffect(()=>{
         if(Object.keys(fromQuery).length === 0  && history.pathname === '/lista-ofert'){
-
             history.push({pathname:'/lista-ofert', search: qs.stringify({
                 estate: estate.value,
                 typeOfTransaction: typeOfTransaction.value,

@@ -5,3 +5,4 @@ export { default as SelectInput } from './selectInput';
 export { default as SearchForm } from './searchForm';
 export { default as SectionCommercial } from './sectionCommercial';
 export { default as SectionOffers } from './sectionNewOffers';
+export { default as OffersContainer } from './offersContainer';

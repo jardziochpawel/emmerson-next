@@ -3,12 +3,14 @@ import { useWebPSupportCheck } from "react-use-webp-support-check";
 import Head from 'next/head';
 import dynamic from "next/dynamic";
 
+const SearchForm = dynamic(()=>import('../containers/searchForm'),{ ssr: false });
+const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'));
+const Header = dynamic(()=>import('../containers/header'));
+const Feature = dynamic(()=>import('../components/feature'));
+const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'));
+
 export default function Index({ commercial, random }){
-    const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
-    const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'));
-    const Header = dynamic(()=>import('../containers/header'));
-    const Feature = dynamic(()=>import('../components/feature'));
-    const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'));
+
 
     const ref = useRef();
     const webp = useWebPSupportCheck();
@@ -20,7 +22,7 @@ export default function Index({ commercial, random }){
                 <link rel="preload" as="image" href="/images/misc/bg-homepage.jpeg" />
                 <link rel="preload" as="image" href="/images/misc/bg-homepage.webp" />
             </Head>
-            <Header webp={webp} dontShowOnSmallViewPort={true}>
+            <Header webp={webp} smallView={true}>
                 <Feature />
                 <SearchForm node={ref} />
             </Header>

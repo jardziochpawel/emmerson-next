@@ -1,8 +1,9 @@
-
-import {ChoiceButton, ChoiceItem, Container} from "./styled/pagination";
+import { ChoiceButton, ChoiceItem, Container } from "./styled/pagination";
 import ReactPaginate from 'react-paginate';
+import React from "react";
 
-export default function Pagination({currentPage, count, onChange, children, restProps}) {
+export default function Pagination({onChangePerPage, count, onChange, ...restProps}) {
+
     return(
         <Container {...restProps}>
             <ReactPaginate
@@ -16,17 +17,25 @@ export default function Pagination({currentPage, count, onChange, children, rest
                 onPageChange={pagination => onChange(pagination.selected+1)}
                 containerClassName="pagination"
                 activeClassName="active"
-                pageLabelBuilder={(page)=><span className='button'>{page}</span>}
+                pageLabelBuilder={(page) => <span className='button'>{page}</span>}
             />
-            {children}
+            <Pagination.ChoiceButton onChangePerPage={onChangePerPage}/>
         </Container>
     )
 }
 
 
-Pagination.ChoiceButton = function PaginationChoiceButton({children, onChange, restProps}){
+Pagination.ChoiceButton = function PaginationChoiceButton({onChangePerPage, restProps}){
 
-    return(<ChoiceButton onChange={onChange} {...restProps}>{children}</ChoiceButton>)
+    return(
+        <ChoiceButton onChange={(e) =>  onChangePerPage(e.target.value)} {...restProps}>
+            <Pagination.ChoiceItem>10</Pagination.ChoiceItem>
+            <Pagination.ChoiceItem>20</Pagination.ChoiceItem>
+            <Pagination.ChoiceItem>30</Pagination.ChoiceItem>
+            <Pagination.ChoiceItem>40</Pagination.ChoiceItem>
+            <Pagination.ChoiceItem>50</Pagination.ChoiceItem>
+        </ChoiceButton>
+    );
 }
 
 Pagination.ChoiceItem = function PaginationChoiceItem({children,  restProps}){
