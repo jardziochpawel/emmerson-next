@@ -17,9 +17,11 @@ export default function SectionOffers({data = [], webp}){
     const cardOfferRender = () => {
         const array = [];
         data.map(i => {
+            const image = webp ? i.photoWebp : i.photoJpeg.replace('jpg', 'jpeg');
+
             array.push(
                 <CardOffers.Container key={i.id}>
-                    <CardOffers.Image image={webp ? i.photoWebp : i.photoJpeg} onClick={()=>onClick(i.id, slugify(i.title))}/>
+                    <CardOffers.Image image={image} onClick={()=>onClick(i.id, slugify(i.title))}/>
                     <CardOffers.Body>
                         <CardOffers.Title>{i.title}</CardOffers.Title>
                         <CardOffers.Localisation><CardOffers.LocalisationIcon />{i.city?? i.city} {i.quarter ?? i.quarter } {i.street?? i.street }</CardOffers.Localisation>

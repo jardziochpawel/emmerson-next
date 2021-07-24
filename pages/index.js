@@ -2,10 +2,11 @@ import React, { useRef } from 'react';
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 import Head from 'next/head';
 import dynamic from "next/dynamic";
+import {Spinner} from "../components";
 
 const SearchForm = dynamic(()=>import('../containers/searchForm'),{ ssr: false });
 const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'));
-const Header = dynamic(()=>import('../containers/header'));
+const Header = dynamic(()=>import('../containers/header'), {loading:()=> <Spinner />});
 const Feature = dynamic(()=>import('../components/feature'));
 const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'));
 

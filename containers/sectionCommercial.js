@@ -16,7 +16,7 @@ export default function SectionCommercial({ data = [], webp }){
     const cardCommercialRender = () => {
         const array = [];
         data.map((item, key) => {
-            const image = webp ? item.photoWebp : item.photoJpeg;
+            const image = webp ? item.photoWebp : item.photoJpeg.replace('jpg', 'jpeg');
             array.push(
                 <Carousel.Item key={item.id+key}>
                     <CardCommercial.CardContainer>
