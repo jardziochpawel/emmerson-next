@@ -107,7 +107,7 @@ export default function Offer({data}) {
                                         <OfferDetails.Value>{item.area} m<sup>2</sup></OfferDetails.Value>
                                     </OfferDetails.Item>
                                     <OfferDetails.Item>
-                                        <OfferDetails.Name>Typ budynku</OfferDetails.Name>
+                                        <OfferDetails.Name>Rodzaj nieruchomości:</OfferDetails.Name>
                                         <OfferDetails.Value>{switchPropertyType(item.objectName)}</OfferDetails.Value>
                                     </OfferDetails.Item>
 

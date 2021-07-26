@@ -27,6 +27,9 @@ export const translateKey = (key) => {
         case 'type':
             result = 'Typ:';
             break;
+        case 'floor':
+            result = 'Piętro:';
+            break;
         default:
             result = key;
     }
