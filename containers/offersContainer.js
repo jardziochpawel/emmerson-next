@@ -2,6 +2,7 @@ import { switchPropertyType } from "../helpers/switchPropertyType";
 import { numberWithSpaces } from "../helpers/numberWithSpaces";
 import React, { useState } from "react";
 import { Offers } from "../components";
+import variationByCases from "../helpers/variationByCases";
 
 
 export default function OffersContainer({data = [], webp, openMap, handleClick}){
@@ -14,6 +15,11 @@ export default function OffersContainer({data = [], webp, openMap, handleClick})
 
             if(item.priceCurrency === 'PLN') {
                 item.priceCurrency = 'zł';
+            }
+            const title = item.title.replace(/\s/g, '');
+
+            if(title.length === 0){
+                item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, 5 ${ variationByCases(5, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
             }
 
             array.push(

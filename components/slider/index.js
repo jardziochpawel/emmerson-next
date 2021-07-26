@@ -70,7 +70,7 @@ Slider.Item = function SliderItemContainer({ children, restProps }){
 Slider.Image = function SliderImageBox({ image, restProps }){
 
     return(
-        <SliderImage src={image} {...restProps} isResponsive/>
+        <SliderImage src={image} {...restProps} isResponsive lazyLoad/>
     )
 }
 

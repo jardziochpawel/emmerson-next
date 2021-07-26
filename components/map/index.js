@@ -6,10 +6,12 @@ const MapWithNoSSR = dynamic(() => import("../mapComponent"), {
     ssr: false
 });
 
-export default function Map({children, node, restProps}){
+export default function Map({ node, restProps, closeMap, position }){
 
     return(
-        <Container ref={node}  {...restProps}>{children}</Container>
+        <Container ref={node}  {...restProps}>
+            <Map.Container marker={'/images/misc/marker.svg'} position={position} closeMap={closeMap}/>
+        </Container>
     );
 }
 

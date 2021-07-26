@@ -1,15 +1,15 @@
 import {useEffect, useState} from "react";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 import Head from "next/head";
+import { OfferComponent, ThumbnailGallery, Slider, OfferContact } from '../../../../components'
 import dynamic from "next/dynamic";
+import {switchPropertyType} from "../../../../helpers/switchPropertyType";
+import {numberWithSpaces} from "../../../../helpers/numberWithSpaces";
+import variationByCases from "../../../../helpers/variationByCases";
 
 export default function Offer({data}) {
     const Header = dynamic(()=>import('../../../../containers/header'));
-    const OfferContact = dynamic(()=>import('../../../../components/offerContact'));
-    const Slider = dynamic(()=>import('../../../../components/slider'));
     const Spinner = dynamic(()=>import('../../../../components/spinner'));
-    const OfferComponent = dynamic(()=>import('../../../../components/offer'));
-    const ThumbnailGallery = dynamic(()=>import('../../../../components/thumbnailGallery'));
 
     const webp = useWebPSupportCheck();
     let images = [];
@@ -30,7 +30,11 @@ export default function Offer({data}) {
     }
 
     let item = data;
-    const title = (item && item.length !== 0) ? item.title !== '' ? item.title + '| ': '' : '';
+    const title = item.title?.replace(/\s/g, '');
+
+    if(!item.title && title.length === 0){
+        item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.flatDetails?.rooms} ${ variationByCases(5, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
+    }
 
     if(data) {
         images = data.photosWebp;

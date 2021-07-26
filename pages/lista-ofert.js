@@ -94,9 +94,7 @@ export default function ListaOfert(){
 
             {
                 isMapOpen &&
-                <Map node={ref} key={coordinate}>
-                    <Map.Container marker={'/images/misc/marker.svg'} position={coordinate} closeMap={showMap}/>
-                </Map>
+                <Map node={ref} key={coordinate}  marker={'/images/misc/marker.svg'} position={coordinate} closeMap={showMap} />
             }
 
             <Header src={'bg-ofer-list'} height={'50vh'} webp={webp} smallView={false}>
