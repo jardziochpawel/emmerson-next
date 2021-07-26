@@ -1,11 +1,13 @@
 import {useEffect, useState} from "react";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 import Head from "next/head";
-import { OfferComponent, ThumbnailGallery, Slider, OfferContact } from '../../../../components'
+import { OfferComponent, ThumbnailGallery, Slider, OfferContact, OfferDetails } from '../../../../components'
 import dynamic from "next/dynamic";
 import {switchPropertyType} from "../../../../helpers/switchPropertyType";
 import {numberWithSpaces} from "../../../../helpers/numberWithSpaces";
 import variationByCases from "../../../../helpers/variationByCases";
+import {translateKey} from "../../../../helpers/translateKey";
+import {capitalizeFirstLetter} from "../../../../helpers/capitalizeFirstLetter";
 
 export default function Offer({data}) {
     const Header = dynamic(()=>import('../../../../containers/header'));
@@ -16,11 +18,14 @@ export default function Offer({data}) {
     const [isOpen, setIsOpen] = useState(false);
     const [position, setPosition] = useState([0,0])
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         const lat = data.geoMarker?.coordinates.latitude;
         const lng = data.geoMarker?.coordinates.longitude;
         setPosition([lat, lng]);
+
+        setTimeout(()=>setLoading(true), 1000);
     },[data]);
 
     const scrollToMap = () => {
@@ -29,16 +34,21 @@ export default function Offer({data}) {
         window.scrollTo(rect.left + window.scrollX,rect.top + window.scrollY);
     }
 
-    let item = data;
-    const title = item.title?.replace(/\s/g, '');
+    const [value, setValue] = useState(`Proszę o kontakt w sprawie nieruchomości, numer w biurze: ${data.id}`)
 
-    if(!item.title && title.length === 0){
+    let item = data;
+
+    const title = data.title.replace(/\s/g, '');
+
+    if(title.length === 0){
         item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.flatDetails?.rooms} ${ variationByCases(5, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
     }
 
     if(data) {
         images = data.photosWebp;
     }
+
+    const array = Object.entries(item.flatDetails || item.houseDetails || item.commercialPropertyDetails || item.terrainDetails || item.hallDetails );
 
     return (
         <>
@@ -85,21 +95,53 @@ export default function Offer({data}) {
                                 </Slider>
                             }
                         </OfferComponent.Header>
-                        {item &&
-                        <OfferComponent.Description>{item.description}</OfferComponent.Description>}
-                        <OfferComponent.Map marker={'/images/misc/marker.svg'} position={position} id='map' />
+                        <OfferDetails>
+                            <OfferDetails.Column>
+                                <OfferDetails.List>
+                                    <OfferDetails.Item>
+                                        <OfferDetails.Name>Rynek:</OfferDetails.Name>
+                                        <OfferDetails.Value>{capitalizeFirstLetter(item.marketType)}</OfferDetails.Value>
+                                    </OfferDetails.Item>
+                                    <OfferDetails.Item>
+                                        <OfferDetails.Name>Powierzchnia:</OfferDetails.Name>
+                                        <OfferDetails.Value>{item.area} m<sup>2</sup></OfferDetails.Value>
+                                    </OfferDetails.Item>
+                                    <OfferDetails.Item>
+                                        <OfferDetails.Name>Typ budynku</OfferDetails.Name>
+                                        <OfferDetails.Value>{switchPropertyType(item.objectName)}</OfferDetails.Value>
+                                    </OfferDetails.Item>
+
+                                    {
+                                        array.map((i, k) => {
+                                            return(
+                                                <OfferDetails.Item key={k}>
+                                                    <OfferDetails.Name>{translateKey(i[0])}</OfferDetails.Name>
+                                                    <OfferDetails.Value>{capitalizeFirstLetter(i[1])}</OfferDetails.Value>
+                                                </OfferDetails.Item>
+                                            )
+                                        })
+                                    }
+                                </OfferDetails.List>
+                            </OfferDetails.Column>
+                        </OfferDetails>
+                        <OfferComponent.Description>{item.description}</OfferComponent.Description>
+                        {!loading && <Spinner />}
+                        {loading && <OfferComponent.Map marker={'/images/misc/marker.svg'} position={position} id='map' showCloseButton={false} />}
                     </OfferComponent.OfferContainer>
 
                     <OfferComponent.Contact>
                         <OfferContact>
-                            <OfferContact.Name><OfferContact.IconAgent />{item.contactInfo?.name}</OfferContact.Name>
-                            <OfferContact.Number>{item.contactInfo?.phone}</OfferContact.Number>
-                            <OfferContact.Mail>{item.contactInfo?.email}</OfferContact.Mail>
-                            <OfferContact.Form method="POST">
-                                <OfferContact.NameInput />
-                                <OfferContact.NumberInput />
-                                <OfferContact.MailInput />
-                                <OfferContact.TextInput />
+                            <OfferContact.IconAgent />
+                            <OfferContact.ContactData>
+                                <OfferContact.Name>{item.contactInfo?.name}</OfferContact.Name>
+                                <OfferContact.Number>{item.contactInfo?.phone}</OfferContact.Number>
+                                <OfferContact.Mail>{item.contactInfo?.email}</OfferContact.Mail>
+                            </OfferContact.ContactData>
+                            <OfferContact.Form>
+                                <OfferContact.Input name='name' required>Imię i Nazwisko<sup>*</sup></OfferContact.Input>
+                                <OfferContact.Input name='tel' required>Telefon<sup>*</sup></OfferContact.Input>
+                                <OfferContact.Input name='mail' required>E-Mail<sup>*</sup></OfferContact.Input>
+                                <OfferContact.TextInput name='text' value={value} onChange={(e)=>setValue(e.target.value)} required>Treść<sup>*</sup></OfferContact.TextInput>
                                 <OfferContact.ButtonSubmit type='submit'>Wyślij</OfferContact.ButtonSubmit>
                             </OfferContact.Form>
                         </OfferContact>
@@ -127,5 +169,5 @@ Offer.getInitialProps = async (ctx) => {
     });
 
     const json = await res.json()
-    return { data: json }
+    return { data: json };
 }

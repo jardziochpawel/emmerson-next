@@ -16,4 +16,5 @@ export { default as OfferContact } from './offerContact';
 export { default as OfferComponent } from './offer';
 export { default as Map } from './map';
 export { default as ThumbnailGallery } from './thumbnailGallery';
+export { default as OfferDetails } from './offerDetails';
 

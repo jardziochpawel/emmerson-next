@@ -3,7 +3,11 @@ import { GlobalStyles } from "../global-style";
 
 const theme = {
   colors: {
-    primary: '#0070f3',
+      primary: '#e00009',
+      secondary: '#e00009',
+      white: "#fff",
+      gray: '#9b9b9b',
+      darkgray: `#2d2b2b`
   },
 }
 

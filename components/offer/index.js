@@ -54,11 +54,11 @@ OfferComponent.Contact = function OfferContact({children, restProps}){
     return(<Contact {...restProps}>{children}</Contact>);
 }
 
-OfferComponent.Map = function OfferContact({position, marker, ...restProps}){
+OfferComponent.Map = function OfferContact({position, marker, showCloseButton, ...restProps}){
 
     return(
         <ContainerWithMap {...restProps}>
-            <MapWithNoSSR position={position} marker={marker}/>
+            <MapWithNoSSR position={position} marker={marker} showCloseButton={showCloseButton} />
         </ContainerWithMap>
     );
 }
