@@ -5,7 +5,16 @@ export const Container = styled.div`
   flex-flow: column;
   width: 100%;
   padding: 25px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(0,0,0,0.4);
+  border-top: 1px solid rgba(0,0,0,0.4);
+`;
+
+export const Title = styled.h3`
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 50px;
 `;
 
 export const Column = styled.div`

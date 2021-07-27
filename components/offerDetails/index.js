@@ -1,9 +1,16 @@
-import { Column, Container, List, ListItem, Name, Value } from "./styles/oferDetails";
+import {Column, Container, List, ListItem, Name, Title, Value} from "./styles/oferDetails";
 
 export default function OfferDetails({children, ...restProps}){
 
     return(
         <Container {...restProps}>{children}</Container>
+    )
+}
+
+OfferDetails.Title = function ODTitle({children, ...restProps}){
+
+    return(
+        <Title {...restProps}>{children}</Title>
     )
 }
 

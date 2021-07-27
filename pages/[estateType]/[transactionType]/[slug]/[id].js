@@ -34,7 +34,7 @@ export default function Offer({data}) {
         window.scrollTo(rect.left + window.scrollX,rect.top + window.scrollY);
     }
 
-    const [value, setValue] = useState(`Proszę o kontakt w sprawie nieruchomości, numer w biurze: ${data.id}`)
+    const [value, setValue] = useState(`Proszę o kontakt w sprawie ogłoszenia, numer w biurze: ${data.id}`)
 
     let item = data;
 
@@ -53,7 +53,7 @@ export default function Offer({data}) {
     return (
         <>
             <Head>
-                <title>{ title }Emmerson Zarządzanie Sp z o.o.</title>
+                <title>{ item.title } | Emmerson Zarządzanie Sp z o.o.</title>
             </Head>
             <Header webp={webp} bg={false} color={'white'} smallView={false}/>
             {
@@ -96,6 +96,7 @@ export default function Offer({data}) {
                             }
                         </OfferComponent.Header>
                         <OfferDetails>
+                            <OfferDetails.Title>Szczegóły ogłoszenia:</OfferDetails.Title>
                             <OfferDetails.Column>
                                 <OfferDetails.List>
                                     <OfferDetails.Item>
@@ -107,8 +108,8 @@ export default function Offer({data}) {
                                         <OfferDetails.Value>{item.area} m<sup>2</sup></OfferDetails.Value>
                                     </OfferDetails.Item>
                                     <OfferDetails.Item>
-                                        <OfferDetails.Name>Rodzaj nieruchomości:</OfferDetails.Name>
-                                        <OfferDetails.Value>{switchPropertyType(item.objectName)}</OfferDetails.Value>
+                                        <OfferDetails.Name>Numer ogłoszenia:</OfferDetails.Name>
+                                        <OfferDetails.Value>{item.id}</OfferDetails.Value>
                                     </OfferDetails.Item>
 
                                     {
