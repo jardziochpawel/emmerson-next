@@ -8,19 +8,25 @@ import {numberWithSpaces} from "../../../../helpers/numberWithSpaces";
 import variationByCases from "../../../../helpers/variationByCases";
 import {translateKey} from "../../../../helpers/translateKey";
 import {capitalizeFirstLetter} from "../../../../helpers/capitalizeFirstLetter";
+import Router from 'next/router'
 
 export default function Offer({data}) {
     const Header = dynamic(()=>import('../../../../containers/header'));
     const Spinner = dynamic(()=>import('../../../../components/spinner'));
+    const MapWithNoSSR = dynamic(() => import("../../../../components/mapComponent"), {
+        ssr: false
+    });
 
     const webp = useWebPSupportCheck();
     let images = [];
     const [isOpen, setIsOpen] = useState(false);
+    const [hide, setHide] = useState(false);
     const [position, setPosition] = useState([0,0])
     const [currentSlide, setCurrentSlide] = useState(0);
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
+
         const lat = data.geoMarker?.coordinates.latitude;
         const lng = data.geoMarker?.coordinates.longitude;
         setPosition([lat, lng]);
@@ -38,7 +44,7 @@ export default function Offer({data}) {
 
     let item = data;
 
-    const title = data.title.replace(/\s/g, '');
+    const title = data.title ?  data.title.replace(/\s/g, '') : '';
 
     if(title.length === 0){
         item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.flatDetails?.rooms} ${ variationByCases(5, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
@@ -48,7 +54,7 @@ export default function Offer({data}) {
         images = data.photosWebp;
     }
 
-    const array = Object.entries(item.flatDetails || item.houseDetails || item.commercialPropertyDetails || item.terrainDetails || item.hallDetails );
+    const array =  Object.entries(item.flatDetails || item.houseDetails || item.commercialPropertyDetails || item.terrainDetails || item.hallDetails || []);
 
     return (
         <>
@@ -108,26 +114,58 @@ export default function Offer({data}) {
                                         <OfferDetails.Value>{item.area} m<sup>2</sup></OfferDetails.Value>
                                     </OfferDetails.Item>
                                     <OfferDetails.Item>
-                                        <OfferDetails.Name>Numer ogłoszenia:</OfferDetails.Name>
-                                        <OfferDetails.Value>{item.id}</OfferDetails.Value>
+                                        <OfferDetails.Name>Cena:</OfferDetails.Name>
+                                        <OfferDetails.Value>{numberWithSpaces(item.price)} { item.priceCurrency === 'PLN'? 'zł' : item.priceCurrency }</OfferDetails.Value>
+                                    </OfferDetails.Item>
+                                    <OfferDetails.Item>
+                                        <OfferDetails.Name>Cena m<sup>2</sup>:</OfferDetails.Name>
+                                        <OfferDetails.Value>{numberWithSpaces(Math.floor(item.price / item.area))} { item.priceCurrency === 'PLN'? <>zł / m<sup>2</sup></> : item.priceCurrency }</OfferDetails.Value>
                                     </OfferDetails.Item>
 
                                     {
                                         array.map((i, k) => {
-                                            return(
-                                                <OfferDetails.Item key={k}>
-                                                    <OfferDetails.Name>{translateKey(i[0])}</OfferDetails.Name>
-                                                    <OfferDetails.Value>{capitalizeFirstLetter(i[1])}</OfferDetails.Value>
-                                                </OfferDetails.Item>
-                                            )
+                                            if(typeof i[1] === 'string')
+                                                return(
+                                                    <OfferDetails.Item key={k}>
+                                                        <OfferDetails.Name>{translateKey(i[0])}</OfferDetails.Name>
+                                                        <OfferDetails.Value>{ capitalizeFirstLetter(i[1]) }</OfferDetails.Value>
+                                                    </OfferDetails.Item>
+                                                )
                                         })
                                     }
+
+                                    <OfferDetails.Item>
+                                        <OfferDetails.Name>Numer ogłoszenia:</OfferDetails.Name>
+                                        <OfferDetails.Value>{item.id}</OfferDetails.Value>
+                                    </OfferDetails.Item>
                                 </OfferDetails.List>
                             </OfferDetails.Column>
                         </OfferDetails>
-                        <OfferComponent.Description>{item.description}</OfferComponent.Description>
+                        <OfferComponent.Description hide={hide} onClick={setHide}>{item.description}</OfferComponent.Description>
+                        <OfferComponent.DetailsContainer>
+                            {array.map((a, key) => {
+                            if(typeof a[1] !== 'string' && a[1].length !== 0)
+                                return(
+                                    <OfferComponent.Details key={key}>
+                                        <OfferComponent.DetailsTitle>{ translateKey(a[0]) }</OfferComponent.DetailsTitle>
+                                        <OfferComponent.DetailsList>
+                                            {
+                                                a[1].map((i, key) =>
+                                                    <OfferComponent.DetailsListItem key={key} >{i}</OfferComponent.DetailsListItem>
+                                                )
+                                            }
+                                        </OfferComponent.DetailsList>
+                                    </OfferComponent.Details>
+                                )}
+                            )}
+                        </OfferComponent.DetailsContainer>
+
                         {!loading && <Spinner />}
-                        {loading && <OfferComponent.Map marker={'/images/misc/marker.svg'} position={position} id='map' showCloseButton={false} />}
+                        {
+                            loading && <OfferComponent.Map>
+                                <MapWithNoSSR marker={'/images/misc/marker.svg'} position={position} id='map' showCloseButton={false}  />
+                            </OfferComponent.Map>
+                        }
                     </OfferComponent.OfferContainer>
 
                     <OfferComponent.Contact>
@@ -170,5 +208,13 @@ Offer.getInitialProps = async (ctx) => {
     });
 
     const json = await res.json()
+
+    if(json?.type === 404){
+        ctx.res.writeHead(302,{ Location: '/404' });
+        ctx.res.end();
+
+        return {data: []}
+    }
+
     return { data: json };
 }

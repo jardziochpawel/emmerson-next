@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { LocationOn } from "@styled-icons/material";
 
 export const Container = styled.div`
@@ -16,8 +16,14 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: auto;
+  
+  @media(max-width: 1400px){
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export const OfferContainer = styled.div`
@@ -25,7 +31,7 @@ export const OfferContainer = styled.div`
   flex-flow: column;
   justify-content: space-between;
   align-items: center;
-  max-width: 1000px;
+  max-width: 850px;
   width: calc(100vw * 0.6);
   
   @media(max-width: 1000px){
@@ -78,20 +84,64 @@ export const Contact = styled.div`
   }
 `;
 
-export const OfferContainerDescription = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: flex-start;
-  align-items: center;
+export const Button = styled.button`
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  z-index: 9999;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: #e00009;
+  
+  ${({hide}) => {
+      console.log(hide);
+      return hide && css`
+        position: initial; 
+        margin: 20px;
+        
+      `
+  }}
+  
+  &:hover{
+    cursor: pointer;
+    color: #900009;
+  }
+`;
+
+export const Mask = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
   width: 100%;
+  z-index: 999;
+  
+  ${({hide}) => hide ? css`` : css`
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,0.23153011204481788) 40%, rgba(255,255,255,1) 80%);
+  `};
+`;
+
+export const OfferContainerDescription = styled.div`
+  position: relative;
+  top: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: calc(100% + 50px);
   max-width: 1400px;
-  margin: 50px auto 0 auto;
-  padding: 50px 50px 0 50px;
+  margin: 25px auto 0 auto;
+  padding: 25px;
   
   @media(max-width: 1000px){
     flex-basis: 100%;
     width: 100%;
-    margin: 0;
+    margin: 25px 0 0 0;
     padding: 0;
   }
 `;
@@ -103,10 +153,16 @@ export const OfferDescription = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin: 0;
-  width: 50vw;
-  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  min-height: 300px;
+  
+  ${({hide}) => hide ? css`height: calc(100% + 50px)` : css`
+    height: 300px
+  `};
   
   @media(max-width: 1000px){
+    width: 100%;
     flex-basis: 100%;
     padding: 0 50px;
   }
@@ -158,7 +214,7 @@ export const ContainerWithMap = styled.div`
   width: 100%;
   max-width: 1400px;  
   margin: 50px auto 0 auto;
-  padding: 50px;
+  padding: 25px;
   height: calc(50vw * 0.7);
   
   @media(max-width: 1000px){
@@ -172,4 +228,39 @@ export const ContainerWithMap = styled.div`
     width: 100%;
     margin: 50px 0 0 0;
   }
+`;
+
+export const OfferDetailsContainer = styled.div`
+  width: 100%;
+
+  div:last-child{
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+  }
+`;
+
+export const OfferDetails = styled.div`
+  width: 100%;
+  padding: 25px;
+  border-top: 1px solid rgba(0,0,0,0.4);
+`;
+
+export const TitleDetails = styled.h4`
+  margin-left: 0;
+  padding-left: 0;
+`;
+
+export const ListDetails = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0 0 0 17px;
+  list-style: disc;
+`;
+
+export const ItemList = styled.li`
+  @media(min-width: 1000px){
+    width: calc(100% / 3);
+  }
+  
+  width: 50%;
 `;

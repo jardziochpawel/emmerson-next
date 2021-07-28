@@ -14,7 +14,7 @@ export const Title = styled.h3`
   font-weight: 400;
   margin-top: 0;
   padding-top: 0;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `;
 
 export const Column = styled.div`
@@ -23,43 +23,35 @@ export const Column = styled.div`
   width: 100%;
 `;
 
-export const List = styled.ul`
-  list-style-type: none; /* Remove bullets */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margins */
+export const List = styled.div`
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  
-  li {
-    display: inline;
-  }
-  
-  li:first-child{
-    margin-left: 0;
-  }
-  
-  li:nth-child(4) {
-    clear: left;
-    margin-left: 0;
-  }
 `;
 
-export const ListItem = styled.li`
-  width: 33%;
+export const ListItem = styled.div`
+  @media(min-width: 1400px){
+    width: calc(100% / 3);
+  }
+  width: 50%;
   display: flex;
-  flex-flow: row nowrap;
-  margin-top: 20px;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 5px;
+  font-size: 15px;
 `;
 
 export const Name = styled.div`
   color: dimgray;
-  width: 40%;
   white-space: nowrap;
 `;
 
 export const Value = styled.div`
+  padding-left: 10px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
   font-weight: 700;
-  width: 60%;
   white-space: nowrap;
 `;

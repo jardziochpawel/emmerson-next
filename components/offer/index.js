@@ -1,18 +1,24 @@
 import {
-    Container, LocalisationIcon,
+    Container,
+    LocalisationIcon,
     OfferContainerDescription,
     OfferDescription,
-    OfferHeader, OfferLocalisation,
+    OfferHeader,
+    OfferLocalisation,
     OfferTitle,
     OfferTitleAndLocation,
-    Localisation, OfferContainer, MainContainer, Contact, ContainerWithMap
+    Localisation,
+    OfferContainer,
+    MainContainer,
+    Contact,
+    ContainerWithMap,
+    OfferDetails,
+    TitleDetails,
+    ListDetails,
+    ItemList,
+    OfferDetailsContainer, Mask, Button
 } from "./styles/offer";
 import ReactHtmlParser from 'react-html-parser';
-import dynamic from "next/dynamic";
-
-const MapWithNoSSR = dynamic(() => import("../mapComponent"), {
-    ssr: false
-});
 
 export default function OfferComponent({children, restProps}){
 
@@ -54,21 +60,47 @@ OfferComponent.Contact = function OfferContact({children, restProps}){
     return(<Contact {...restProps}>{children}</Contact>);
 }
 
-OfferComponent.Map = function OfferContact({position, marker, showCloseButton, ...restProps}){
+OfferComponent.Map = function OfferContact({children, ...restProps}){
 
     return(
-        <ContainerWithMap {...restProps}>
-            <MapWithNoSSR position={position} marker={marker} showCloseButton={showCloseButton} />
-        </ContainerWithMap>
+        <ContainerWithMap {...restProps}>{children}</ContainerWithMap>
     );
 }
 
-OfferComponent.Description = function OfferComponentDescription({children, restProps}){
+OfferComponent.Description = function OfferComponentDescription({children, hide, onClick, restProps}){
+    console.log(hide);
     return(
         <OfferContainerDescription>
-            <OfferDescription {...restProps} >
+            <OfferDescription {...restProps} hide={hide}>
                 { ReactHtmlParser(children) }
             </OfferDescription>
+            <Mask hide={hide}/>
+            <OfferComponent.ButtonDetails type='button' hide={hide} onClick={onClick} />
         </OfferContainerDescription>
     )
+}
+
+OfferComponent.ButtonDetails = function OfferComponentButtonDetails({ hide, onClick,...restProps}){
+
+    return(<Button onClick={()=>onClick(!hide)} hide={hide} {...restProps}>{!hide ? 'Pokaż więcej' : 'Pokaż mniej'}</Button>)
+}
+
+OfferComponent.DetailsContainer = function OfferDetailsContainerComponent({children, ...restProps}){
+    return(<OfferDetailsContainer {...restProps}>{children}</OfferDetailsContainer>)
+}
+
+OfferComponent.Details = function OfferDetailsComponent({children, ...restProps}){
+    return(<OfferDetails {...restProps}>{children}</OfferDetails>)
+}
+
+OfferComponent.DetailsTitle = function OfferDetailsTitleComponent({children, ...restProps}){
+    return(<TitleDetails {...restProps}>{children}</TitleDetails>)
+}
+
+OfferComponent.DetailsList = function OfferDetailsListComponent({children, ...restProps}){
+    return(<ListDetails {...restProps}>{children}</ListDetails>)
+}
+
+OfferComponent.DetailsListItem = function OfferDetailsListItemComponent({children, ...restProps}){
+    return(<ItemList {...restProps}>{children}</ItemList>)
 }
