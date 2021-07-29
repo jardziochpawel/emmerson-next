@@ -93,10 +93,11 @@ export const Button = styled.button`
   border: none;
   font-size: 16px;
   color: #e00009;
+  margin: 20px;
   
   ${({hide}) =>  hide && css`
     position: initial; 
-    margin: 20px;
+
   `
   }
   

@@ -68,7 +68,7 @@ OfferComponent.Map = function OfferContact({children, ...restProps}){
 }
 
 OfferComponent.Description = function OfferComponentDescription({children, hide, onClick, restProps}){
-    console.log(hide);
+
     return(
         <OfferContainerDescription>
             <OfferDescription {...restProps} hide={hide}>
