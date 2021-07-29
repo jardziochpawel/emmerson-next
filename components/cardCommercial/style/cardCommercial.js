@@ -10,12 +10,12 @@ export const Container = styled.div`
 
 export const CardContainer = styled.div`
   position: relative;
-  height: auto;
+  height: 100%;
   width: 100%;
   margin: auto;
   
   @media(max-width: 1000px){
-    width: 80%;
+    width: 100%;
   }
 `;
 
@@ -43,13 +43,16 @@ export const Box = styled.div`
   width: 80%;
   margin: auto;
   height: auto;
-  
+  max-height: 270px;
+
   @media(max-width: 1000px){
-    margin-bottom: -20px;
+    width: 100%;
+    top: 0;
   }
   
   @media(max-width: 800px){
-    margin-bottom: -70px;
+    width: 100%;
+    top: 0;
   }
 `;
 
@@ -94,7 +97,7 @@ export const ListContainer = styled.ul`
 export const List = styled.li`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 50%;
   font-size: 14px;
@@ -110,6 +113,7 @@ export const Param = styled.span`
 `;
 
 export const Value = styled.span`
+  margin-left: 40px;
   color: black;
 `;
 

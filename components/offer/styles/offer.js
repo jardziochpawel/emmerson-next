@@ -94,14 +94,11 @@ export const Button = styled.button`
   font-size: 16px;
   color: #e00009;
   
-  ${({hide}) => {
-      console.log(hide);
-      return hide && css`
-        position: initial; 
-        margin: 20px;
-        
-      `
-  }}
+  ${({hide}) =>  hide && css`
+    position: initial; 
+    margin: 20px;
+  `
+  }
   
   &:hover{
     cursor: pointer;

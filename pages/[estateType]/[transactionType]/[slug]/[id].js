@@ -9,6 +9,7 @@ import variationByCases from "../../../../helpers/variationByCases";
 import {translateKey} from "../../../../helpers/translateKey";
 import {capitalizeFirstLetter} from "../../../../helpers/capitalizeFirstLetter";
 import Router from 'next/router'
+import {getPropertyAndTransaction} from "../../../../helpers/getPropertyAndTransaction";
 
 export default function Offer({data}) {
     const Header = dynamic(()=>import('../../../../containers/header'));
@@ -47,7 +48,8 @@ export default function Offer({data}) {
     const title = data.title ?  data.title.replace(/\s/g, '') : '';
 
     if(title.length === 0){
-        item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.flatDetails?.rooms} ${ variationByCases(5, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
+        const obj = getPropertyAndTransaction(item.id)
+        item.title = `${ capitalizeFirstLetter(obj.property) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.flatDetails?.rooms} ${ variationByCases(5, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
     }
 
     if(data) {
@@ -162,8 +164,8 @@ export default function Offer({data}) {
 
                         {!loading && <Spinner />}
                         {
-                            loading && <OfferComponent.Map>
-                                <MapWithNoSSR marker={'/images/misc/marker.svg'} position={position} id='map' showCloseButton={false}  />
+                            loading && <OfferComponent.Map id='map'>
+                                <MapWithNoSSR marker={'/images/misc/marker.svg'} position={position} showCloseButton={false}  />
                             </OfferComponent.Map>
                         }
                     </OfferComponent.OfferContainer>

@@ -31,6 +31,11 @@ export const CarouselSlides = styled.div`
       transform: translateX(-${currentSlide * 100 }%);
     `};
   transition: all 0.5s ease;
+  
+  @media(max-width: 1000px){
+    max-height: 1000px;
+    height: auto;
+  }
 `;
 
 export const Container = styled.div`
@@ -41,6 +46,7 @@ export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0;
+  height: 100%;
   
   @media(max-width: 1000px){
     flex-basis: 100%;
@@ -52,8 +58,9 @@ export const CarouselContainer = styled.div`
   flex-flow: row;
   justify-content: center;
   align-items: center;
-  margin: 0 ;
+  margin: 0;
   width: 100%;
+  height: 100%;
 
   @media(max-width: 1000px){
     margin: 0;
@@ -63,7 +70,6 @@ export const CarouselContainer = styled.div`
 `;
 
 export const CarouselButton = styled.button`
-
   border: 1px solid rgba(128,128,128,.2);
   border-radius: 50%;
   box-shadow: none;
@@ -80,7 +86,6 @@ export const CarouselButton = styled.button`
   background-color: white;
   
   @media(max-width: 1000px){
-    
     &:first-child{
       order: 2;
     }

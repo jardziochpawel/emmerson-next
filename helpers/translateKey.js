@@ -60,6 +60,9 @@ export const translateKey = (key) => {
         case 'roofType':
             result = 'Dach:';
             break;
+        case 'vicinityMask':
+            result = 'Okolica:';
+            break;
         default:
             result = key;
     }
