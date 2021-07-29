@@ -41,6 +41,12 @@ export default function Offer({data}) {
         window.scrollTo(rect.left + window.scrollX,rect.top + window.scrollY);
     }
 
+    const scrollToDescription = () => {
+        const el = document.getElementById('description');
+        const rect = el.getBoundingClientRect();
+        window.scrollTo(rect.left + window.scrollX,rect.top + window.scrollY);
+    }
+
     const [value, setValue] = useState(`Proszę o kontakt w sprawie ogłoszenia, numer w biurze: ${data.id}`)
 
     let item = data;
@@ -49,7 +55,7 @@ export default function Offer({data}) {
 
     if(title.length === 0){
         const obj = getPropertyAndTransaction(item.id)
-        item.title = `${ capitalizeFirstLetter(obj.property) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.flatDetails?.rooms} ${ variationByCases(5, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
+        item.title = `${ capitalizeFirstLetter(obj.property) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.rooms ? item.rooms : ''} ${item.rooms ? variationByCases(5, 'pokój', 'pokoje', 'pokoi'): '' } na ${item.offerType}`
     }
 
     if(data) {
@@ -143,7 +149,7 @@ export default function Offer({data}) {
                                 </OfferDetails.List>
                             </OfferDetails.Column>
                         </OfferDetails>
-                        <OfferComponent.Description hide={hide} onClick={setHide}>{item.description}</OfferComponent.Description>
+                        <OfferComponent.Description hide={hide} onClick={setHide} scrollToDescription={scrollToDescription} id='description'>{item.description}</OfferComponent.Description>
                         <OfferComponent.DetailsContainer>
                             {array.map((a, key) => {
                             if(typeof a[1] !== 'string' && a[1].length !== 0)

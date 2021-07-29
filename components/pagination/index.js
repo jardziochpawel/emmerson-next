@@ -2,7 +2,7 @@ import { ChoiceButton, ChoiceItem, Container } from "./styled/pagination";
 import ReactPaginate from 'react-paginate';
 import React from "react";
 
-export default function Pagination({onChangePerPage, count, onChange, ...restProps}) {
+export default function Pagination({onChangePerPage, page, count, onChange, ...restProps}) {
 
     return(
         <Container {...restProps}>
@@ -14,6 +14,7 @@ export default function Pagination({onChangePerPage, count, onChange, ...restPro
                 pageCount={count}
                 marginPagesDisplayed={1}
                 pageRangeDisplayed={2}
+                forcePage={page}
                 onPageChange={pagination => onChange(pagination.selected+1)}
                 containerClassName="pagination"
                 activeClassName="active"

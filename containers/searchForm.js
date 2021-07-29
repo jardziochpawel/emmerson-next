@@ -62,8 +62,9 @@ export default function SearchFormContainer({ node, ...restProps }){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        const query = {estate: estate.value, typeOfTransaction: typeOfTransaction.value, address, market: market.value, priceFrom, priceTo, surfaceFrom, surfaceTo, roomsFrom, roomsTo, textFromDescription, offerNumber}
+        const page = 1;
+        const perPage = 10;
+        const query = {estate: estate.value, typeOfTransaction: typeOfTransaction.value, address, market: market.value, priceFrom, priceTo, surfaceFrom, surfaceTo, roomsFrom, roomsTo, textFromDescription, offerNumber, page, perPage}
 
         const searchString = qs.stringify(query);
         history.push({

@@ -30,7 +30,8 @@
     "react-places-autocomplete": "^7.3.0",
     "react-slugify": "^2.0.3",
     "react-use-webp-support-check": "^1.0.20",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "swr": "^0.5.6"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.13.2",

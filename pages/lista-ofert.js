@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useFetch } from "../hooks/useFetch";
 import { useOnClickOutside } from "../hooks";
 import { switchPropertyType } from "../helpers/switchPropertyType";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
@@ -9,6 +8,20 @@ import slugify from 'react-slugify';
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { Pagination } from "../components";
+import useSWR from 'swr';
+import qs from "query-string";
+
+const fetcher = (url) => fetch(url, {
+    method: 'GET',
+    headers: {
+        "Host": 'backend-emm.draftway.eu',
+        "Content-Type": 'application/json',
+        "Accept-Encoding": 'gzip, deflate, br',
+        "Accept": '*/*',
+        "Connection": 'keep-alive',
+        "Cache-Control": 'no-cache',
+    }
+}).then((res) => res.json());
 
 export default function ListaOfert(){
     const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
@@ -22,26 +35,16 @@ export default function ListaOfert(){
     const webp = useWebPSupportCheck();
 
     const [isLoading, setIsLoading] = useState(false);
-    const [page, setPage] = useState(1);
-    const [perPage, setPerPage] = useState(10);
+    const [page, setPage] = useState(query.page);
+    const [perPage, setPerPage] = useState(query.perPage);
     const [isMapOpen, setIsMapOpen] = useState(false);
     const [coordinate, setCoordinate] = useState([52,21]);
-    const {estate, typeOfTransaction, address, market, priceFrom, priceTo, surfaceFrom, surfaceTo, roomsFrom, roomsTo, textFromDescription, offerNumber} = query;
+    const {estate, typeOfTransaction, address, market, priceFrom, priceTo, surfaceFrom, surfaceTo, roomsFrom, roomsTo, textFromDescription, offerNumber } = query;
     const ref = useRef();
 
     useOnClickOutside(ref, () => setIsMapOpen(false));
 
-    const response = useFetch(`https://backend-emm.draftway.eu/find?query=${address}${estate !== '' ? `&objectName=${estate}`:''}${priceFrom !== '' ? `&priceFrom=${priceFrom}`: ''}${priceTo !== '' ? `&priceTo=${priceTo}` : ''}${surfaceFrom !==  '' ? `&surfaceFrom=${surfaceFrom}` : ''}${surfaceTo !==  '' ? `&surfaceTo=${surfaceTo}` : ''}${roomsFrom !==  '' ? `&roomsFrom=${roomsFrom}` : ''}${roomsTo !==  '' ? `&roomsTo=${roomsTo}` : ''}${market !== '' ? `&marketType=${market}` : ''}${typeOfTransaction !== '' ? `&offerType=${typeOfTransaction}` : ''}${textFromDescription !== ''? `&descriptionContains=${textFromDescription}` : ''}${offerNumber !== ''? `&offerId=${offerNumber}` : ''}&results=${perPage}&page=${page}`, {
-        method: 'GET',
-        headers: {
-            "Host": 'backend-emm.draftway.eu',
-            "Content-Type": 'application/json',
-            "Accept-Encoding": 'gzip, deflate, br',
-            "Accept": '*/*',
-            "Connection": 'keep-alive',
-            "Cache-Control": 'no-cache',
-        }
-    });
+    const {data, error} = useSWR(`https://backend-emm.draftway.eu/find?query=${address}${estate !== '' ? `&objectName=${estate}`:''}${priceFrom !== '' ? `&priceFrom=${priceFrom}`: ''}${priceTo !== '' ? `&priceTo=${priceTo}` : ''}${surfaceFrom !==  '' ? `&surfaceFrom=${surfaceFrom}` : ''}${surfaceTo !==  '' ? `&surfaceTo=${surfaceTo}` : ''}${roomsFrom !==  '' ? `&roomsFrom=${roomsFrom}` : ''}${roomsTo !==  '' ? `&roomsTo=${roomsTo}` : ''}${market !== '' ? `&marketType=${market}` : ''}${typeOfTransaction !== '' ? `&offerType=${typeOfTransaction}` : ''}${textFromDescription !== ''? `&descriptionContains=${textFromDescription}` : ''}${offerNumber !== ''? `&offerId=${offerNumber}` : ''}&results=${perPage}&page=${page}`, fetcher)
 
     const loadingFunction = () => {
         setIsLoading(true);
@@ -67,13 +70,25 @@ export default function ListaOfert(){
 
     const onChangePerPage = (pp) => {
         setPerPage(pp);
+        query.perPage = pp;
+
         if(pp > perPage){
-            setPage(1)
+            return onChangePage(1);
         }
+
+        router.push({
+            pathname:'/lista-ofert',
+            search: qs.stringify(query)
+        } )
     }
 
     const onChangePage = (p) => {
+        query.page = p;
         setPage(p);
+        router.push({
+            pathname:'/lista-ofert',
+            search: qs.stringify(query)
+        } )
     }
 
     const openMap = (latLng) => {
@@ -101,14 +116,14 @@ export default function ListaOfert(){
                 <SearchForm node={ref} height={'50vh'} />
             </Header>
 
-            {(!response.data || isLoading) &&
+            {(!data || isLoading) &&
                 <Spinner />
             }
 
-            {(response.data && !isLoading) &&
+            {(data && !isLoading) &&
                 <>
-                    <OffersContainer data={response.data} webp={webp} handleClick={handleClick} openMap={openMap}/>
-                    <Pagination onChangePerPage={onChangePerPage} onChange={onChangePage} count={Object(response.data).length !== 0 ? response.data?.lastPage : 1} currentPage={Object(response.data).length !== 0 ? response.data?.currentPage : 1} />
+                    <OffersContainer data={data} webp={webp} handleClick={handleClick} openMap={openMap}/>
+                    <Pagination onChangePerPage={onChangePerPage} onChange={onChangePage} page={page-1} count={Object(data).length !== 0 ? data?.lastPage : 1} currentPage={Object(data).length !== 0 ? data?.currentPage : 1} />
                 </>
             }
         </>

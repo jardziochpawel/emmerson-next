@@ -67,22 +67,25 @@ OfferComponent.Map = function OfferContact({children, ...restProps}){
     );
 }
 
-OfferComponent.Description = function OfferComponentDescription({children, hide, onClick, restProps}){
+OfferComponent.Description = function OfferComponentDescription({id, children, hide, scrollToDescription, onClick, restProps}){
 
     return(
-        <OfferContainerDescription>
+        <OfferContainerDescription id={id} >
             <OfferDescription {...restProps} hide={hide}>
                 { ReactHtmlParser(children) }
             </OfferDescription>
             <Mask hide={hide}/>
-            <OfferComponent.ButtonDetails type='button' hide={hide} onClick={onClick} />
+            <OfferComponent.ButtonDetails type='button' hide={hide} onClick={onClick} scrollToDescription={scrollToDescription} />
         </OfferContainerDescription>
     )
 }
 
-OfferComponent.ButtonDetails = function OfferComponentButtonDetails({ hide, onClick,...restProps}){
+OfferComponent.ButtonDetails = function OfferComponentButtonDetails({ hide, scrollToDescription, onClick,...restProps}){
 
-    return(<Button onClick={()=>onClick(!hide)} hide={hide} {...restProps}>{!hide ? 'Pokaż więcej' : 'Pokaż mniej'}</Button>)
+    return(<Button onClick={()=> {
+        onClick(!hide);
+        return scrollToDescription();
+    }} hide={hide} {...restProps}>{!hide ? 'Pokaż więcej' : 'Pokaż mniej'}</Button>)
 }
 
 OfferComponent.DetailsContainer = function OfferDetailsContainerComponent({children, ...restProps}){
