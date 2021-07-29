@@ -35,11 +35,9 @@ export default function ListaOfert(){
     const webp = useWebPSupportCheck();
 
     const [isLoading, setIsLoading] = useState(false);
-    const [page, setPage] = useState(query.page);
-    const [perPage, setPerPage] = useState(query.perPage);
     const [isMapOpen, setIsMapOpen] = useState(false);
     const [coordinate, setCoordinate] = useState([52,21]);
-    const {estate, typeOfTransaction, address, market, priceFrom, priceTo, surfaceFrom, surfaceTo, roomsFrom, roomsTo, textFromDescription, offerNumber } = query;
+    const {estate, typeOfTransaction, address, market, priceFrom, priceTo, surfaceFrom, surfaceTo, roomsFrom, roomsTo, textFromDescription, offerNumber, perPage, page } = query;
     const ref = useRef();
 
     useOnClickOutside(ref, () => setIsMapOpen(false));
@@ -69,12 +67,8 @@ export default function ListaOfert(){
     }
 
     const onChangePerPage = (pp) => {
-        setPerPage(pp);
         query.perPage = pp;
-
-        if(pp > perPage){
-            return onChangePage(1);
-        }
+        query.page = '1';
 
         router.push({
             pathname:'/lista-ofert',
@@ -84,7 +78,6 @@ export default function ListaOfert(){
 
     const onChangePage = (p) => {
         query.page = p;
-        setPage(p);
         router.push({
             pathname:'/lista-ofert',
             search: qs.stringify(query)
@@ -123,7 +116,7 @@ export default function ListaOfert(){
             {(data && !isLoading) &&
                 <>
                     <OffersContainer data={data} webp={webp} handleClick={handleClick} openMap={openMap}/>
-                    <Pagination onChangePerPage={onChangePerPage} onChange={onChangePage} page={page-1} count={Object(data).length !== 0 ? data?.lastPage : 1} currentPage={Object(data).length !== 0 ? data?.currentPage : 1} />
+                    <Pagination onChangePerPage={onChangePerPage} onChange={onChangePage} page={page-1} perPage={perPage} count={Object(data).length !== 0 ? data?.lastPage : 1} currentPage={Object(data).length !== 0 ? data?.currentPage : 1} />
                 </>
             }
         </>

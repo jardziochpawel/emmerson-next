@@ -40,7 +40,9 @@ export default function SearchFormContainer({ node, ...restProps }){
                 roomsFrom,
                 roomsTo,
                 textFromDescription,
-                offerNumber
+                offerNumber,
+                page: 1,
+                perPage: 10
             })});
         }
     },[])
