@@ -6,7 +6,7 @@ import {
     Mail, Input,
     Name,
     Number,
-    TextAreaInput, InputGroup, ButtonGroup
+    TextAreaInput, InputGroup, ButtonGroup, ContactDataHeader
 } from "./styles/offerContact";
 
 export default function OfferContact({children, ...restProps}){
@@ -22,6 +22,11 @@ OfferContact.IconAgent = function OfferContactIconAgent({ ...restProps }){
 OfferContact.Name = function OfferContactName({children, ...restProps}){
 
     return(<Name {...restProps}>{children}</Name>)
+}
+
+OfferContact.ContactDataHeader = function OfferContactData({children, ...restProps}){
+
+    return(<ContactDataHeader {...restProps}>{children}</ContactDataHeader>)
 }
 
 OfferContact.ContactData = function OfferContactData({children, ...restProps}){

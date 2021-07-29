@@ -187,15 +187,20 @@ export const OfferTitle = styled.h1`
 `;
 
 export const OfferLocalisation = styled.h4`
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
   color: #d25760;
   font-size: 20px;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
 `;
 
-export const Localisation = styled.span`
+export const Localisation = styled.div`
   width: auto;
-
+  height: 20px;
   &:hover{
     cursor: pointer;
     color: #e00009;

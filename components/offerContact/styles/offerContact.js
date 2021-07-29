@@ -2,23 +2,31 @@ import styled from "styled-components";
 import {Person} from '@styled-icons/material';
 
 export const Container = styled.div`
+  font-family: 'Arial',sans-serif;
   width: 100%;
+  height: auto;
   max-width: 350px;
-  max-height: 576px;
+  max-height: 700px;
   padding: 20px;
   background-color:  ${({theme}) => theme.colors.white};
-  height: auto;
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   color: ${({theme}) => theme.colors.darkgray};
+  border: 1px solid rgba(0,0,0,0.2);
+  -webkit-box-shadow: 2px 7px 17px -5px #000000;
+  box-shadow: 2px 7px 17px -5px #000000;
   
   @media(max-width: 1000px){
     width: 100%;
     max-width: 100%;
     flex-flow: row wrap;
     flex-grow: 1;
+  }
+  @media(max-width: 600px){
+    margin: 0;
+    padding: 0;
   }
 `;
 
@@ -28,11 +36,27 @@ export const ContactData = styled.div`
   margin-left: 10px;
   width: calc(100% - 60px);
   font-size: 1.2rem;
+  
+  @media(max-width: 600px){
+    margin: 0;
+  }
+`;
+
+export const ContactDataHeader = styled.div`
+  display: flex;
+  flex-flow: row;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+  align-items: center;
 `;
 
 export const IconAgent = styled(Person)`
   width: 50px;
   height: 50px;
+  min-height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  max-height: 50px;
   color: ${({theme}) => theme.colors.darkgray};
   
   border: 1px solid ${({theme}) => theme.colors.darkgray};
@@ -40,7 +64,9 @@ export const IconAgent = styled(Person)`
   padding: 10px;
 `;
 
-export const Name = styled.div``;
+export const Name = styled.div`
+  margin-left: 10px;
+`;
 
 export const Number = styled.div``;
 
@@ -49,6 +75,14 @@ export const Mail = styled.div`
   
   @media(max-width: 1000px){
     font-size: 1.2rem;
+  }
+  
+  @media(max-width: 600px){
+    font-size: 1rem;
+  }
+
+  @media(max-width: 280px){
+    font-size: 0.8rem;
   }
 `;
 
@@ -67,7 +101,7 @@ export const Label = styled.label`
   top: 0;
   display: block;
   transition: 0.2s;
-  font-size: 1rem;
+  font-size: 16px;
   color: ${({theme}) => theme.colors.darkgray};
   width: 100%;
   margin-top: 10px;
@@ -85,7 +119,7 @@ export const TextAreaInput = styled.textarea`
   border: 0;
   border-bottom: 2px solid ${({theme}) => theme.colors.darkgray};
   outline: 0;
-  font-size: 1.3rem;
+  font-size: 18px;
   color: ${({theme}) => theme.colors.darkgray};
   padding: 7px 0;
   background: transparent;
@@ -96,7 +130,7 @@ export const TextAreaInput = styled.textarea`
   }
 
   &:placeholder-shown ~ .form__label {
-    font-size: 1.3rem;
+    font-size: 18px;
     cursor: text;
     top: 10px;
   }
@@ -107,7 +141,7 @@ export const TextAreaInput = styled.textarea`
       top: -10px;
       display: block;
       transition: 0.2s;
-      font-size: 1rem;
+      font-size: 16px;
       color: ${({theme}) => theme.colors.primary};
       font-weight:700;
     }
@@ -128,7 +162,7 @@ export const Input = styled.input`
   border: 0;
   border-bottom: 2px solid ${({theme}) => theme.colors.darkgray};
   outline: 0;
-  font-size: 1.3rem;
+  font-size: 18px;
   color: ${({theme}) => theme.colors.darkgray};
   padding: 7px 0;
   background: transparent;
@@ -140,7 +174,7 @@ export const Input = styled.input`
   }
 
   &:placeholder-shown ~ .form__label {
-    font-size: 1.3rem;
+    font-size: 18px;
     cursor: text;
     top: 10px;
   }
@@ -151,7 +185,7 @@ export const Input = styled.input`
       top: -10px;
       display: block;
       transition: 0.2s;
-      font-size: 1rem;
+      font-size: 16px;
       color: ${({theme}) => theme.colors.primary};
       font-weight:700;
     }
@@ -196,8 +230,9 @@ export const ButtonSubmit = styled.button`
   min-height: var(--height);
   border-radius: var(--height);
   color: #fff;
-  font-family: "Montserrat";
+  font-family: 'Arial',sans-serif;
   font-weight: bold;
+  font-size: 20px;
   background: rgba(0, 0, 0, 0.3);
   cursor: pointer;
   overflow: hidden;
@@ -260,7 +295,7 @@ export const ButtonSubmit = styled.button`
     }
 
     .icon-container {
-      transform: translateX(330%);
+      transform: translateX(280%);
 
       .icon {
         &--left {
@@ -269,7 +304,7 @@ export const ButtonSubmit = styled.button`
         }
 
         &--right {
-          transform: translateX(330%);
+          transform: translateX(280%);
           opacity: 0;
         }
       }

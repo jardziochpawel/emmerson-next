@@ -52,7 +52,7 @@ OfferComponent.Title = function OfferComponentTitle({children, restProps}){
 
 OfferComponent.Localisation = function OfferComponentLocalisation({children, onClick, restProps}){
 
-    return(<OfferLocalisation{...restProps}><Localisation  onClick={onClick}><LocalisationIcon />{children}</Localisation></OfferLocalisation>);
+    return(<OfferLocalisation{...restProps}><LocalisationIcon /><Localisation  onClick={onClick}>{children}</Localisation></OfferLocalisation>);
 }
 
 OfferComponent.Contact = function OfferContact({children, restProps}){

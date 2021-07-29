@@ -172,9 +172,11 @@ export default function Offer({data}) {
 
                     <OfferComponent.Contact>
                         <OfferContact>
-                            <OfferContact.IconAgent />
-                            <OfferContact.ContactData>
+                            <OfferContact.ContactDataHeader>
+                                <OfferContact.IconAgent />
                                 <OfferContact.Name>{item.contactInfo?.name}</OfferContact.Name>
+                            </OfferContact.ContactDataHeader>
+                            <OfferContact.ContactData>
                                 <OfferContact.Number>{item.contactInfo?.phone}</OfferContact.Number>
                                 <OfferContact.Mail>{item.contactInfo?.email}</OfferContact.Mail>
                             </OfferContact.ContactData>
