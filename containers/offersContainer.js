@@ -1,11 +1,11 @@
 import { switchPropertyType } from "../helpers/switchPropertyType";
 import { numberWithSpaces } from "../helpers/numberWithSpaces";
 import React, { useState } from "react";
-import { Offers } from "../components";
+import {Offers, Pagination} from "../components";
 import variationByCases from "../helpers/variationByCases";
 
 
-export default function OffersContainer({data = [], webp, openMap, handleClick}){
+export default function OffersContainer({data = [], onChange, onChangePerPage, page, perPage, count, currentPage, webp, openMap, handleClick}){
     const [offers, setOffers] = useState('');
 
     const offersRender = () => {
@@ -52,9 +52,12 @@ export default function OffersContainer({data = [], webp, openMap, handleClick})
     }
 
     return(
-        <Offers>
-            <Offers.OfferCount>Liczba ofert: { data?.count }</Offers.OfferCount>
-            { offers }
-        </Offers>
-    )
+        <>
+            <Offers>
+                <Offers.OfferCount>Liczba ofert: { data?.count }</Offers.OfferCount>
+                { offers }
+            </Offers>
+            <Pagination onChangePerPage={onChangePerPage} onChange={onChange} page={page} perPage={perPage} count={count} currentPage={currentPage} />
+        </>
+    );
 }

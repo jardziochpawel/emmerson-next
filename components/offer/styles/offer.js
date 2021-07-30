@@ -233,6 +233,12 @@ export const ContainerWithMap = styled.div`
   }
 `;
 
+export const OfferDescriptionTitle = styled.h4`
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  
+`;
+
 export const OfferDetailsContainer = styled.div`
   width: 100%;
 

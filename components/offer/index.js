@@ -16,7 +16,7 @@ import {
     TitleDetails,
     ListDetails,
     ItemList,
-    OfferDetailsContainer, Mask, Button
+    OfferDetailsContainer, Mask, Button, OfferDescriptionTitle
 } from "./styles/offer";
 import ReactHtmlParser from 'react-html-parser';
 
@@ -71,6 +71,7 @@ OfferComponent.Description = function OfferComponentDescription({id, children, h
 
     return(
         <OfferContainerDescription id={id} >
+            <OfferDescriptionTitle>Opis:</OfferDescriptionTitle>
             <OfferDescription {...restProps} hide={hide}>
                 { ReactHtmlParser(children) }
             </OfferDescription>

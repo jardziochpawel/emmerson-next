@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import slugify from 'react-slugify';
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import { Pagination } from "../components";
 import useSWR from 'swr';
 import qs from "query-string";
 
@@ -115,8 +114,7 @@ export default function ListaOfert(){
 
             {(data && !isLoading) &&
                 <>
-                    <OffersContainer data={data} webp={webp} handleClick={handleClick} openMap={openMap}/>
-                    <Pagination onChangePerPage={onChangePerPage} onChange={onChangePage} page={page-1} perPage={perPage} count={Object(data).length !== 0 ? data?.lastPage : 1} currentPage={Object(data).length !== 0 ? data?.currentPage : 1} />
+                    <OffersContainer data={data} webp={webp} handleClick={handleClick} openMap={openMap}  onChangePerPage={onChangePerPage} onChange={onChangePage} page={page-1} perPage={perPage} count={Object(data).length !== 0 ? data?.lastPage : 1} currentPage={Object(data).length !== 0 ? data?.currentPage : 1}/>
                 </>
             }
         </>
