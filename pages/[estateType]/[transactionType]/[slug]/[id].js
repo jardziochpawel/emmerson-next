@@ -2,14 +2,13 @@ import {useEffect, useState} from "react";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import { numberWithSpaces } from "../../../../helpers/numberWithSpaces";
 import variationByCases from "../../../../helpers/variationByCases";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 import { getPropertyAndTransaction } from "../../../../helpers/getPropertyAndTransaction";
 
 const Header = dynamic(()=>import('../../../../containers/header'));
-const OfferContainer = dynamic(()=>import('../../../../containers/offerContainer'));
 const Spinner = dynamic(()=>import('../../../../components/spinner'));
+const OfferContainer = dynamic(()=>import('../../../../containers/offerContainer'));
 
 export default function Offer({data}) {
 
@@ -23,11 +22,9 @@ export default function Offer({data}) {
     const [value, setValue] = useState(`Proszę o kontakt w sprawie ogłoszenia, numer w biurze: ${data.id}`)
 
     useEffect(()=>{
-
         const lat = data.geoMarker?.coordinates.latitude;
         const lng = data.geoMarker?.coordinates.longitude;
         setPosition([lat, lng]);
-
         setTimeout(()=>setLoading(true), 1000);
     },[data]);
 
@@ -47,11 +44,11 @@ export default function Offer({data}) {
 
     if(title.length === 0){
         const obj = getPropertyAndTransaction(data.id)
-        data.title = `${ capitalizeFirstLetter(obj.property) } ${ numberWithSpaces(Math.floor(data.area)) }m2, ${data.rooms ? data.rooms : ''} ${data.rooms ? variationByCases(5, 'pokój', 'pokoje', 'pokoi'): '' } na ${data.offerType}`
+        data.title = `${ capitalizeFirstLetter(obj.property) } ${ Math.floor(data.area) }m2, ${data.rooms ? data.rooms : ''} ${data.rooms ? variationByCases(5, 'pokój', 'pokoje', 'pokoi'): '' } na ${data.offerType}`
     }
 
     if(data) {
-        images = !webp ? data.photosWebp : data.photosJpeg;
+        images = webp ? data.photosWebp : data.photosJpeg;
     }
 
     const array =  Object.entries(data.flatDetails || data.houseDetails || data.commercialPropertyDetails || data.terrainDetails || data.hallDetails || []);

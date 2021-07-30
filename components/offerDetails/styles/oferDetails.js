@@ -24,32 +24,43 @@ export const Column = styled.div`
   width: 100%;
 `;
 
-export const List = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  width: 100%;
+export const List = styled.ul`
 
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0 0 0 10px;
+  list-style: none;
+  
+  @media(min-width: 1400px){
+    li:nth-child(3n){
+      padding-left: 50px;
+    }
+  }
 `;
 
-export const ListItem = styled.div`
+export const ListItem = styled.li`
+  
   @media(min-width: 1400px){
     width: calc(100% / 3);
   }
+  
   width: 50%;
+  height: 25px;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 5px;
+  align-items: flex-end;
   font-size: 15px;
-
+  
   @media(max-width: 600px){
     flex-flow: row wrap;
   }
-  
+
 `;
 
-export const Name = styled.div`
+export const Name = styled.span`
   color: dimgray;
   white-space: nowrap;
 
@@ -58,7 +69,7 @@ export const Name = styled.div`
   }
 `;
 
-export const Value = styled.div`
+export const Value = styled.span`
   padding-left: 10px;
   display: flex;
   justify-content: flex-start;

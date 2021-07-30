@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 100%;
   height: auto;
   max-width: 350px;
+  min-width: 330px;
   max-height: 700px;
   padding: 20px;
   background-color:  ${({theme}) => theme.colors.white};
@@ -21,19 +22,21 @@ export const Container = styled.div`
   @media(max-width: 1000px){
     width: 100%;
     max-width: 100%;
+    min-width: 100%;
     flex-flow: row wrap;
     flex-grow: 1;
   }
   @media(max-width: 600px){
     margin: 0;
-    padding: 0;
+    padding: 5px;
+    box-shadow: none;
+    border: none;
   }
 `;
 
 export const ContactData = styled.div`
   display: flex;
   flex-flow: column;
-  margin-left: 10px;
   width: calc(100% - 60px);
   font-size: 1.2rem;
   
@@ -105,7 +108,6 @@ export const Label = styled.label`
   color: ${({theme}) => theme.colors.darkgray};
   width: 100%;
   margin-top: 10px;
-  
   
   &:first-child{
     margin-top: 20px;
@@ -295,7 +297,7 @@ export const ButtonSubmit = styled.button`
     }
 
     .icon-container {
-      transform: translateX(280%);
+      transform: translateX(300%);
 
       .icon {
         &--left {
@@ -304,7 +306,7 @@ export const ButtonSubmit = styled.button`
         }
 
         &--right {
-          transform: translateX(280%);
+          transform: translateX(300%);
           opacity: 0;
         }
       }
@@ -319,7 +321,7 @@ export const ButtonSubmit = styled.button`
       }
 
       .icon-container {
-        transform: translateX(calc(50vw - 100px));
+        transform: translateX(calc(50vw - 110px));
 
         .icon {
           &--left {

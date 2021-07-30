@@ -71,8 +71,8 @@ OfferComponent.Description = function OfferComponentDescription({id, children, h
 
     return(
         <OfferContainerDescription id={id} >
-            <OfferDescriptionTitle>Opis:</OfferDescriptionTitle>
             <OfferDescription {...restProps} hide={hide}>
+                <OfferDescriptionTitle>Opis:</OfferDescriptionTitle>
                 { ReactHtmlParser(children) }
             </OfferDescription>
             <Mask hide={hide}/>

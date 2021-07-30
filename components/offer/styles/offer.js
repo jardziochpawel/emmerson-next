@@ -82,6 +82,10 @@ export const Contact = styled.div`
   @media(max-width: 600px){
     padding: 0 10px;
   }
+
+  @media(max-width: 400px){
+    padding: 0 5px;
+  }
 `;
 
 export const Button = styled.button`
@@ -234,9 +238,7 @@ export const ContainerWithMap = styled.div`
 `;
 
 export const OfferDescriptionTitle = styled.h4`
-  font-size: 20px;
-  font-family: Arial, sans-serif;
-  
+  width: 100%;
 `;
 
 export const OfferDetailsContainer = styled.div`
