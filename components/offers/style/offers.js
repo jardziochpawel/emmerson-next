@@ -135,7 +135,7 @@ export const CardText = styled.div`
   margin: 0;
   padding: 0;
   
-  @media(max-width: 600px){
+  @media(max-width: 1000px){
     flex-wrap: wrap;
   }
 `;

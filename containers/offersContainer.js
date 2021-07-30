@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import {Offers, Pagination} from "../components";
 import variationByCases from "../helpers/variationByCases";
 
-
 export default function OffersContainer({data = [], onChange, onChangePerPage, page, perPage, count, currentPage, webp, openMap, handleClick}){
     const [offers, setOffers] = useState('');
 
@@ -19,7 +18,7 @@ export default function OffersContainer({data = [], onChange, onChangePerPage, p
             const title = item.title.replace(/\s/g, '');
 
             if(title.length === 0){
-                item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, 5 ${ variationByCases(5, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
+                item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.rooms ?? item.rooms} ${ item.rooms ?? variationByCases(item.rooms, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
             }
 
             array.push(
@@ -36,7 +35,8 @@ export default function OffersContainer({data = [], onChange, onChangePerPage, p
                         <Offers.CardText>
                             <Offers.Text>
                                 { numberWithSpaces(item.area) } m<sup>2</sup>&nbsp;&nbsp;&nbsp;
-                                { numberWithSpaces(Math.floor(item.price / item.area)) } {item.priceCurrency}/m<sup>2</sup>
+                                { numberWithSpaces(Math.floor(item.price / item.area)) } {item.priceCurrency}/m<sup>2</sup>&nbsp;&nbsp;&nbsp;
+                                { item.rooms && item.rooms  + ' ' + variationByCases(item.rooms, 'pokój', 'pokoje', 'pokoi') }
                             </Offers.Text>
                             <Offers.Price>{numberWithSpaces(item.price)} {item.priceCurrency}</Offers.Price>
                         </Offers.CardText>

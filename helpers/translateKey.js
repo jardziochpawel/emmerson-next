@@ -55,13 +55,31 @@ export const translateKey = (key) => {
             result = 'Okna:';
             break;
         case 'garretType':
-            result = 'Garaż:';
+            result = 'Poddasze:';
             break;
         case 'roofType':
             result = 'Dach:';
             break;
         case 'vicinityMask':
             result = 'Okolica:';
+            break;
+        case 'location':
+            result = 'Położenie:';
+            break;
+        case 'terrainArea':
+            result = 'Powierzchnia działki:';
+            break;
+        case 'roofing':
+            result = 'Rodzaj dachu:';
+            break;
+        case 'furnished':
+            result = 'Umeblowanie:';
+            break;
+        case 'rent':
+            result = 'Wysokość czynszu:';
+            break;
+        case 'priceIncludeRent':
+            result = 'Cena zawiera czynsz:';
             break;
         default:
             result = key;

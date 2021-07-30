@@ -22,12 +22,14 @@ const fetcher = (url) => fetch(url, {
     }
 }).then((res) => res.json());
 
+const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
+const Header = dynamic(()=>import('../containers/header'));
+const OffersContainer = dynamic(()=>import('../containers/offersContainer'));
+const Spinner = dynamic(()=>import('../components/spinner'),{ssr: false});
+const Map = dynamic(()=>import('../components/map'),{ssr: false});
+
 export default function ListaOfert(){
-    const SearchForm = dynamic(()=>import('../containers/searchForm'),{ssr: false});
-    const Header = dynamic(()=>import('../containers/header'));
-    const OffersContainer = dynamic(()=>import('../containers/offersContainer'));
-    const Spinner = dynamic(()=>import('../components/spinner'),{ssr: false});
-    const Map = dynamic(()=>import('../components/map'),{ssr: false});
+
 
     const router = useRouter();
     const query = useQuery();
@@ -101,7 +103,7 @@ export default function ListaOfert(){
 
             {
                 isMapOpen &&
-                <Map node={ref} key={coordinate}  marker={'/images/misc/marker.svg'} position={coordinate} closeMap={showMap} />
+                    <Map node={ref} key={coordinate}  marker={'/images/misc/marker.svg'} position={coordinate} closeMap={showMap} />
             }
 
             <Header src={'bg-ofer-list'} height={'50vh'} webp={webp} smallView={false}>

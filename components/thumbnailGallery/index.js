@@ -13,7 +13,7 @@ ThumbnailGallery.Images = function ThumbnailGalleryImages({ length, photos, setC
     const miniImageList = photos.map((item, index)=>{
         return(
             <ThumbnailImageBox onClick={ () => setCurrentSlide(index % length)} key={index} >
-                <ThumbnailImage src={item.file} lazyLoad isResponsive/>
+                <ThumbnailImage src={item.file.replace('jpg', 'jpeg')} lazyLoad isResponsive/>
             </ThumbnailImageBox>
             )
     });
