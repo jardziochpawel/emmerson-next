@@ -44,7 +44,7 @@ export default function Offer({data}) {
 
     if(title.length === 0){
         const obj = getPropertyAndTransaction(data.id)
-        data.title = `${ capitalizeFirstLetter(obj.property) } ${ Math.floor(data.area) }m2, ${data.rooms ? data.rooms : ''} ${data.rooms ? variationByCases(5, 'pokój', 'pokoje', 'pokoi'): '' } na ${data.offerType}`
+        data.title = `${ capitalizeFirstLetter(obj.property) } ${ Math.floor(data.area) }m2, ${data.rooms ? data.rooms : ''} ${data.rooms ? variationByCases(data.rooms, 'pokój', 'pokoje', 'pokoi'): '' } na ${data.offerType}`
     }
 
     if(data) {

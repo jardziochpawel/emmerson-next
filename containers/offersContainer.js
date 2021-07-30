@@ -18,7 +18,7 @@ export default function OffersContainer({data = [], onChange, onChangePerPage, p
             const title = item.title.replace(/\s/g, '');
 
             if(title.length === 0){
-                item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.rooms ?? item.rooms} ${ item.rooms ?? variationByCases(item.rooms, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
+                item.title = `${ switchPropertyType(item.objectName) } ${ numberWithSpaces(Math.floor(item.area)) }m2, ${item.rooms && item.rooms} ${ item.rooms && variationByCases(item.rooms, 'pokój', 'pokoje', 'pokoi') } na ${item.offerType}`
             }
 
             array.push(
