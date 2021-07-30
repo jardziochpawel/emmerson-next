@@ -1,9 +1,12 @@
 import {
-    ButtonSubmit, ContactData,
+    ButtonSubmit,
+    ContactData,
     Container,
     Form,
-    IconAgent, Label,
-    Mail, Input,
+    IconAgent,
+    Label,
+    Mail,
+    Input,
     Name,
     Number,
     TextAreaInput, InputGroup, ButtonGroup, ContactDataHeader

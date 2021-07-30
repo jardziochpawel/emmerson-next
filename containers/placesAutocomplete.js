@@ -62,7 +62,6 @@ export default function PlacesAutocompleteContainer({address, setAddress, prevSe
     };
 
     const toggling = () => {
-        console.log(!focused);
         setFocused(!focused);
     };
 

@@ -26,7 +26,5 @@ export const GetPaginationButtons = (Component, onChangePage, lastPage, currentP
         result.push( <Component.PageButton page={lastPage} func={ onChangePage } key={lastPage * new Date().getMilliseconds()}>{ lastPage }</Component.PageButton> )
     }
 
-
-    console.log(result);
     return result;
 }
