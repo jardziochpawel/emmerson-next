@@ -73,13 +73,19 @@ export const translateKey = (key) => {
             result = 'Rodzaj dachu:';
             break;
         case 'furnished':
-            result = 'Umeblowanie:';
+            result = 'Umeblowane:';
             break;
         case 'rent':
             result = 'Wysokość czynszu:';
             break;
         case 'priceIncludeRent':
             result = 'Cena zawiera czynsz:';
+            break;
+        case 'roomsNum':
+            result = 'Ilość pokoi:';
+            break;
+        case 'buildYear':
+            result = 'Rok budowy:';
             break;
         default:
             result = key;

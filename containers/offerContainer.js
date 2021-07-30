@@ -28,7 +28,7 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
         const OfferDetailsArray = [];
         const MoreOfferDetailsArray = []
         array.map((a, key) => {
-            if (typeof a[1] !== 'string' && a[1].length !== 0)
+            if (typeof a[1] !== 'string' && typeof a[1] !== 'number' && typeof a[1] !== 'boolean' && a[1].length !== 0)
                 MoreOfferDetailsArray.push(
                     <OfferComponent.Details key={key}>
                         <OfferComponent.DetailsTitle>{translateKey(a[0])}</OfferComponent.DetailsTitle>
@@ -42,13 +42,56 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                     </OfferComponent.Details>
                 )
 
-            if (typeof a[1] === 'string')
+            if (typeof a[1] === 'string') {
                 OfferDetailsArray.push(
                     <OfferDetails.Item key={key}>
                         <OfferDetails.Name>{translateKey(a[0])}</OfferDetails.Name>
                         <OfferDetails.Value>{capitalizeFirstLetter(a[1])}</OfferDetails.Value>
                     </OfferDetails.Item>
-                )
+                );
+            }
+
+            if (typeof a[1] === 'number') {
+
+                if (a[0] === 'rent') {
+                    OfferDetailsArray.push(
+                        <OfferDetails.Item key={key}>
+                            <OfferDetails.Name>{translateKey(a[0])}</OfferDetails.Name>
+                            <OfferDetails.Value>{numberWithSpaces(a[1])}</OfferDetails.Value>
+                        </OfferDetails.Item>
+                    );
+                }
+
+                if (a[0] === 'terrainArea'){
+                    OfferDetailsArray.push(
+                        <OfferDetails.Item key={key}>
+                            <OfferDetails.Name>{translateKey(a[0])}</OfferDetails.Name>
+                            <OfferDetails.Value>{numberWithSpaces(a[1])} m<sup>2</sup></OfferDetails.Value>
+                        </OfferDetails.Item>
+                    );
+                }
+
+                if (a[0] === 'buildYear'){
+                    OfferDetailsArray.push(
+                        <OfferDetails.Item key={key}>
+                            <OfferDetails.Name>{translateKey(a[0])}</OfferDetails.Name>
+                            <OfferDetails.Value>{ a[1] } r.</OfferDetails.Value>
+                        </OfferDetails.Item>
+                    );
+                }
+
+                if(a[0] !== 'buildYear' && a[0] !== 'terrainArea' && a[0] !== 'rent') {
+                    OfferDetailsArray.push(
+                        <OfferDetails.Item key={key}>
+                            <OfferDetails.Name>{translateKey(a[0])}</OfferDetails.Name>
+                            <OfferDetails.Value>{numberWithSpaces(a[1])}</OfferDetails.Value>
+                        </OfferDetails.Item>
+                    );
+                }
+            }
+
+
+
         })
         return {OfferDetailsArray, MoreOfferDetailsArray}
 
@@ -106,13 +149,6 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                         <OfferDetails.Name>Cena m<sup>2</sup>:</OfferDetails.Name>
                                         <OfferDetails.Value>{numberWithSpaces(Math.floor(item.price / item.area))} { item.priceCurrency === 'PLN'? <>zł / m<sup>2</sup></> : item.priceCurrency }</OfferDetails.Value>
                                     </OfferDetails.Item>
-                                    {
-                                        item.rooms && <OfferDetails.Item>
-                                            <OfferDetails.Name>Ilość pokoi:</OfferDetails.Name>
-                                            <OfferDetails.Value>{ item.rooms }</OfferDetails.Value>
-                                        </OfferDetails.Item>
-                                    }
-
                                     {
                                         offerDetailsRender().OfferDetailsArray
                                     }
