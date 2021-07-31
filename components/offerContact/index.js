@@ -61,7 +61,7 @@ OfferContact.TextInput = function OfferContactTextInput({children, name, ...rest
     return(
         <InputGroup className='form__group field'>
             <TextAreaInput id={name} className='form__field' placeholder={children} {...restProps} />
-            <Label for={name} className='form__label'>{children}</Label>
+            <Label htmlFor={name} className='form__label'>{children}</Label>
         </InputGroup>
     )
 }
@@ -71,7 +71,7 @@ OfferContact.Input = function OfferContactInput({children, name, ...restProps })
     return(
         <InputGroup className='form__group field'>
             <Input id={name} placeholder={children} className='form__field' {...restProps} />
-            <Label for={name} className='form__label'>{children}</Label>
+            <Label htmlFor={name} className='form__label'>{children}</Label>
         </InputGroup>
     )
 }

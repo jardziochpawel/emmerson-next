@@ -28,8 +28,9 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
     const offerDetailsRender = () => {
         const OfferDetailsArray = [];
         const MoreOfferDetailsArray = []
+
         array.map((a, key) => {
-            if (typeof a[1] !== 'string' && typeof a[1] !== 'number' && typeof a[1] !== 'boolean' && a[1].length !== 0)
+            if (typeof a[1] !== 'string' && typeof a[1] !== 'number' && typeof a[1] !== 'boolean' && a[1].length !== 0 && Array.isArray(a[1])) {
                 MoreOfferDetailsArray.push(
                     <OfferComponent.Details key={key}>
                         <OfferComponent.DetailsTitle>{translateKey(a[0])}</OfferComponent.DetailsTitle>
@@ -42,7 +43,7 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                         </OfferComponent.DetailsList>
                     </OfferComponent.Details>
                 )
-
+            }
             if (typeof a[1] === 'string') {
                 OfferDetailsArray.push(
                     <OfferDetails.Item key={key}>
@@ -58,12 +59,12 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                     OfferDetailsArray.push(
                         <OfferDetails.Item key={key}>
                             <OfferDetails.Name>{translateKey(a[0])}</OfferDetails.Name>
-                            <OfferDetails.Value>{numberWithSpaces(a[1])} {array.rentCurrency ? array.rentCurrency : item.priceCurrency}</OfferDetails.Value>
+                            <OfferDetails.Value>{numberWithSpaces(a[1])} {array.rentCurrency ? array.rentCurrency : item.priceCurrency === 'PLN' ? 'zł' : item.priceCurrency}</OfferDetails.Value>
                         </OfferDetails.Item>
                     );
                 }
 
-                if (a[0] === 'terrainArea'){
+                if (a[0] === 'terrainArea' && a[1] !== 0){
                     OfferDetailsArray.push(
                         <OfferDetails.Item key={key}>
                             <OfferDetails.Name>{translateKey(a[0])}</OfferDetails.Name>
@@ -132,14 +133,6 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                 <OfferDetails.Column>
                                     <OfferDetails.List>
                                         <OfferDetails.Item>
-                                            <OfferDetails.Name>Rynek:</OfferDetails.Name>
-                                            <OfferDetails.Value>{capitalizeFirstLetter(item.marketType)}</OfferDetails.Value>
-                                        </OfferDetails.Item>
-                                        <OfferDetails.Item>
-                                            <OfferDetails.Name>Powierzchnia:</OfferDetails.Name>
-                                            <OfferDetails.Value>{item.area} m<sup>2</sup></OfferDetails.Value>
-                                        </OfferDetails.Item>
-                                        <OfferDetails.Item>
                                             <OfferDetails.Name>Cena:</OfferDetails.Name>
                                             <OfferDetails.Value>{numberWithSpaces(item.price)} { item.priceCurrency === 'PLN'? 'zł' : item.priceCurrency }</OfferDetails.Value>
                                         </OfferDetails.Item>
@@ -147,10 +140,18 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                             <OfferDetails.Name>Cena m<sup>2</sup>:</OfferDetails.Name>
                                             <OfferDetails.Value>{numberWithSpaces(Math.floor(item.price / item.area))} { item.priceCurrency === 'PLN'? <>zł/m<sup>2</sup></> : item.priceCurrency }</OfferDetails.Value>
                                         </OfferDetails.Item>
+                                        <OfferDetails.Item>
+                                            <OfferDetails.Name>Powierzchnia:</OfferDetails.Name>
+                                            <OfferDetails.Value>{item.area} m<sup>2</sup></OfferDetails.Value>
+                                        </OfferDetails.Item>
 
                                         {
                                             offerDetailsRender().OfferDetailsArray
                                         }
+                                        <OfferDetails.Item>
+                                            <OfferDetails.Name>Rynek:</OfferDetails.Name>
+                                            <OfferDetails.Value>{capitalizeFirstLetter(item.marketType)}</OfferDetails.Value>
+                                        </OfferDetails.Item>
 
                                         <OfferDetails.Item>
                                             <OfferDetails.Name>Numer ogłoszenia:</OfferDetails.Name>

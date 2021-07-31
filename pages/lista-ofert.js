@@ -43,7 +43,7 @@ export default function ListaOfert(){
 
     useOnClickOutside(ref, () => setIsMapOpen(false));
 
-    const {data, error} = useSWR(`https://backend-emm.draftway.eu/find?query=${address}${estate !== '' ? `&objectName=${estate}`:''}${priceFrom !== '' ? `&priceFrom=${priceFrom}`: ''}${priceTo !== '' ? `&priceTo=${priceTo}` : ''}${surfaceFrom !==  '' ? `&surfaceFrom=${surfaceFrom}` : ''}${surfaceTo !==  '' ? `&surfaceTo=${surfaceTo}` : ''}${roomsFrom !==  '' ? `&roomsFrom=${roomsFrom}` : ''}${roomsTo !==  '' ? `&roomsTo=${roomsTo}` : ''}${market !== '' ? `&marketType=${market}` : ''}${typeOfTransaction !== '' ? `&offerType=${typeOfTransaction}` : ''}${textFromDescription !== ''? `&descriptionContains=${textFromDescription}` : ''}${offerNumber !== ''? `&offerId=${offerNumber}` : ''}&results=${perPage}&page=${page}`, fetcher)
+    const {data, error} = useSWR(`https://backend-emm.draftway.eu/find?${address ? `query=${address}` : ''}${estate !== '' ? `&objectName=${estate}`:''}${priceFrom !== '' ? `&priceFrom=${priceFrom}`: ''}${priceTo !== '' ? `&priceTo=${priceTo}` : ''}${surfaceFrom !==  '' ? `&surfaceFrom=${surfaceFrom}` : ''}${surfaceTo !==  '' ? `&surfaceTo=${surfaceTo}` : ''}${roomsFrom !==  '' ? `&roomsFrom=${roomsFrom}` : ''}${roomsTo !==  '' ? `&roomsTo=${roomsTo}` : ''}${market !== '' ? `&marketType=${market}` : ''}${typeOfTransaction !== '' ? `&offerType=${typeOfTransaction}` : ''}${textFromDescription !== ''? `&descriptionContains=${textFromDescription}` : ''}${offerNumber !== ''? `&offerId=${offerNumber}` : ''}&results=${perPage}&page=${page}`, fetcher)
 
     const loadingFunction = () => {
         setIsLoading(true);

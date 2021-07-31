@@ -87,6 +87,18 @@ export const translateKey = (key) => {
         case 'buildYear':
             result = 'Rok budowy:';
             break;
+        case 'buildingFloorsNum':
+            result = 'Liczba pięter:';
+            break;
+        case 'freeFrom':
+            result = 'Wolne od:';
+            break;
+        case 'socialFacilities':
+            result = 'Pomieszczenia socjalne:';
+            break;
+        case 'officeSpace':
+            result = 'Przestrzeń biurowa:';
+            break;
         default:
             result = key;
     }
