@@ -7,7 +7,6 @@ export const Container = styled.div`
   padding: 25px;
   border-bottom: 1px solid rgba(0,0,0,0.4);
   border-top: 1px solid rgba(0,0,0,0.4);
-
 `;
 
 export const Title = styled.h3`
@@ -54,8 +53,15 @@ export const ListItem = styled.li`
   align-items: flex-end;
   font-size: 15px;
   
+  @media(max-width: 800px){
+    flex-flow: row;
+    align-items: flex-start;
+    height: 40px;
+  }
+  
   @media(max-width: 600px){
     flex-flow: row wrap;
+    height: 45px;
   }
 
 `;
@@ -76,6 +82,10 @@ export const Value = styled.span`
   width: 100%;
   font-weight: 700;
   white-space: nowrap;
+
+  @media(max-width: 800px){
+    white-space: normal;
+  }
 
   @media(max-width: 600px){
     padding-left: 0;

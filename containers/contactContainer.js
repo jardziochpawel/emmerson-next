@@ -30,7 +30,7 @@ export default function ContactContainer(){
                         Pon - Pt: 9 - 17<br/>
                         Tel: 22 827 00 00<br/>
                         Tel: 22 828 92 96<br/>
-                        E-Mail: <Contact.Link href={'mail:emmerson@emmerson.pl'}>emmerson@emmerson.pl</Contact.Link>
+                        E-Mail: <Contact.Link href={'mailto:emmerson@emmerson.pl'}>emmerson@emmerson.pl</Contact.Link>
                         <Contact.ShowOnMap onClick={()=> {
                             setPosition([52.300107551178414, 20.93577213033275]);
                             scrollToMap();
