@@ -27,6 +27,7 @@ const Header = dynamic(()=>import('../containers/header'));
 const OffersContainer = dynamic(()=>import('../containers/offersContainer'));
 const Spinner = dynamic(()=>import('../components/spinner'),{ssr: false});
 const Map = dynamic(()=>import('../components/map'),{ssr: false});
+const Footer = dynamic(()=>import('../containers/footerContainer'));
 
 export default function ListaOfert(){
 
@@ -119,6 +120,8 @@ export default function ListaOfert(){
                     <OffersContainer data={data} webp={webp} handleClick={handleClick} openMap={openMap}  onChangePerPage={onChangePerPage} onChange={onChangePage} page={page-1} perPage={perPage} count={Object(data).length !== 0 ? data?.lastPage : 1} currentPage={Object(data).length !== 0 ? data?.currentPage : 1}/>
                 </>
             }
+
+            <Footer />
         </>
     )
 }

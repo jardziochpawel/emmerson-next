@@ -9,6 +9,7 @@ import { getPropertyAndTransaction } from "../../../../helpers/getPropertyAndTra
 const Header = dynamic(()=>import('../../../../containers/header'));
 const Spinner = dynamic(()=>import('../../../../components/spinner'));
 const OfferContainer = dynamic(()=>import('../../../../containers/offerContainer'));
+const Footer = dynamic(()=>import('../../../../containers/footerContainer'));
 
 export default function Offer({data}) {
 
@@ -80,6 +81,7 @@ export default function Offer({data}) {
                 setIsOpen={setIsOpen}
                 scrollToDescription={scrollToDescription}
             />
+            <Footer />
         </>
     );
 }

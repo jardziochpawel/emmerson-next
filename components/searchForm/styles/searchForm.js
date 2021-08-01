@@ -10,7 +10,7 @@ export const Container = styled.div`
   padding: 0 6.1rem;
   background-clip: content-box;
   position: absolute;
-  z-index: 9999;
+  z-index: 200;
   
   ${({height}) => height ? css`top: calc(${height} - 40px)` : css`top: calc(100vh - 40px)`};
   

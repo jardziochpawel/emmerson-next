@@ -30,6 +30,7 @@ export const ShadowBox = styled.div`
 `;
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   margin: 0;
   height: 87px;
@@ -38,6 +39,7 @@ export const Container = styled.div`
   background-clip: content-box;
   padding: 0 6.1rem;
   width: 100%;
+  overflow: hidden;
   
   a {
     display: flex;
@@ -50,6 +52,23 @@ export const Container = styled.div`
   @media (max-width: 1000px) {
     padding: 0;
   }
+`;
+
+export const HamburgerContainer = styled.div`
+  @media (min-width: 1000px) {
+    display: none;
+  }
+  
+  ${({ open }) => open ? css`position: fixed;` :  css`position: relative;`};
+  
+  width: 2rem;
+  height: 2rem;
+  z-index: 999999;
+  right: 50px;
+  min-width: 2rem;
+  min-height: 2rem;
+  max-width: 2rem;
+  max-height: 2rem;
 `;
 
 export const Hamburger = styled.button`
@@ -77,7 +96,7 @@ export const Hamburger = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ theme }) => theme.primaryLight};
+    background: ${({ theme }) => theme.colors.white};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
@@ -146,3 +165,47 @@ export const ButtonLogo = styled(Link)`
     cursor: pointer;
   }
 `;
+
+export const SidebarContainer = styled.div`
+  @media (min-width: 999px) {
+    display: none;
+  }
+  transition: transform .2s linear;
+  transform: translate3d(300px, 0, 0);
+  position: fixed;
+  top: 0;
+  background: #e00009;
+  right: 0;
+  display: block;
+  height: auto;
+  bottom: 0;
+  margin: 0;
+  z-index: 9999;
+  border: none;
+  width: 300px;
+  overflow: auto;
+  
+  ${({open})=>open && css`
+    transform: translate3d(0, 0, 0);
+  `}
+`;
+
+export const SidebarNav = styled.nav`
+  padding: 20px;
+  margin-top: 40px;
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 350;
+    padding: 1.1rem 1.3rem;
+    margin-top: 5px;
+    &:hover{
+      color: #eaeaea;
+      cursor: pointer;
+      background-color: #d0001a;
+    }
+  }
+`;
+
+export const SidebarItem = styled(Link)``;

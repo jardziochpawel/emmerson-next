@@ -50,7 +50,7 @@ export const ImageContainer = styled.div`
 
 export const Mask = styled.div`
   position: absolute;
-  z-index: 99999;
+  z-index: 150;
   top: 0;
   bottom: 0;
   left: 0;

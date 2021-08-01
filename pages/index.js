@@ -8,6 +8,7 @@ const SectionCommercial = dynamic(()=>import('../containers/sectionCommercial'))
 const Header = dynamic(()=>import('../containers/header'));
 const Feature = dynamic(()=>import('../components/feature'));
 const SectionOffers = dynamic(()=>import('../containers/sectionNewOffers'));
+const Footer = dynamic(()=>import('../containers/footerContainer'));
 
 export default function Index({ commercial, random }){
 
@@ -30,6 +31,7 @@ export default function Index({ commercial, random }){
                 <SectionOffers data={random} webp={webp}/>
                 <SectionCommercial data={commercial} webp={webp}/>
             </>
+            <Footer diagonal={true}/>
         </div>
     )
 }

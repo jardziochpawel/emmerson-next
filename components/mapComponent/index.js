@@ -1,11 +1,17 @@
-import { TileLayer, Marker } from "react-leaflet";
+import {TileLayer, Marker, useMap} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from 'leaflet';
 import {API_TOKEN} from "../../constants/maboxConfig";
 import React from "react";
 import {CloseIcon, StyledMap} from "./styles/mapComponent";
 
-const MapComponent = ({position, showCloseButton = true, closeMap, marker}) => {
+function ChangeView({ center, zoom }) {
+    const map = useMap();
+    map.setView(center, zoom);
+    return null;
+}
+
+const MapComponent = ({position, showCloseButton = true, zoom = 15, closeMap, marker}) => {
 
     const iconMarker = new L.Icon({
         iconUrl: marker,
@@ -21,8 +27,9 @@ const MapComponent = ({position, showCloseButton = true, closeMap, marker}) => {
 
     return (
         <StyledMap
-            center={position} zoom={15} scrollWheelZoom={false}
+            center={position} zoom={zoom} scrollWheelZoom={false}
         >
+            <ChangeView center={position} zoom={zoom} />
             {showCloseButton && <CloseIcon onClick={() => closeMap()}/>}
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

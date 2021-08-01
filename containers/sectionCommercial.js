@@ -3,9 +3,7 @@ import { Carousel, CardCommercial, Section } from "../components";
 import { getPropertyAndTransaction } from "../helpers/getPropertyAndTransaction";
 import { useRouter } from "next/router";
 import slugify from "react-slugify";
-import {switchPropertyType} from "../helpers/switchPropertyType";
 import {numberWithSpaces} from "../helpers/numberWithSpaces";
-import variationByCases from "../helpers/variationByCases";
 import {capitalizeFirstLetter} from "../helpers/capitalizeFirstLetter";
 
 export default function SectionCommercial({ data = [], webp }){
@@ -44,7 +42,7 @@ export default function SectionCommercial({ data = [], webp }){
                             </CardCommercial.ListContainer>
 
                             <CardCommercial.Text>Cena:</CardCommercial.Text>
-                            <CardCommercial.Price>{item.price}</CardCommercial.Price>
+                            <CardCommercial.Price>{numberWithSpaces(item.price)} {item.priceCurrency === "PLN" ? 'zł' : item.priceCurrency}</CardCommercial.Price>
                         </CardCommercial.Box>
                     </CardCommercial.CardContainer>
                 </Carousel.Item>

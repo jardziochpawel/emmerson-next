@@ -20,6 +20,17 @@ export default function HeaderContainer({children, webp, smallView, ...restProps
                         })}
                     </Header.Nav>
                     <Header.Hamburger open={open} setOpen={setOpen} />
+                    <Header.Sidebar open={open}>
+                        <Header.SidebarNav>
+                            {
+                                ROUTES.mainMenu.map(item =>{
+                                    return(
+                                        <Header.SidebarItem to={item.link} key={item.name}>{item.name}</Header.SidebarItem>
+                                    );
+                                })
+                            }
+                        </Header.SidebarNav>
+                    </Header.Sidebar>
                 </Header.Frame>
                 {children}
             </Header>

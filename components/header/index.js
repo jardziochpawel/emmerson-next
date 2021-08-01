@@ -6,7 +6,7 @@ import {
     Logo,
     Nav,
     ButtonLink,
-    ShadowBox, BackgroundColor, ButtonLogo
+    ShadowBox, BackgroundColor, ButtonLogo, SidebarContainer, SidebarItem, SidebarNav, HamburgerContainer
 } from './styles/header';
 
 export default function Header({smallView = false, webp, bg = true, src = false, children, color = false, ...restProps }) {
@@ -36,18 +36,20 @@ Header.Frame = function HeaderFrame({ children, ...restProps }) {
 Header.Hamburger = function HeaderHamburger({ open, setOpen }) {
 
     return (
-        <Hamburger open={open} onClick={() => setOpen(!open)}>
-            <div />
-            <div />
-            <div />
-        </Hamburger>
+        <HamburgerContainer open={open}>
+            <Hamburger open={open} onClick={() => setOpen(!open)}>
+                <div />
+                <div />
+                <div />
+            </Hamburger>
+        </HamburgerContainer>
     )
 }
 
 Header.Logo = function HeaderLogo({ to, ...restProps }) {
 
     return (
-        <ButtonLogo href={to} passHref prefetch={false}>
+        <ButtonLogo href={to} passHref>
             <Logo {...restProps} width={200} height={87} alt='Emmerson Zarządzanie Sp z o.o.'/>
         </ButtonLogo>
     );
@@ -62,10 +64,37 @@ Header.Nav = function HeaderNav({ children, ...restProps }) {
     );
 }
 
+Header.Sidebar = function HeaderSidebar({ children, ...restProps }) {
+
+    return (
+        <SidebarContainer {...restProps}>
+            {children}
+        </SidebarContainer>
+    );
+}
+
+Header.SidebarNav = function HeaderSidebarNav({ children, to, ...restProps }) {
+
+    return(
+        <SidebarNav href={to} passHref {...restProps}>
+            {children}
+        </SidebarNav>
+    );
+}
+
+Header.SidebarItem = function HeaderSidebarItem({ children, to, ...restProps }) {
+
+    return(
+        <SidebarItem href={to} passHref {...restProps}>
+            {children}
+        </SidebarItem>
+    );
+}
+
 Header.ButtonLink = function HeaderButtonLink({ children, to, ...restProps }) {
 
     return(
-        <Link href={to} passHref prefetch={false}>
+        <Link href={to} passHref>
             <ButtonLink {...restProps}>
                 {children}
             </ButtonLink>
