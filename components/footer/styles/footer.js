@@ -32,17 +32,66 @@ export const Container = styled.div`
   max-width: 1400px;
   padding: 100px 50px 100px 50px;
   margin: auto;
-;
-  div{
+
+  .tag{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+`;
+
+export const Column = styled.div`
+  color: white;
+  width: calc(100% / 3);
+  
+  @media(max-width: 1000px){
+    width: 50%;
+  }
+
+  @media(max-width: 1000px){
+    width: 100%;
+  }
+`;
+
+export const List = styled.ul`
+  line-height: 25px;
+  margin: 0.75em 0;
+  padding: 0 1em;
+  list-style: none;
+  
+  li::before {
+    content: "";
+    border-color: transparent #ddd;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    line-height: 25px;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 1em;
+    position: relative;
+  }
+`;
+
+export const ListItem = styled.li`
+  a{
     color: white;
-    width: calc(100% / 3);
+    text-decoration: none;
     
-    @media(max-width: 1000px){
-      width: 50%;
-    }
-    
-    @media(max-width: 1000px){
-      width: 100%;
+    &:hover{
+      color: #bbb;
     }
   }
+`;
+
+export const Tag = styled.div`
+  padding: 10px 20px;
+  margin-top: 5px;
+  margin-left: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: auto;
+  color: white;
 `;
