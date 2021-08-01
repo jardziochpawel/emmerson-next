@@ -2,6 +2,10 @@ import {OfferComponent, OfferContact, OfferDetails, Slider, ThumbnailGallery} fr
 import {capitalizeFirstLetter} from "../helpers/capitalizeFirstLetter";
 import {numberWithSpaces} from "../helpers/numberWithSpaces";
 import {translateKey} from "../helpers/translateKey";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+import "yup-phone";
 import dynamic from "next/dynamic";
 
 const MapWithNoSSR = dynamic(() => import("../components/mapComponent"), {
@@ -9,7 +13,19 @@ const MapWithNoSSR = dynamic(() => import("../components/mapComponent"), {
 });
 const Spinner = dynamic(()=>import('../components/spinner'), {ssr: false});
 
+const schema = yup.object().shape({
+    name: yup.string().required(),
+    telephone: yup.string().required().phone("PL"),
+    mail: yup.string().email().required(),
+    text: yup.string().required()
+});
+
 export default function OfferContainer({item = [], scrollToMap, currentSlide, array = [], hide, images = [], isOpen, setCurrentSlide, setHide, setIsOpen, loading, setValue, value, position, scrollToDescription}){
+
+    const {  control, handleSubmit, watch, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+    const onSubmit = data => console.log(data);
 
     const sliderRender = () => {
         const SliderItemsArray = [];
@@ -184,11 +200,47 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                     <OfferContact.Number>{item.contactInfo?.phone}</OfferContact.Number>
                                     <OfferContact.Mail>{item.contactInfo?.email}</OfferContact.Mail>
                                 </OfferContact.ContactData>
-                                <OfferContact.Form>
-                                    <OfferContact.Input name='name' required>Imię i Nazwisko<sup>*</sup></OfferContact.Input>
-                                    <OfferContact.Input name='tel' required>Telefon<sup>*</sup></OfferContact.Input>
-                                    <OfferContact.Input name='mail' required>E-Mail<sup>*</sup></OfferContact.Input>
-                                    <OfferContact.TextInput name='text' value={value} onChange={(e)=>setValue(e.target.value)} required>Treść<sup>*</sup></OfferContact.TextInput>
+                                <OfferContact.Form onSubmit={handleSubmit(onSubmit)}>
+                                    <Controller
+                                        name="name"
+                                        control={control}
+                                        defaultValue=""
+                                        rules={{ required: true }}
+                                        render={({ field }) =>
+                                            <OfferContact.Input {...field}>Imię i Nazwisko<sup>*</sup></OfferContact.Input>
+                                        }
+                                    />
+                                    {errors.name && <span style={{color: '#E00009'}}>{errors.name.message}</span>}
+                                    <Controller
+                                        name="telephone"
+                                        control={control}
+                                        defaultValue=""
+                                        rules={{ required: true }}
+                                        render={({ field }) =>
+                                            <OfferContact.Input {...field}>Telefon<sup>*</sup></OfferContact.Input>
+                                        }
+                                    />
+                                    {errors.telephone && <span style={{color: '#E00009'}}>{errors.telephone.message}</span>}
+                                    <Controller
+                                        name="mail"
+                                        control={control}
+                                        defaultValue=""
+                                        rules={{ required: true }}
+                                        render={({ field }) =>
+                                            <OfferContact.Input {...field}>E-Mail<sup>*</sup></OfferContact.Input>
+                                        }
+                                    />
+                                    {errors.mail && <span style={{color: '#E00009'}}>{errors.mail.message}</span>}
+                                    <Controller
+                                        name="text"
+                                        control={control}
+                                        defaultValue={value}
+                                        rules={{ required: true }}
+                                        render={({ field }) =>
+                                            <OfferContact.TextInput {...field}>Treść<sup>*</sup></OfferContact.TextInput>
+                                        }
+                                    />
+                                    {errors.text && <span style={{color: '#E00009'}}>{errors.text.message}</span>}
                                     <OfferContact.ButtonSubmit type='submit'>Wyślij</OfferContact.ButtonSubmit>
                                 </OfferContact.Form>
                             </OfferContact>

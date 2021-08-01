@@ -11,7 +11,7 @@ export default function HeaderContainer({children, webp, smallView, ...restProps
         const array = []
         ROUTES.mainMenu.map(item =>{
             array.push(
-                <Header.ButtonLink to={item.link} key={item.name}>{item.name}</Header.ButtonLink>
+                <Header.ButtonLink to={item.link} key={'header_nav_'+item.name}>{item.name}</Header.ButtonLink>
             )
         })
 
@@ -22,7 +22,7 @@ export default function HeaderContainer({children, webp, smallView, ...restProps
         const array = [];
         ROUTES.mainMenu.map(item =>{
             array.push(
-                <Header.SidebarItem to={item.link} key={item.name}>{item.name}</Header.SidebarItem>
+                <Header.SidebarItem to={item.link} key={'sidebar_nav_'+item.name}>{item.name}</Header.SidebarItem>
             );
         })
         return array;

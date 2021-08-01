@@ -11,7 +11,7 @@ export default function FooterContainer({diagonal = false}){
         const array = [];
         ROUTES.mainMenu.map(item =>{
             array.push(
-                <Footer.ListItem><Link href={item.link} key={item.name}>{item.name}</Link></Footer.ListItem>
+                <Footer.ListItem  key={'footer_nav_'+item.name}><Link href={item.link}>{item.name}</Link></Footer.ListItem>
             );
         })
         return array;

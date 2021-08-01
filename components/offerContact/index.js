@@ -11,6 +11,7 @@ import {
     Number,
     TextAreaInput, InputGroup, ButtonGroup, ContactDataHeader
 } from "./styles/offerContact";
+import {forwardRef} from "react";
 
 export default function OfferContact({children, ...restProps}){
 
@@ -56,25 +57,22 @@ OfferContact.Form = function OfferContactForm({children, ...restProps}){
     return(<Form {...restProps}>{children}</Form>)
 }
 
-OfferContact.TextInput = function OfferContactTextInput({children, name, ...restProps }){
+OfferContact.TextInput = forwardRef(({ onChange, onBlur, name , children, ...restProps}, ref) => (
+    <InputGroup className='form__group field'>
+        <TextAreaInput id={name} name={name} placeholder={children} onChange={onChange} ref={ref} onBlur={onBlur}  className='form__field'{...restProps} />
+        <Label htmlFor={name} className='form__label'>{children}</Label>
+    </InputGroup>
+))
+OfferContact.TextInput.displayName = 'OfferContactTextInput';
 
-    return(
-        <InputGroup className='form__group field'>
-            <TextAreaInput id={name} className='form__field' placeholder={children} {...restProps} />
-            <Label htmlFor={name} className='form__label'>{children}</Label>
-        </InputGroup>
-    )
-}
+OfferContact.Input = forwardRef(({ onChange, onBlur, name , children, ...restProps}, ref) => (
+    <InputGroup className='form__group field'>
+        <Input id={name} name={name} placeholder={children} onChange={onChange} ref={ref} onBlur={onBlur}  className='form__field'{...restProps} />
+        <Label htmlFor={name} className='form__label'>{children}</Label>
+    </InputGroup>
+))
+OfferContact.Input.displayName = 'OfferContactInput';
 
-OfferContact.Input = function OfferContactInput({children, name, ...restProps }){
-
-    return(
-        <InputGroup className='form__group field'>
-            <Input id={name} placeholder={children} className='form__field' {...restProps} />
-            <Label htmlFor={name} className='form__label'>{children}</Label>
-        </InputGroup>
-    )
-}
 
 OfferContact.ButtonSubmit = function OfferContactButtonSubmit({children, ...restProps}){
 

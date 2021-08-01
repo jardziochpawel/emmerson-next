@@ -41,16 +41,16 @@ export default class MyDocument extends Document {
                     />
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
                           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-                    />
-                    <link rel="preload" as="style" href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' />
-                    <link rel="stylesheet" href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' />
+                          crossOrigin=""/>
+                    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
                     <Script
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK8yuIeWDleZOdRCgY0rDyZH8TUTp8C6c&libraries=places"
                         type="application/javascript"
-                        strategy="afterInteractive"
+                        strategy="beforeInteractive"
                     />
                     <Script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
                             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                            crossOrigin=""
                     />
                 </Head>
                 <body>

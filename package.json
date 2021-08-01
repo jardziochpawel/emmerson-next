@@ -14,6 +14,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.12.1",
     "@googlemaps/react-wrapper": "^1.1.0",
+    "@hookform/resolvers": "^2.7.0",
     "@next/bundle-analyzer": "^11.0.1",
     "@styled-icons/material": "^10.34.0",
     "leaflet": "^1.7.1",
@@ -21,6 +22,7 @@
     "query-string": "^7.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.12.2",
     "react-html-parser": "^2.0.2",
     "react-image-and-background-image-fade": "^1.0.6",
     "react-image-lightbox": "^5.1.4",
@@ -31,7 +33,9 @@
     "react-slugify": "^2.0.3",
     "react-use-webp-support-check": "^1.0.20",
     "styled-components": "^5.3.0",
-    "swr": "^0.5.6"
+    "swr": "^0.5.6",
+    "yup": "^0.32.9",
+    "yup-phone": "^1.2.19"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.13.2",
