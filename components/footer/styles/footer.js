@@ -94,4 +94,5 @@ export const Tag = styled.div`
   border-radius: 5px;
   width: auto;
   color: white;
+  text-transform: lowercase;
 `;

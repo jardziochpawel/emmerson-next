@@ -30,16 +30,16 @@ export default function FooterContainer({diagonal = false}){
                         </Footer.List>
                     </Footer.Column>
                     <Footer.Column className='tag'>
-                        <Footer.Tag>Nieruchomości</Footer.Tag>
-                        <Footer.Tag>Sprzedaż</Footer.Tag>
-                        <Footer.Tag>Wynajem</Footer.Tag>
-                        <Footer.Tag>Mieszkania</Footer.Tag>
-                        <Footer.Tag>Domy</Footer.Tag>
-                        <Footer.Tag>Lokale</Footer.Tag>
-                        <Footer.Tag>Biura</Footer.Tag>
-                        <Footer.Tag>Grunty</Footer.Tag>
-                        <Footer.Tag>Hale</Footer.Tag>
-                        <Footer.Tag>Magazyny</Footer.Tag>
+                        <Footer.Tag>#Nieruchomości</Footer.Tag>
+                        <Footer.Tag>#Sprzedaż</Footer.Tag>
+                        <Footer.Tag>#Wynajem</Footer.Tag>
+                        <Footer.Tag>#Mieszkania</Footer.Tag>
+                        <Footer.Tag>#Domy</Footer.Tag>
+                        <Footer.Tag>#Lokale</Footer.Tag>
+                        <Footer.Tag>#Biura</Footer.Tag>
+                        <Footer.Tag>#Grunty</Footer.Tag>
+                        <Footer.Tag>#Hale</Footer.Tag>
+                        <Footer.Tag>#Magazyny</Footer.Tag>
                     </Footer.Column>
                 </Footer.Container>
             </Footer>
