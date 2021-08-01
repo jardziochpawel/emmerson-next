@@ -34,11 +34,16 @@ export default class MyDocument extends Document {
             <Html>
                 <Head>
                     <link rel="preconnect" href="https://fonts.gstatic.com"/>
+                    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" as="style"/>
                     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"/>
+                    <link rel="preload" as="style" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+                          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+                    />
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
                           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-                          crossOrigin=""/>
-                    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
+                    />
+                    <link rel="preload" as="style" href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' />
+                    <link rel="stylesheet" href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' />
                     <Script
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK8yuIeWDleZOdRCgY0rDyZH8TUTp8C6c&libraries=places"
                         type="application/javascript"
