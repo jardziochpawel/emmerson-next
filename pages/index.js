@@ -36,7 +36,7 @@ export default function Index({ commercial, random }){
     )
 }
 
-export const getServerSideProps = async (ctx) => {
+export const getStaticProps = async (ctx) => {
 
     const resCommercial = await fetch(`https://backend-emm.draftway.eu/random/1/9`, {
         method: 'GET',
