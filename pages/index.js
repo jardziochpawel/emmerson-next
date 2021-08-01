@@ -28,15 +28,15 @@ export default function Index({ commercial, random }){
                 <SearchForm node={ref} />
             </Header>
             <>
-                <SectionOffers data={random} webp={webp}/>
-                <SectionCommercial data={commercial} webp={webp}/>
+                <SectionOffers data={random} webp={webp} />
+                <SectionCommercial data={commercial} webp={webp} />
+                <Footer diagonal={true} />
             </>
-            <Footer diagonal={true}/>
         </div>
     )
 }
 
-Index.getInitialProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
 
     const resCommercial = await fetch(`https://backend-emm.draftway.eu/random/1/9`, {
         method: 'GET',
@@ -65,5 +65,5 @@ Index.getInitialProps = async (ctx) => {
     const json = await res.json()
 
     const jsonCommercial = await resCommercial.json()
-    return { commercial: jsonCommercial, random: json }
+    return{ props:  { commercial: jsonCommercial, random: json }}
 }
