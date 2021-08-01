@@ -46,6 +46,25 @@ export const Container = styled.div`
     background-color: #7c0005;
     color: white;
   }
+
+  @media(max-width: 600px){
+    flex-flow: row wrap;
+    justify-content: space-around;
+    select{
+      margin-top: 30px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pagination{
+      margin: 0;
+      padding: 0;
+    }
+
+    .pagination > li > a{
+      padding: 10px;
+    }
+  }
 `;
 
 export const ChoiceButton = styled.select`

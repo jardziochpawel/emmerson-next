@@ -4,7 +4,15 @@ import React from "react";
 import Link from 'next/link';
 
 export default function FooterContainer({diagonal = false}){
-
+    const renderNavFooter = () => {
+        const array = [];
+        ROUTES.mainMenu.map(item =>{
+            array.push(
+                <Footer.ListItem><Link href={item.link} key={item.name}>{item.name}</Link></Footer.ListItem>
+            );
+        })
+        return array;
+    }
     return(
         <>
             <Footer diagonal={diagonal}>
@@ -20,13 +28,7 @@ export default function FooterContainer({diagonal = false}){
                     </Footer.Column>
                     <Footer.Column>
                         <Footer.List>
-                            {
-                                ROUTES.mainMenu.map(item =>{
-                                    return(
-                                        <Footer.ListItem><Link href={item.link} key={item.name}>{item.name}</Link></Footer.ListItem>
-                                    );
-                                })
-                            }
+                            { renderNavFooter() }
                         </Footer.List>
                     </Footer.Column>
                     <Footer.Column className='tag'>
