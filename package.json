@@ -35,8 +35,10 @@
     "react-places-autocomplete": "^7.3.0",
     "react-slugify": "^2.0.3",
     "react-use-webp-support-check": "^1.0.20",
+    "string-strip-html": "^8.3.0",
     "styled-components": "^5.3.0",
     "swr": "^0.5.6",
+    "xmldom": "^0.6.0",
     "yup": "^0.32.9",
     "yup-phone": "^1.2.19"
   },

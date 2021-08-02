@@ -19,6 +19,7 @@ import {
     OfferDetailsContainer, Mask, Button, OfferDescriptionTitle
 } from "./styles/offer";
 import ReactHtmlParser from 'react-html-parser';
+import RemoveTagsFromStringHTML from "../../helpers/removeTagsFromStringHTML";
 
 export default function OfferComponent({children, restProps}){
 
@@ -73,7 +74,7 @@ OfferComponent.Description = function OfferComponentDescription({id, children, h
         <OfferContainerDescription id={id} >
             <OfferDescription {...restProps} hide={hide}>
                 <OfferDescriptionTitle>Opis:</OfferDescriptionTitle>
-                { ReactHtmlParser(children.replace(/style=\".*"/gm,'')) }
+                { ReactHtmlParser(RemoveTagsFromStringHTML(children)) }
             </OfferDescription>
             <Mask hide={hide}/>
             <OfferComponent.ButtonDetails type='button' hide={hide} onClick={onClick} scrollToDescription={scrollToDescription} />

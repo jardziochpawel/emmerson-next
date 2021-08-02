@@ -158,6 +158,7 @@ export const OfferDescription = styled.div`
   width: 100%;
   overflow: hidden;
   min-height: 300px;
+  white-space: pre-wrap;
   
   ${({hide}) => hide ? css`height: calc(100% + 50px)` : css`
     height: 300px
