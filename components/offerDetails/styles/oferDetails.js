@@ -46,15 +46,6 @@ export const ListItem = styled.div`
   grid-template-columns: min-content 1fr;
   flex: 1 1 50%;
   min-height: 30px;
-  
-  @media(max-width: 800px){
-
-  }
-  
-  @media(max-width: 600px){
-
-  }
-
 `;
 
 export const Name = styled.div`

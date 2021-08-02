@@ -153,7 +153,7 @@ export const OfferDescription = styled.div`
   position: relative;
   flex-flow: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   margin: 0;
   width: 100%;
   overflow: hidden;

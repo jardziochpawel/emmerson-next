@@ -73,7 +73,7 @@ OfferComponent.Description = function OfferComponentDescription({id, children, h
         <OfferContainerDescription id={id} >
             <OfferDescription {...restProps} hide={hide}>
                 <OfferDescriptionTitle>Opis:</OfferDescriptionTitle>
-                { ReactHtmlParser(children) }
+                { ReactHtmlParser(children.replace(/style=\".*"/gm,'')) }
             </OfferDescription>
             <Mask hide={hide}/>
             <OfferComponent.ButtonDetails type='button' hide={hide} onClick={onClick} scrollToDescription={scrollToDescription} />
