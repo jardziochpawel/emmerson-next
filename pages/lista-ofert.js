@@ -64,7 +64,7 @@ export default function ListaOfert(){
         if(!regExp.test(title)){
             return router.push(`/${slugify(switchPropertyType(objectName))}/${slugify(offerType)}/oferta/${id}`);
         }
-        const titleCorrect = title.replace(' - ', ' ');
+        const titleCorrect = title.replace('-', ' ');
         router.push(`/${slugify(switchPropertyType(objectName))}/${slugify(offerType)}/${slugify(titleCorrect)}/${id}`);
     }
 
