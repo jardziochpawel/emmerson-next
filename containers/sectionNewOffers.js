@@ -4,10 +4,24 @@ import { numberWithSpaces } from "../helpers/numberWithSpaces";
 import { useRouter } from "next/router";
 import { getPropertyAndTransaction } from "../helpers/getPropertyAndTransaction";
 import slugify from "react-slugify";
+import useSWR from 'swr'
 
-export default function SectionOffers({data = [], webp}){
+const fetcher = (url) => fetch(url, {
+    method: 'GET',
+    headers: {
+        "Host": 'backend-emm.draftway.eu',
+        "Content-Type": 'application/json',
+        "Accept-Encoding": 'gzip, deflate, br',
+        "Accept": '*/*',
+        "Connection": 'keep-alive',
+        "Cache-Control": 'no-cache',
+    }
+}).then((res) => res.json());
+
+export default function SectionOffers({ webp }){
     const router = useRouter();
     const [cardOffer, setCardOffer] = useState('');
+    const { data, error } = useSWR(`https://backend-emm.draftway.eu/random/0/3`, fetcher);
 
     const onClick = (id, slug) => {
         const obj = getPropertyAndTransaction(id)
@@ -48,7 +62,7 @@ export default function SectionOffers({data = [], webp}){
         })
     }
 
-    if(!cardOffer && data.length){
+    if(!cardOffer && data){
         cardOfferRender();
     }
 

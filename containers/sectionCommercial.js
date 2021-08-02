@@ -5,10 +5,24 @@ import { useRouter } from "next/router";
 import slugify from "react-slugify";
 import {numberWithSpaces} from "../helpers/numberWithSpaces";
 import {capitalizeFirstLetter} from "../helpers/capitalizeFirstLetter";
+import useSWR from 'swr'
 
-export default function SectionCommercial({ data = [], webp }){
+const fetcher = (url) => fetch(url, {
+    method: 'GET',
+    headers: {
+        "Host": 'backend-emm.draftway.eu',
+        "Content-Type": 'application/json',
+        "Accept-Encoding": 'gzip, deflate, br',
+        "Accept": '*/*',
+        "Connection": 'keep-alive',
+        "Cache-Control": 'no-cache',
+    }
+}).then((res) => res.json());
+
+export default function SectionCommercial({ webp }){
     const router = useRouter();
     const [ cardCommercial, setCardCommercial ] = useState('');
+    const { data, error } = useSWR(`https://backend-emm.draftway.eu/random/1/9`, fetcher);
 
     const onClick = (id, title) => {
 
@@ -51,7 +65,7 @@ export default function SectionCommercial({ data = [], webp }){
         setCardCommercial(array);
     }
 
-    if(!cardCommercial && data.length){
+    if(!cardCommercial && data){
         cardCommercialRender();
     }
 
@@ -61,11 +75,11 @@ export default function SectionCommercial({ data = [], webp }){
                     <Section.Title>Powierzchnie komercyjne</Section.Title>
                     <Section.Subtitle>Wybrane lokale handlowo-usługowe, biura, magazyny i hale w naszej aktualnej ofercie.</Section.Subtitle>
 
-                    <CardCommercial>
-                         <Carousel>
-                             { cardCommercial }
+                    {data && <CardCommercial>
+                        <Carousel>
+                            {cardCommercial}
                         </Carousel>
-                    </CardCommercial>
+                    </CardCommercial>}
 
                 </Section.Container>
             </Section>
