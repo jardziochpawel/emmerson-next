@@ -38,13 +38,13 @@ OfferDetails.Item = function ODItem({children, ...restProps}){
 OfferDetails.Name = function ODName({children, ...restProps}){
 
     return(
-        <Name {...restProps}>{children}</Name>
+        <Name title={children} {...restProps}>{children}</Name>
     )
 }
 
 OfferDetails.Value = function ODValue({children, ...restProps}){
 
     return(
-        <Value {...restProps}>{children}</Value>
+        <Value title={children} {...restProps}>{children}</Value>
     )
 }

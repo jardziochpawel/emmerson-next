@@ -19,55 +19,48 @@ export const Title = styled.h3`
 
 export const Column = styled.div`
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   width: 100%;
 `;
 
-export const List = styled.ul`
+export const List = styled.div`
 
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   margin: 0;
-  padding: 0 0 0 10px;
+  padding: 0;
   list-style: none;
-  
-  @media(min-width: 1400px){
-    li:nth-child(3n){
-      padding-left: 50px;
-    }
-  }
 `;
 
-export const ListItem = styled.li`
-  
+export const ListItem = styled.div`
+
   @media(min-width: 1400px){
-    width: calc(100% / 3);
+    flex: 1 1 33%;
+    max-width: 33%;
   }
-  
-  width: 50%;
-  height: 25px;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  align-items: flex-end;
   font-size: 15px;
+  display: grid;
+  grid-column-gap: 6px;
+  grid-template-areas: 'title desc';
+  grid-template-columns: min-content 1fr;
+  flex: 1 1 50%;
+  min-height: 30px;
   
   @media(max-width: 800px){
-    flex-flow: row;
-    align-items: flex-start;
-    height: 40px;
+
   }
   
   @media(max-width: 600px){
-    flex-flow: row wrap;
-    height: 45px;
+
   }
 
 `;
 
-export const Name = styled.span`
-  color: dimgray;
+export const Name = styled.div`
+  overflow: hidden;
+  font-weight: 400;
+  text-overflow: ellipsis;
   white-space: nowrap;
 
   @media(max-width: 280px){
@@ -75,13 +68,12 @@ export const Name = styled.span`
   }
 `;
 
-export const Value = styled.span`
-  padding-left: 10px;
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
+export const Value = styled.div`
+  grid-area: desc;
+  overflow: initial;
   font-weight: 700;
-  white-space: nowrap;
+  text-overflow: initial;
+  white-space: initial;
 
   @media(max-width: 800px){
     white-space: normal;

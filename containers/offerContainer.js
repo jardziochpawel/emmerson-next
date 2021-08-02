@@ -84,7 +84,7 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                     OfferDetailsArray.push(
                         <OfferDetails.Item key={key}>
                             <OfferDetails.Name>{translateKey(a[0])}</OfferDetails.Name>
-                            <OfferDetails.Value>{numberWithSpaces(a[1])} m<sup>2</sup></OfferDetails.Value>
+                            <OfferDetails.Value>{numberWithSpaces(a[1])} m²</OfferDetails.Value>
                         </OfferDetails.Item>
                     );
                 }
@@ -153,12 +153,12 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                             <OfferDetails.Value>{numberWithSpaces(item.price)} { item.priceCurrency === 'PLN'? 'zł' : item.priceCurrency }</OfferDetails.Value>
                                         </OfferDetails.Item>
                                         <OfferDetails.Item>
-                                            <OfferDetails.Name>Cena m<sup>2</sup>:</OfferDetails.Name>
-                                            <OfferDetails.Value>{numberWithSpaces(Math.floor(item.price / item.area))} { item.priceCurrency === 'PLN'? <>zł/m<sup>2</sup></> : item.priceCurrency }</OfferDetails.Value>
+                                            <OfferDetails.Name>Cena m²:</OfferDetails.Name>
+                                            <OfferDetails.Value>{numberWithSpaces(Math.floor(item.price / item.area))} { item.priceCurrency === 'PLN'? 'zł/m²' : item.priceCurrency }</OfferDetails.Value>
                                         </OfferDetails.Item>
                                         <OfferDetails.Item>
                                             <OfferDetails.Name>Powierzchnia:</OfferDetails.Name>
-                                            <OfferDetails.Value>{item.area} m<sup>2</sup></OfferDetails.Value>
+                                            <OfferDetails.Value>{item.area} m²</OfferDetails.Value>
                                         </OfferDetails.Item>
 
                                         {
