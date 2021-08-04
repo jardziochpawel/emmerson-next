@@ -5,7 +5,7 @@ const prettier = require("prettier");
 
 const getDate = new Date().toISOString();
 
-const webrootDomain = "https://frontend.emmerson.pl";
+const webrootDomain = "https://emmerson.pl";
 
 const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
 
