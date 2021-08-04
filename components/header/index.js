@@ -37,7 +37,7 @@ Header.Hamburger = function HeaderHamburger({ open, setOpen }) {
 
     return (
         <HamburgerContainer open={open}>
-            <Hamburger open={open} onClick={() => setOpen(!open)}>
+            <Hamburger open={open} onClick={() => setOpen(!open)} aria-label='Hamburger'>
                 <div />
                 <div />
                 <div />
@@ -49,7 +49,7 @@ Header.Hamburger = function HeaderHamburger({ open, setOpen }) {
 Header.Logo = function HeaderLogo({ to, ...restProps }) {
 
     return (
-        <ButtonLogo href={to} passHref>
+        <ButtonLogo href={to} passHref aria-label='Logo Button'>
             <Logo {...restProps} width={200} height={87} alt='Emmerson Zarządzanie Sp z o.o.'/>
         </ButtonLogo>
     );

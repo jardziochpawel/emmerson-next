@@ -1,28 +1,28 @@
 
 const fs = require("fs");
-const globby = require("globby");
+const fg = require('fast-glob');
 const prettier = require("prettier");
 
 const getDate = new Date().toISOString();
 
-const YOUR_AWESOME_DOMAIN = "https://website.com";
+const YOUR_AWESOME_DOMAIN = "https://frontend.emmerson.pl";
 
 const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
 
 (async () => {
-    const pages = await globby([
+    const pages = await fg([
         // include
-        "../pages/**/*.js",
-        "../pages/*.js",
+        "./pages/**/*.js",
+        "./pages/*.js",
         // exclude
-        "!../pages/_*.js"
+        "!./pages/_*.js",
+        "!./pages/[estateType]/[transactionType]/[slug]/[id].js"
     ]);
-
     const pagesSitemap = `
     ${pages
         .map(page => {
             const path = page
-                .replace("../pages/", "")
+                .replace("./pages/", "")
                 .replace(".js", "")
                 .replace(/\/index/g, "");
             const routePath = path === "index" ? "" : path;
@@ -47,7 +47,7 @@ const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
     </urlset>
   `;
 
-    const formattedSitemap = [formatted(generatedSitemap)];
+    const formattedSitemap = formatted(generatedSitemap);
 
-    fs.writeFileSync("../public/sitemap-common.xml", formattedSitemap, "utf8");
+    fs.writeFileSync("./public/sitemap/sitemap-common.xml", formattedSitemap, "utf8");
 })();

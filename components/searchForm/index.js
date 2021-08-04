@@ -43,12 +43,12 @@ SearchForm.Frame = function SearchFormFrame({children, ...restProps}) {
 
 SearchForm.MoreButton = function SearchFormMoreButton({children, plusToMinus, setPlusToMinus, ...restProps}) {
 
-    return(<MoreButton type='button' {...restProps} plusToMinus={plusToMinus} onClick={()=>setPlusToMinus(!plusToMinus)}>{children}</MoreButton>);
+    return(<MoreButton type='button' {...restProps} plusToMinus={plusToMinus} onClick={()=>setPlusToMinus(!plusToMinus)} aria-label='More Button'>{children}</MoreButton>);
 }
 
 SearchForm.SearchButton = function SearchFormButton({children, ...restProps}) {
 
-    return(<SearchButton type='submit' {...restProps}>{children}</SearchButton>);
+    return(<SearchButton type='submit' aria-label='Search Button' {...restProps}>{children}</SearchButton>);
 }
 
 SearchForm.Icon = function SearchFormIcon({withoutPlus = false, ...restProps}){

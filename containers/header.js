@@ -32,7 +32,7 @@ export default function HeaderContainer({children, webp, smallView, ...restProps
         <>
             <Header webp={webp} smallView={smallView} {...restProps}>
                 <Header.Frame>
-                    <Header.Logo src={'/images/misc/logo.png'} to={'/'} />
+                    <Header.Logo src={'/images/misc/logo.jpg'} to={'/'} />
                     <Header.Nav>
                         { renderHeaderNav() }
                     </Header.Nav>

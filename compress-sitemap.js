@@ -2,7 +2,7 @@
 const fs = require("fs");
 const zlib = require("zlib");
 
-let dirs = ["../public/sitemap"];
+let dirs = ["./public/sitemap"];
 
 dirs.forEach((dir) => {
     fs.readdirSync(dir).forEach((file) => {

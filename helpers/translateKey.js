@@ -99,6 +99,15 @@ export const translateKey = (key) => {
         case 'officeSpace':
             result = 'Przestrzeń biurowa:';
             break;
+        case 'fence':
+            result = 'Ogrodzone:';
+            break;
+        case 'ramp':
+            result = 'Rampa:';
+            break;
+        case 'height':
+            result = 'Wysokość:';
+            break;
         default:
             result = key;
     }
