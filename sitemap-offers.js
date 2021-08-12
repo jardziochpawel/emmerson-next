@@ -3,7 +3,7 @@ const slugify = require('slugify')
 const fs = require("fs");
 const fetch = require("node-fetch");
 const prettier = require("prettier");
-const BACKEND_URL = 'https://backend.emmerson.pl:1443';
+const BACKEND_URL = 'https://backend.emmerson.pl';
 const getDate = new Date().toISOString();
 
 const fetchUrl = BACKEND_URL+"/find";
