@@ -1859,6 +1859,11 @@ ignore@^5.1.4, ignore@^5.1.8:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
+image-exists@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/image-exists/-/image-exists-1.1.0.tgz#ba49cccbaddca8cbbf10f89cafd4d1c8ecfd38d0"
+  integrity sha1-uknMy63cqMu/EPicr9TRyOz9ONA=
+
 image-preloader@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/image-preloader/-/image-preloader-1.1.1.tgz#487a516dc165f87821d14326db8bb448b318f95f"

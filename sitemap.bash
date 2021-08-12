@@ -1,8 +1,11 @@
 #!/bin/bash
+SECONDS=0
+
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
 GREEN=$(tput setaf 2)
 RED=$(tput setaf 1)
+YELLOW=$(tput setaf 3)
 BLUE=$(tput setaf 4)
 
 SITEMAP_INDEX=(offers common)
@@ -35,4 +38,6 @@ cd .. && cd ..
 echo "${BOLD}${BLUE}Generating sitemap index file...${RESET}"
 node ./sitemap.js
 printf "\n"
-
+# do some work
+duration=$SECONDS
+echo "${BOLD}${YELLOW}$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed.${RESET}"

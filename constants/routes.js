@@ -12,7 +12,9 @@ export const ROUTES = {
         children: []
     },
     mainMenu: [
-        // {link: '/o-nas', name: 'O Nas', children: AboutUs},
+        // {link: '#', name: 'O Nas', children: [
+        //         {link: '/o-nas/rodo', name: 'RODO', children: []},
+        //     ]},
         {link: 'https://blog.emmerson.pl', name: 'Blog', children: []},
         {link: '/lista-ofert', name: 'Znajdz nieruchomość', children: []},
         // {link: '/uslugi-dodatkowe', name: 'Usługi dodatkowe', children: []},

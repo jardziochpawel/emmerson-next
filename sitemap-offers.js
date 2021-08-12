@@ -3,10 +3,10 @@ const slugify = require('slugify')
 const fs = require("fs");
 const fetch = require("node-fetch");
 const prettier = require("prettier");
-
+const BACKEND_URL = 'https://backend.emmerson.pl:1443';
 const getDate = new Date().toISOString();
 
-const fetchUrl = "https://backend-emm.draftway.eu/find";
+const fetchUrl = BACKEND_URL+"/find";
 const YOUR_AWESOME_DOMAIN = "https://frontend.emmerson.pl";
 
 const formatted = sitemap => prettier.format(sitemap, { parser: "html" });

@@ -9,11 +9,12 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import useSWR from 'swr';
 import qs from "query-string";
+import {BACKEND_HOST, BACKEND_URL} from "../constants/data";
 
 const fetcher = (url) => fetch(url, {
     method: 'GET',
     headers: {
-        "Host": 'backend-emm.draftway.eu',
+        "Host": BACKEND_HOST,
         "Content-Type": 'application/json',
         "Accept-Encoding": 'gzip, deflate, br',
         "Accept": '*/*',
@@ -44,7 +45,7 @@ export default function ListaOfert(){
 
     useOnClickOutside(ref, () => setIsMapOpen(false));
 
-    const {data, error} = useSWR(`https://backend-emm.draftway.eu/find?${address ? `query=${address}` : ''}${estate !== '' ? `&objectName=${estate}`:''}${priceFrom !== '' ? `&priceFrom=${priceFrom}`: ''}${priceTo !== '' ? `&priceTo=${priceTo}` : ''}${surfaceFrom !==  '' ? `&surfaceFrom=${surfaceFrom}` : ''}${surfaceTo !==  '' ? `&surfaceTo=${surfaceTo}` : ''}${roomsFrom !==  '' ? `&roomsFrom=${roomsFrom}` : ''}${roomsTo !==  '' ? `&roomsTo=${roomsTo}` : ''}${market !== '' ? `&marketType=${market}` : ''}${typeOfTransaction !== '' ? `&offerType=${typeOfTransaction}` : ''}${textFromDescription !== ''? `&descriptionContains=${textFromDescription}` : ''}${offerNumber !== ''? `&offerId=${offerNumber}` : ''}&results=${perPage}&page=${page}`, fetcher)
+    const {data, error} = useSWR(`${BACKEND_URL}/find?${address ? `query=${address}` : ''}${estate !== '' ? `&objectName=${estate}`:''}${priceFrom !== '' ? `&priceFrom=${priceFrom}`: ''}${priceTo !== '' ? `&priceTo=${priceTo}` : ''}${surfaceFrom !==  '' ? `&surfaceFrom=${surfaceFrom}` : ''}${surfaceTo !==  '' ? `&surfaceTo=${surfaceTo}` : ''}${roomsFrom !==  '' ? `&roomsFrom=${roomsFrom}` : ''}${roomsTo !==  '' ? `&roomsTo=${roomsTo}` : ''}${market !== '' ? `&marketType=${market}` : ''}${typeOfTransaction !== '' ? `&offerType=${typeOfTransaction}` : ''}${textFromDescription !== ''? `&descriptionContains=${textFromDescription}` : ''}${offerNumber !== ''? `&offerId=${offerNumber}` : ''}&results=${perPage}&page=${page}`, fetcher)
 
     const loadingFunction = () => {
         setIsLoading(true);

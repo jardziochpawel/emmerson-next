@@ -6,7 +6,7 @@ import {
     Logo,
     Nav,
     ButtonLink,
-    ShadowBox, BackgroundColor, ButtonLogo, SidebarContainer, SidebarItem, SidebarNav, HamburgerContainer
+    ShadowBox, BackgroundColor, ButtonLogo, SidebarContainer, SidebarItem, SidebarNav, HamburgerContainer, DropdownButton
 } from './styles/header';
 
 export default function Header({smallView = false, webp, bg = true, src = false, children, color = false, ...restProps }) {
@@ -100,4 +100,9 @@ Header.ButtonLink = function HeaderButtonLink({ children, to, ...restProps }) {
             </ButtonLink>
         </Link>
     );
+}
+
+Header.ButtonDropdown = function headerButtonDropdown({children, ...restProps}){
+
+    return(<DropdownButton {...restProps}>{children}</DropdownButton>)
 }

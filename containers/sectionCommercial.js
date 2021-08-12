@@ -6,11 +6,13 @@ import slugify from "react-slugify";
 import {numberWithSpaces} from "../helpers/numberWithSpaces";
 import {capitalizeFirstLetter} from "../helpers/capitalizeFirstLetter";
 import useSWR from 'swr'
+import {BACKEND_HOST, BACKEND_URL} from "../constants/data";
+import imageExists from 'image-exists';
 
 const fetcher = (url) => fetch(url, {
     method: 'GET',
     headers: {
-        "Host": 'backend-emm.draftway.eu',
+        "Host": BACKEND_HOST,
         "Content-Type": 'application/json',
         "Accept-Encoding": 'gzip, deflate, br',
         "Accept": '*/*',
@@ -22,13 +24,14 @@ const fetcher = (url) => fetch(url, {
 export default function SectionCommercial({ webp }){
     const router = useRouter();
     const [ cardCommercial, setCardCommercial ] = useState('');
-    const { data, error } = useSWR(`https://backend-emm.draftway.eu/random/1/9`, fetcher);
+    const { data, error } = useSWR(`${BACKEND_URL}/random/1/9`, fetcher);
 
     const onClick = (id, title) => {
 
         const obj = getPropertyAndTransaction(id)
         router.push(`/${obj.property}/${obj.transaction}/${slugify(title)}/${id}`)
     }
+
 
     const cardCommercialRender = () => {
         const array = [];
@@ -39,7 +42,11 @@ export default function SectionCommercial({ webp }){
                 const obj = getPropertyAndTransaction(item.id)
                 item.title = `${ capitalizeFirstLetter(obj.property) } ${ numberWithSpaces(Math.floor(item.area)) }m2 na ${item.offerType}`
             }
-            const image = webp ? item.photoWebp : item.photoJpeg.replace('jpg', 'jpeg');
+            let image;
+            webp && item.photoWebp ? image = item.photoWebp : image = item.photoJpeg.replace('jpg', 'jpeg');
+
+            console.log(image);
+
             array.push(
                 <Carousel.Item key={item.id+key}>
                     <CardCommercial.CardContainer>

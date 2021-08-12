@@ -1,10 +1,11 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useWebPSupportCheck } from "react-use-webp-support-check";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import variationByCases from "../../../../helpers/variationByCases";
 import { capitalizeFirstLetter } from "../../../../helpers/capitalizeFirstLetter";
 import { getPropertyAndTransaction } from "../../../../helpers/getPropertyAndTransaction";
+import {BACKEND_HOST, BACKEND_URL} from "../../../../constants/data";
 
 const Header = dynamic(()=>import('../../../../containers/header'));
 const Spinner = dynamic(()=>import('../../../../components/spinner'));
@@ -49,7 +50,7 @@ export default function Offer({data}) {
     }
 
     if(data) {
-        images = webp ? data.photosWebp : data.photosJpeg;
+        images = webp && data.photosWebp ? data.photosWebp : data.photosJpeg.map(i => {return {...i, file: i.file.replace('jpg', 'jpeg')}});
     }
 
     const array =  Object.entries(data.flatDetails || data.houseDetails || data.commercialPropertyDetails || data.terrainDetails || data.hallDetails || []);
@@ -61,7 +62,7 @@ export default function Offer({data}) {
             </Head>
             <Header webp={webp} bg={false} color={'white'} smallView={false}/>
             {
-                ( !data) &&
+                ( !data ) &&
                 <Spinner />
             }
             <OfferContainer
@@ -90,10 +91,10 @@ Offer.getInitialProps = async (ctx) => {
 
     const id = ctx.query.id;
 
-    const res = await fetch(`https://backend-emm.draftway.eu/offer/${id}`, {
+    const res = await fetch(`${BACKEND_URL}/offer/${id}`, {
         method: 'GET',
         headers: {
-            "Host": 'backend-emm.draftway.eu',
+            "Host": BACKEND_HOST,
             "Content-Type": 'application/json',
             "Accept-Encoding": 'gzip, deflate, br',
             "Accept": '*/*',

@@ -19,4 +19,5 @@ export { default as ThumbnailGallery } from './thumbnailGallery';
 export { default as OfferDetails } from './offerDetails';
 export { default as Contact } from './contact';
 export { default as Footer } from './footer';
+export { default as Card } from './card';
 

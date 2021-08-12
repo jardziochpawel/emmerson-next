@@ -1,8 +1,8 @@
 import slugify from "react-slugify";
 import {switchPropertyType} from "../../helpers/switchPropertyType";
 import {getPropertyAndTransaction} from "../../helpers/getPropertyAndTransaction";
-import {capitalizeFirstLetter} from "../../helpers/capitalizeFirstLetter";
 import variationByCases from "../../helpers/variationByCases";
+import {BACKEND_HOST, BACKEND_URL} from "../../constants/data";
 
 
 export default function OldOffer(){
@@ -14,10 +14,10 @@ OldOffer.getInitialProps = async (ctx) => {
 
     const id = ctx.query.number;
 
-    const res = await fetch(`https://backend-emm.draftway.eu/offer/${id}`, {
+    const res = await fetch(`${BACKEND_URL}/offer/${id}`, {
         method: 'GET',
         headers: {
-            "Host": 'backend-emm.draftway.eu',
+            "Host": BACKEND_HOST,
             "Content-Type": 'application/json',
             "Accept-Encoding": 'gzip, deflate, br',
             "Accept": '*/*',

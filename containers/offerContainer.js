@@ -30,10 +30,9 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
     const sliderRender = () => {
         const SliderItemsArray = [];
         images.map((item, index) => {
-
                 SliderItemsArray.push(
                     <Slider.Item key={index}>
-                        <Slider.Image image={item.file.replace('jpg', 'jpeg')}/>
+                        <Slider.Image image={item.file}/>
                     </Slider.Item>
                 )
             }

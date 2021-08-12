@@ -5,11 +5,12 @@ import { useRouter } from "next/router";
 import { getPropertyAndTransaction } from "../helpers/getPropertyAndTransaction";
 import slugify from "react-slugify";
 import useSWR from 'swr'
+import {BACKEND_HOST, BACKEND_URL} from "../constants/data";
 
 const fetcher = (url) => fetch(url, {
     method: 'GET',
     headers: {
-        "Host": 'backend-emm.draftway.eu',
+        "Host": BACKEND_HOST,
         "Content-Type": 'application/json',
         "Accept-Encoding": 'gzip, deflate, br',
         "Accept": '*/*',
@@ -21,7 +22,7 @@ const fetcher = (url) => fetch(url, {
 export default function SectionOffers({ webp }){
     const router = useRouter();
     const [cardOffer, setCardOffer] = useState('');
-    const { data, error } = useSWR(`https://backend-emm.draftway.eu/random/0/3`, fetcher);
+    const { data, error } = useSWR(`${BACKEND_URL}/random/0/3`, fetcher);
 
     const onClick = (id, slug) => {
         const obj = getPropertyAndTransaction(id)
@@ -30,8 +31,9 @@ export default function SectionOffers({ webp }){
 
     const cardOfferRender = () => {
         const array = [];
+        let image;
         data.map(i => {
-            const image = webp ? i.photoWebp : i.photoJpeg.replace('jpg', 'jpeg');
+            webp && i.photoWebp ? image = i.photoWebp : image = i.photoJpeg.replace('jpg', 'jpeg');
 
             array.push(
                 <CardOffers.Container key={i.id}>
