@@ -48,7 +48,7 @@ Offers.CardImage = function OffersCardImage({imageJpeg, imageWebp, webp,  onClic
 
     return (
         <CardBoxImage onClick={onClick} {...restProps}>
-            <CardImage src={webp? imageWebp : imageJpeg} lasyLoad isResponsive />
+            <CardImage src={webp && imageWebp ? imageWebp : imageJpeg} lasyLoad isResponsive />
         </CardBoxImage>
     )
 }
