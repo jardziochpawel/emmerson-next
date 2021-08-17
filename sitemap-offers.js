@@ -6,7 +6,7 @@ const prettier = require("prettier");
 const BACKEND_URL = 'https://backend.emmerson.pl';
 const getDate = new Date().toISOString();
 
-const fetchUrl = BACKEND_URL+"/find";
+const fetchUrl = BACKEND_URL+"/sitemap";
 const YOUR_AWESOME_DOMAIN = "https://frontend.emmerson.pl";
 
 const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
@@ -111,7 +111,7 @@ const switchPropertyType = (property) => {
         .catch(err => console.log(err));
 
     const offerList = [];
-    fetchOffers.data.map(offer => {
+    fetchOffers.map(offer => {
 
         const title = offer.title ?  offer.title.replace(/\s/g, '') : '';
 
