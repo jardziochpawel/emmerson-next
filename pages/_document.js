@@ -33,9 +33,7 @@ export default class MyDocument extends Document {
         return (
             <Html lang="pl">
                 <Head>
-                    <meta name="description" content="Biuro Nieruchomości Warszawa, Wrocław, Płock, Kraków | Mieszkania,
-                    Domy, Biura, Grunty,  Lokale, Hale i Magazyny | Sprzedaż / Wynajem | Zarządzanie nieruchomościami |
-                    Emmerson Zarządzanie Sp. z o.o." />
+                    <meta name="description" content="Emmerson Zarządzanie sp. z o.o. to sprawnie funkcjonujący zespół specjalistów działających w różnych sektorach rynku nieruchomości. Doświadczenie, wiedza i zaangażowanie pracowników tworzą prawdziwy kapitał naszej firmy." />
                     <link rel="preconnect" href="https://fonts.gstatic.com"/>
                     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" as="style"/>
                     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"/>
