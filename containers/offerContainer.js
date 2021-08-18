@@ -45,7 +45,7 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
         const MoreOfferDetailsArray = []
 
         array.map((a, key) => {
-            if (typeof a[1] !== 'string' && typeof a[1] !== 'number' && typeof a[1] !== 'boolean' && a[1].length !== 0 && Array.isArray(a[1])) {
+            if (typeof a[1] !== 'string' && typeof a[1] !== 'number' && typeof a[1] !== 'boolean' && Array.isArray(a[1]) && a[1].length !== 0) {
                 MoreOfferDetailsArray.push(
                     <OfferComponent.Details key={key}>
                         <OfferComponent.DetailsTitle>{translateKey(a[0])}</OfferComponent.DetailsTitle>
