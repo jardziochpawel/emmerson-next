@@ -19,8 +19,8 @@ export default function Index({ commercial, random }){
         <div ref={ref}>
             <Head>
                 <title>Emmerson Zarządzanie Sp z o.o. | Biuro Nieruchomości Warszawa</title>
-                <link rel="preload" as="image" href={"/images/misc/bg-homepage.jpeg"} />
-                <link rel="preload" as="image" href={"/images/misc/bg-homepage.webp"} />
+                <link rel="preload" as="image" href="/images/misc/bg-homepage.jpeg" />
+                <link rel="preload" as="image" href="/images/misc/bg-homepage.webp" />
             </Head>
             <Header webp={webp} smallView={true}>
                 <Feature />
@@ -29,6 +29,7 @@ export default function Index({ commercial, random }){
             <>
                 <SectionOffers webp={webp} />
                 <SectionCommercial webp={webp} />
+                <div>Emmerson Zarządzanie sp. z o.o. to sprawnie funkcjonujący zespół specjalistów działających w różnych sektorach rynku nieruchomości. Doświadczenie, wiedza i zaangażowanie pracowników tworzą prawdziwy kapitał naszej firmy.</div>
                 <Footer diagonal={true} />
             </>
         </div>
