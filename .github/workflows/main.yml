@@ -43,7 +43,7 @@ jobs:
           debug: false
           command: |
             cd /www/docker
-            docker-compose pull carriera/emmerson.pl-frontend:latest
+            docker-compose pull frontend:latest
             docker-compose stop frontend
             docker-compose rm -f frontend
             docker-compose up -d frontend
