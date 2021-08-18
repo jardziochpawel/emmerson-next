@@ -29,7 +29,6 @@ export default function Index({ commercial, random }){
             <>
                 <SectionOffers webp={webp} />
                 <SectionCommercial webp={webp} />
-                <div>Emmerson Zarządzanie sp. z o.o. to sprawnie funkcjonujący zespół specjalistów działających w różnych sektorach rynku nieruchomości. Doświadczenie, wiedza i zaangażowanie pracowników tworzą prawdziwy kapitał naszej firmy.</div>
                 <Footer diagonal={true} />
             </>
         </div>
