@@ -1,43 +1,20 @@
-#!/bin/bash
-SECONDS=0
+#!/bin/sh
 
-BOLD=$(tput bold)
-RESET=$(tput sgr0)
-GREEN=$(tput setaf 2)
-RED=$(tput setaf 1)
-YELLOW=$(tput setaf 3)
-BLUE=$(tput setaf 4)
+mkdir public/sitemap
+rm -f public/sitemap/*
 
-SITEMAP_INDEX=(offers common)
-
-cd public && rm -rf sitemap && mkdir "sitemap"
-cd ..
-printf "\n"
-
-for SITEMAP in "${SITEMAP_INDEX[@]}"; do
-  echo "Generating ${BOLD}${BLUE}sitemap-${SITEMAP}.xml${RESET}..."
-  node ./sitemap-"${SITEMAP}".js
-  printf "\n"
+for value in offers common
+do
+    node ./sitemap-${value}.js
 done
 
-echo "${BOLD}${GREEN}Compressing generated xml files... ${RESET}"
 node ./compress-sitemap.js
-printf "\n"
+cd public/sitemap || exit
 
-cd public && cd sitemap
-
-for SITEMAP in "${SITEMAP_INDEX[@]}"; do
-    echo "${BOLD}${RED}Removing sitemap-${SITEMAP}.xml...${RESET}"
+for value in offers common
+do
   rm -rf sitemap-"${SITEMAP}".xml
 done
 
-printf "\n"
-
-cd .. && cd ..
-
-echo "${BOLD}${BLUE}Generating sitemap index file...${RESET}"
+cd ../../
 node ./sitemap.js
-printf "\n"
-# do some work
-duration=$SECONDS
-echo "${BOLD}${YELLOW}$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed.${RESET}"
