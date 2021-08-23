@@ -7,6 +7,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import "yup-phone";
 import dynamic from "next/dynamic";
+import {BACKEND_HOST, BACKEND_URL} from "../constants/data";
+import {useState} from "react";
 
 const MapWithNoSSR = dynamic(() => import("../components/mapComponent"), {
     ssr: false
@@ -14,18 +16,46 @@ const MapWithNoSSR = dynamic(() => import("../components/mapComponent"), {
 const Spinner = dynamic(()=>import('../components/spinner'), {ssr: false});
 
 const schema = yup.object().shape({
-    name: yup.string().required(),
-    telephone: yup.string().required().phone("PL"),
-    mail: yup.string().email().required(),
-    text: yup.string().required()
+    'name': yup.string().required(),
+    'number': yup.string().required().phone("PL"),
+    'e-mail': yup.string().email().required(),
+    'text': yup.string().required()
 });
 
-export default function OfferContainer({item = [], scrollToMap, currentSlide, array = [], hide, images = [], isOpen, setCurrentSlide, setHide, setIsOpen, loading, setValue, value, position, scrollToDescription}){
+export default function OfferContainer({item = [], scrollToMap, currentSlide, array = [], hide, images = [], isOpen, setCurrentSlide, setHide, setIsOpen, loading, value, position, scrollToDescription}){
 
-    const {  control, handleSubmit, watch, formState: { errors } } = useForm({
+    const {  control, handleSubmit, watch, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema)
     });
-    const onSubmit = data => console.log(data);
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const onSubmit = async data => {
+
+        await fetch(BACKEND_URL+`/form`,{
+            method: 'POST',
+            headers: {
+                "Host": BACKEND_HOST,
+                "Content-Type": 'application/json',
+                "Accept-Encoding": 'gzip, deflate, br',
+                "Accept": '*/*',
+                "Connection": 'keep-alive',
+                "Cache-Control": 'no-cache',
+            },
+            body: JSON.stringify({
+                offerId: item.id,
+                title: `Zainteresowanie ofertą ze strony emmerson.pl numer oferty: ${item.id}`,
+                ...data
+            })
+        }).then(response => response.json())
+            .then(data => {
+                reset({'name': '', 'number':'', 'text':value, 'e-mail':''});
+                setIsSubmitted(true);
+            })
+            .catch((error) => {
+                console.error('Error:', error.data);
+            });
+    };
 
     const sliderRender = () => {
         const SliderItemsArray = [];
@@ -211,7 +241,7 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                     />
                                     {errors.name && <span style={{color: '#E00009'}}>{errors.name.message}</span>}
                                     <Controller
-                                        name="telephone"
+                                        name="number"
                                         control={control}
                                         defaultValue=""
                                         rules={{ required: true }}
@@ -221,7 +251,7 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                     />
                                     {errors.telephone && <span style={{color: '#E00009'}}>{errors.telephone.message}</span>}
                                     <Controller
-                                        name="mail"
+                                        name="e-mail"
                                         control={control}
                                         defaultValue=""
                                         rules={{ required: true }}
@@ -241,6 +271,7 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                     />
                                     {errors.text && <span style={{color: '#E00009'}}>{errors.text.message}</span>}
                                     <OfferContact.ButtonSubmit type='submit'>Wyślij</OfferContact.ButtonSubmit>
+                                    {isSubmitted && <span style={{color: 'green', width: '100%', padding: '10px', backgroundColor: 'lightgreen', border: '1px solid green', borderRadius: '2px', display: "flex", justifyContent: "center", alignItems: 'center', fontSize: '18px'}}>Dziękujemy, wiadomość wysłana poprawnie</span>}
                                 </OfferContact.Form>
                             </OfferContact>
                         </OfferComponent.Contact>

@@ -2,6 +2,8 @@
 export const getPropertyAndTransaction = (id) => {
     let property;
     let transaction;
+    if (!id) return { transaction: '', property: '' };
+
     const firstLetter = id.charAt(0);
     const secondLetter = id.charAt(1);
     switch (firstLetter) {
