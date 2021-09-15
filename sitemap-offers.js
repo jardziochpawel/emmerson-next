@@ -7,7 +7,7 @@ const BACKEND_URL = 'https://backend.emmerson.pl';
 const getDate = new Date().toISOString();
 
 const fetchUrl = BACKEND_URL+"/sitemap";
-const YOUR_AWESOME_DOMAIN = "https://frontend.emmerson.pl";
+const YOUR_AWESOME_DOMAIN = "https://emmerson.pl";
 
 const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
 
