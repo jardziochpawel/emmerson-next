@@ -10,7 +10,7 @@ const webrootDomain = "https://emmerson.pl";
 const formatted = sitemap => prettier.format(sitemap, { parser: "html" });
 
 (async () => {
-    const pages = await fg(["./public/sitemap/*.gz"]);
+    const pages = await fg(["./public/sitemap/*.xml"]);
 
     const sitemapIndex = `
     ${pages
