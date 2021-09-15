@@ -50,7 +50,7 @@ export default function Offer({data}) {
     }
 
     if(data) {
-        images = webp && data.photosWebp ? data.photosWebp : data.photosJpeg.map(i => {return {...i, file: i.file.replace('jpg', 'jpeg')}});
+        images = webp && data.photosWebp ? data.photosWebp : data.photosJpeg ? data.photosJpeg.map(i => {return {...i, file: i.file.replace('jpg', 'jpeg')}}) : [{file: '/images/misc/no_image.jpeg'}];
     }
 
     const array =  Object.entries(data.flatDetails || data.houseDetails || data.commercialPropertyDetails || data.terrainDetails || data.hallDetails || []);
