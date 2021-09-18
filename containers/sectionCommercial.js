@@ -43,7 +43,7 @@ export default function SectionCommercial({ webp }){
                 item.title = `${ capitalizeFirstLetter(obj.property) } ${ numberWithSpaces(Math.floor(item.area)) }m2 na ${item.offerType}`
             }
             let image;
-            webp && item.photoWebp ? image = item.photoWebp : image = item.photoJpeg.replace('jpg', 'jpeg');
+            webp && item.photoWebp ? image = item.photoWebp : image = item.photoJpeg ? item.photoJpeg.replace('jpg', 'jpeg') : [];
 
             console.log(image);
 

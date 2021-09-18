@@ -33,7 +33,7 @@ export default function SectionOffers({ webp }){
         const array = [];
         let image;
         data.map(i => {
-            webp && i.photoWebp ? image = i.photoWebp : image = i.photoJpeg.replace('jpg', 'jpeg');
+            webp && i.photoWebp ? image = i.photoWebp : image = i.photoJpeg ? i.photoJpeg.replace('jpg', 'jpeg') : [];
 
             array.push(
                 <CardOffers.Container key={i.id}>
