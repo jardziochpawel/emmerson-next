@@ -23,7 +23,7 @@ export default function OffersContainer({data = [], onChange, onChangePerPage, p
 
             array.push(
                 <Offers.CardContainer key={key}>
-                    <Offers.CardImage webp={webp} imageJpeg={item.photoJpeg.replace('jpg', 'jpeg')} imageWebp={item.photoWebp}  onClick={()=>handleClick(item.objectName, item.offerType, item.title, item.id)}/>
+                    <Offers.CardImage webp={webp} imageJpeg={item.photoJpeg?.replace('jpg', 'jpeg')} imageWebp={item.photoWebp}  onClick={()=>handleClick(item.objectName, item.offerType, item.title, item.id)}/>
                     <Offers.CardBody>
                         <Offers.CardHeader>
                             <Offers.Title onClick={()=>handleClick(item.objectName, item.offerType,item.title, item.id)}>{item.title}</Offers.Title>

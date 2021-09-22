@@ -108,6 +108,9 @@ export const translateKey = (key) => {
         case 'height':
             result = 'Wysokość:';
             break;
+        case 'equipmentMask':
+            result = 'Wyposażenie:';
+            break;
         default:
             result = key;
     }
