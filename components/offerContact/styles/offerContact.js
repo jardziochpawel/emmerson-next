@@ -71,9 +71,19 @@ export const Name = styled.div`
   margin-left: 10px;
 `;
 
-export const Number = styled.div``;
+export const Number = styled.div`
+  a {
+    text-decoration: none;
+    color: black
+  }
+`;
 
 export const Mail = styled.div`
+  a {
+    text-decoration: none;
+    color: black
+  }
+  
   font-size: 1rem;
   
   @media(max-width: 1000px){

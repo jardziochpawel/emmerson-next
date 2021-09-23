@@ -11,6 +11,7 @@ import {
     Number,
     TextAreaInput, InputGroup, ButtonGroup, ContactDataHeader
 } from "./styles/offerContact";
+import Link from 'next/link';
 import {forwardRef} from "react";
 
 export default function OfferContact({children, ...restProps}){
@@ -41,14 +42,14 @@ OfferContact.ContactData = function OfferContactData({children, ...restProps}){
 OfferContact.Number = function OfferContactNumber({children, ...restProps}){
 
     return(
-        <Number {...restProps}>{children}</Number>
+        <Number {...restProps}><Link href={`tel:${children}`}>{children}</Link></Number>
     )
 }
 
 OfferContact.Mail = function OfferContactMail({children, ...restProps}){
 
     return(
-        <Mail {...restProps} >{children}</Mail>
+        <Mail {...restProps} ><Link href={`mailto:${children}`}>{children}</Link></Mail>
     )
 }
 
