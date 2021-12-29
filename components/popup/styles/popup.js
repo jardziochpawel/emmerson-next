@@ -21,7 +21,7 @@ export const Background = styled.div`
 `;
 
 export const Box = styled.div`
-  background: #000 url(${({background}) => background ?? background }) center / contain no-repeat;
+  background: url(${({background}) => background ?? background }) center / contain no-repeat;
   width: 100%;
   max-width: 750px;
   height: 0;
