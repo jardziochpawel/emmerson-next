@@ -20,4 +20,5 @@ export { default as OfferDetails } from './offerDetails';
 export { default as Contact } from './contact';
 export { default as Footer } from './footer';
 export { default as Card } from './card';
+export { default as Popup } from './popup';
 
