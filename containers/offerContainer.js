@@ -227,7 +227,7 @@ export default function OfferContainer({item = [], scrollToMap, currentSlide, ar
                                 </OfferContact.ContactDataHeader>
                                 <OfferContact.ContactData>
                                     <OfferContact.Number>22 827 00 00</OfferContact.Number>
-                                    <OfferContact.Number>{item.contactInfo?.phone}</OfferContact.Number>
+                                    <OfferContact.Number>{item.contactInfo?.phone ? item.contactInfo?.phone : '' }</OfferContact.Number>
                                     <OfferContact.Mail>{item.contactInfo?.email}</OfferContact.Mail>
                                 </OfferContact.ContactData>
                                 <OfferContact.Form onSubmit={handleSubmit(onSubmit)}>
