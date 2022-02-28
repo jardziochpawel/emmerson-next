@@ -19,10 +19,10 @@ export default function Index({ commercial, random }){
         <div ref={ref}>
             <Head>
                 <title>Emmerson Zarządzanie Sp z o.o. | Biuro Nieruchomości Warszawa</title>
-                <link rel="preload" as="image" href="/images/misc/bg-homepage.jpeg" />
-                <link rel="preload" as="image" href="/images/misc/bg-homepage.webp" />
+                <link rel="preload" as="image" href={'/images/misc/bg-homepage.jpeg'} />
+                <link rel="preload" as="image" href={'/images/misc/bg-homepage.webp'} />
             </Head>
-            <Header webp={webp} smallView={true}>
+            <Header webp={webp} smallView={true} src={'help-for-ukraine'}>
                 <Feature />
                 <SearchForm node={ref} />
             </Header>

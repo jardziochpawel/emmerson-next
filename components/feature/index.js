@@ -1,21 +1,10 @@
 import React from 'react';
-import { FeatureButton, Container, FeatureText, FeatureTitle, FeatureLink } from "./styles/feature";
+import { FeatureButton, Container, FeatureText, FeatureTitle, FeatureLink, Card } from "./styles/feature";
 import Link from "next/link";
 
 export default function Feature({children, ...restProps}){
     return(
         <Container {...restProps}>
-            <Feature.Title>
-                Sprzedamy lub wynajmiemy<br/>
-                Twoją nieruchomość
-            </Feature.Title>
-            <Feature.Text>
-                Dla naszego wspólnego bezpieczeństwa
-                zmodyfikowaliśmy nasze procedury i
-                dostosowaliśmy je do nowej sytuacji.
-                <Feature.Link link='#'>Jak działamy?</Feature.Link>
-            </Feature.Text>
-            <Feature.Button>Więcej</Feature.Button>
         </Container>
     );
 }

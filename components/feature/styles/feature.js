@@ -4,7 +4,7 @@ export const Container = styled.div`
   margin: auto;
   width: 100%;
   padding: 0 8rem;
-  
+  color: black;
   @media(max-width: 1000px){
     padding: 0 4rem;
   }
@@ -14,17 +14,37 @@ export const Container = styled.div`
   }
 `;
 
+export const Card = styled.div`
+  display: flex;
+  flex-flow: column;
+  background-color: #fefefe;
+  width: 450px;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 2em;
+  box-shadow: rgba(0,0,0,0.3) 12px 12px 15px;
+
+  @media(max-width: 1000px){
+    width: 650px;
+  }
+
+  @media(max-width: 600px){
+    width: 100%;
+  }
+`;
+
 export const FeatureTitle = styled.h1`
   font-family: 'Anton', sans-serif;
-  font-size: 25px;
+  font-size: 34px;
   line-height: 1.4;
   font-weight: 300;
+  margin-bottom: 0;
+  padding-top: 100px;
+  padding-bottom: 0;
 `;
 
 export const FeatureText = styled.p`
-  color: #232323;
   font-weight: 300;
-  padding: 2rem;
   width: 100%;
   max-width: 450px;
 `;
