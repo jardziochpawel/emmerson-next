@@ -1,17 +1,17 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Header, Popup} from '../components';
+import React, { useState} from "react";
+import { Header } from '../components';
 
-import {ROUTES} from "../constants/routes";
-import useLocalStorage from "../hooks/useLocalStorage";
-import {useOnClickOutside} from "../hooks";
+import { ROUTES } from "../constants/routes";
+// import useLocalStorage from "../hooks/useLocalStorage";
+// import {useOnClickOutside} from "../hooks";
 
 export default function HeaderContainer({children, webp, smallView, ...restProps }){
 
     const [open, setOpen] = useState(false);
-    const [loadPopUp, setLoadPopUp] = useState(false);
-    const [isOpenPopup, setIsOpenPopup] = useLocalStorage('isOpenPopup', true)
+    // const [loadPopUp, setLoadPopUp] = useState(false);
+    // const [isOpenPopup, setIsOpenPopup] = useLocalStorage('isOpenPopup', true)
 
-    const node = useRef();
+    // const node = useRef();
 
     const renderHeaderNav = () => {
         const array = []
@@ -34,18 +34,18 @@ export default function HeaderContainer({children, webp, smallView, ...restProps
         return array;
     }
 
-    useEffect(()=>{
-        setTimeout(()=>setLoadPopUp(true), 500);
-    },[])
-
-    useOnClickOutside(node, () => setIsOpenPopup(false));
+    // useEffect(()=>{
+    //     setTimeout(()=>setLoadPopUp(true), 500);
+    // },[])
+    //
+    // useOnClickOutside(node, () => setIsOpenPopup(false));
 
     return(
         <>
-            {loadPopUp && <Popup isOpenPopup={isOpenPopup}>
-                <Popup.Background />
-                <Popup.Box node={node} background={'/images/misc/wishes.jpg'}/>
-            </Popup>}
+            {/*{loadPopUp && <Popup isOpenPopup={isOpenPopup}>*/}
+            {/*    <Popup.Background />*/}
+            {/*    <Popup.Box node={node} background={'/images/misc/wishes.jpg'}/>*/}
+            {/*</Popup>}*/}
             <Header webp={webp} smallView={smallView} {...restProps}>
                 <Header.Frame>
                     <Header.Logo src={'/images/misc/logo.jpg'} to={'/'} />
