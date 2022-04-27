@@ -42,7 +42,7 @@ export default function Offer({data}) {
         window.scrollTo(rect.left + window.scrollX,rect.top + window.scrollY);
     }
 
-    const title = data.title ?  data.title.replace(/\s/g, '') : '';
+    const title = data.title ? data.title.replace(/\s/g, '') : '';
 
     if(title.length === 0){
         const obj = getPropertyAndTransaction(data.id)
