@@ -9,7 +9,6 @@ RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:16.14-alpine AS builder
-ENV NODE_OPTIONS=--openssl-legacy-provider
 WORKDIR /app
 RUN node -v
 COPY . .
@@ -17,7 +16,7 @@ COPY --from=deps /app/node_modules ./node_modules
 RUN yarn run sitemap && yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
-FROM node:alpine AS runner
+FROM node:16.14-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
