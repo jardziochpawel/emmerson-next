@@ -58,7 +58,7 @@ export default function Offer({data}) {
     return (
         <>
             <Head>
-                <title>{ data.title } | Emmerson Zarządzanie Sp z o.o.</title>
+                <title>{ data?.title } | Emmerson Zarządzanie Sp z o.o.</title>
             </Head>
             <Header webp={webp} bg={false} color={'white'} smallView={false}/>
             {
